@@ -23,7 +23,8 @@ ATTEMPTS = 5
 
 def fetch(client: httpx.Client, url: str, dest) -> str:
     head = client.head(url)
-    if head.status_code == 404:
+    # The CDN answers 403, not 404, for files that don't exist.
+    if head.status_code in (403, 404):
         return "not published"
     head.raise_for_status()
     expected = int(head.headers["content-length"])
@@ -73,9 +74,11 @@ def main() -> None:
             }
             for future in as_completed(futures):
                 service, month = futures[future]
+                # Any failure is reported per file; one bad file must never stop
+                # the loop that reports on all the others.
                 try:
                     print(f"{service} {month}: {future.result()}", flush=True)
-                except RuntimeError as error:
+                except Exception as error:
                     failures += 1
                     print(f"{service} {month}: FAILED {error}", flush=True)
     if failures:

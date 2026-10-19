@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taxi Chat</title>
+  <!-- Bare-bones on purpose: the designed interface is its own ticket. -->
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 16px; }
+    form { display: flex; gap: 8px; }
+    input { flex: 1; padding: 8px; font: inherit; }
+    #reply { font-size: 18px; margin: 24px 0 8px; }
+    .declined { color: #a33; }
+    ol { padding-left: 20px; }
+    pre { background: #f4f4f4; padding: 8px; overflow-x: auto; font-size: 12px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>Taxi Chat</h1>
+  <form id="ask">
+    <input id="q" value="How many yellow cab trips in March 2020?" aria-label="Question">
+    <button>Ask</button>
+  </form>
+  <p id="reply"></p>
+  <h2>How I got this</h2>
+  <ol id="stages"></ol>
+  <script>
+    const form = document.getElementById("ask");
+    const reply = document.getElementById("reply");
+    const stages = document.getElementById("stages");
+    let source;
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      source?.close();
+      reply.textContent = "…";
+      reply.className = "";
+      stages.innerHTML = "";
+      source = new EventSource("/api/ask?q=" + encodeURIComponent(document.getElementById("q").value));
+      source.onmessage = (message) => {
+        const data = JSON.parse(message.data);
+        if (data.stage === "done" || data.stage === "error") source.close();
+        if (data.stage === "done") return;
+        if (data.stage === "written") reply.textContent = data.reply;
+        if (data.stage === "declined") { reply.textContent = data.message; reply.className = "declined"; }
+        if (data.stage === "error") { reply.textContent = "Error: " + data.message; reply.className = "declined"; }
+        const item = document.createElement("li");
+        item.innerHTML = "<strong></strong><pre></pre>";
+        item.querySelector("strong").textContent = data.stage;
+        item.querySelector("pre").textContent = JSON.stringify(data, null, 2);
+        stages.append(item);
+      };
+    });
+  </script>
+</body>
+</html>
