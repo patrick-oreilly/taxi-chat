@@ -41,6 +41,26 @@ ROLLUP_ROWS = [
     ("yellow", "yellow", "2023-03-03 14:00", 138, 500, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # LaGuardia, afternoon
     ("yellow", "yellow", "2023-03-04 22:00", 161, 1000, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Saturday night
     ("yellow", "yellow", "2023-03-04 05:00", 132, 40, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Saturday 5am, not Friday night
+    # January 2024 weeks: 8th and 15th are whole weeks; the week of the 29th is cut off by the month's end.
+    ("yellow", "yellow", "2024-01-10 12:00", 161, 100, 0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    ("yellow", "yellow", "2024-01-17 12:00", 161, 120, 0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    ("yellow", "yellow", "2024-01-30 12:00", 161, 20, 0, 0.0, 0.0, 0.0, 0.0, 0.0),
+]
+
+
+# Raw trips in January 2024: (service, company, pickup_at, minutes, pickup_zone, dropoff_zone, distance_mi, fare, tip)
+# Monday 8 January 8am has three trips to LaGuardia (138); yellow distances put exactly half under 2 miles.
+RAW_TRIPS = [
+    ("yellow", "yellow", "2024-01-08 08:05", 20, 161, 138, 0.5, 8.0, 1.0),
+    ("yellow", "yellow", "2024-01-08 08:30", 25, 230, 138, 0.8, 9.0, 2.0),
+    ("yellow", "yellow", "2024-01-08 09:10", 30, 79, 138, 1.5, 15.0, 3.0),
+    ("yellow", "yellow", "2024-01-08 14:00", 10, 161, 132, 1.9, 18.0, 0.0),
+    ("yellow", "yellow", "2024-01-09 08:00", 15, 132, 161, 3.0, 22.0, 4.0),
+    ("yellow", "yellow", "2024-01-13 08:00", 12, 79, 138, 4.0, 25.0, 5.0),  # Saturday: not a weekday morning
+    ("yellow", "yellow", "2024-01-15 19:00", 18, 161, 230, 6.0, 30.0, 6.0),
+    ("yellow", "yellow", "2024-01-20 23:00", 40, 132, 79, 12.0, 60.0, 12.0),
+    ("fhvhv", "uber", "2024-01-10 12:00", 22, 161, 79, 2.5, 20.0, 2.0),
+    ("fhvhv", "uber", "2024-01-11 12:00", 35, 79, 132, 7.0, 45.0, 5.0),
 ]
 
 
@@ -60,6 +80,17 @@ def db(tmp_path_factory) -> Database:
             f"COPY (SELECT * FROM r WHERE service = ? AND year(hour) = ? AND month(hour) = ?) TO '{out / 'data.parquet'}' (FORMAT parquet)",
             [service, year, month],
         )
+    con.execute(
+        """CREATE TABLE t AS SELECT service, company, pickup_at::TIMESTAMP AS pickup_at, pickup_at::TIMESTAMP + to_minutes(minutes) AS dropoff_at,
+        pickup_zone::SMALLINT AS pickup_zone, dropoff_zone::SMALLINT AS dropoff_zone, NULL::TINYINT AS passengers, distance_mi, fare, tip,
+        fare + tip AS total, NULL::TINYINT AS payment_type
+        FROM (VALUES """ + ", ".join("(?, ?, ?, ?, ?, ?, ?, ?, ?)" for _ in RAW_TRIPS) + """) v(service, company, pickup_at, minutes, pickup_zone, dropoff_zone, distance_mi, fare, tip)""",
+        [value for trip in RAW_TRIPS for value in trip],
+    )
+    for (service,) in con.execute("SELECT DISTINCT service FROM t").fetchall():
+        out = root / "raw" / f"service={service}" / "year=2024" / "month=01"
+        out.mkdir(parents=True)
+        con.execute(f"COPY (SELECT * FROM t WHERE service = ? ORDER BY pickup_at) TO '{out / 'data.parquet'}' (FORMAT parquet)", [service])
     return Database(root)
 
 
@@ -106,6 +137,9 @@ class Adjusted:
     def __init__(self, inner, **overrides):
         self.inner = inner
         self.overrides = overrides
+
+    def __getattr__(self, name):
+        return getattr(self.inner, name)  # the claim check and anything else pass straight through
 
     def classify(self, question: str, places):
         classification = self.inner.classify(question, places)

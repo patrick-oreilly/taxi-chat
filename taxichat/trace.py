@@ -43,6 +43,7 @@ class AnswerTrace:
     place_candidates: list[str] = field(default_factory=list)  # the options code offered Jev, best first
     period: Period | None = None
     assumptions: list[str] = field(default_factory=list)
+    notes: list[str] = field(default_factory=list)  # routing decisions code made on top of Jev's answers
     declined: str | None = None  # reason code; None when answered
     decline_message: str | None = None
     decline_source: str | None = None  # "fixed", "llm", "llm_retry" or "template"
@@ -51,6 +52,7 @@ class AnswerTrace:
     source: str | None = None  # "rollup" or "raw"
     rows_scanned: int | None = None
     result: dict | None = None
+    derived: dict | None = None  # percentages, ratios and shares computed in code
     reply: str | None = None
     reply_source: str | None = None  # "llm", "llm_retry" or "template"
     checks: list[Check] = field(default_factory=list)

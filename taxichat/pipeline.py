@@ -7,48 +7,56 @@
 these) and finishes with a "done" event carrying the full trace. The eval and
 the tests call the same function, so they exercise exactly what the page does.
 
-So far totals/averages and rankings are answered; the other intents decline
-as not supported until their own tickets land.
+Answers totals, averages, rankings, trends, comparisons and distributions.
 """
 
 from __future__ import annotations
 
 import re
 import time
-from datetime import datetime
+from dataclasses import replace
+from datetime import date, datetime
 from typing import Iterator
 
-from .checker import check_numbers, numbers_in
+from .checker import check_numbers, check_size_words, numbers_in
 from .classify import Classification
 from .dates import DATA_END, DATA_LABEL, DATA_START, covered, nearest_covered, resolve_period
 from .places import all_places, candidates
+from .derived import derive
 from .queries import Database, Filters
-from .trace import AnswerTrace, Check, Detail
+from .trace import AnswerTrace, Check, Detail, Period
 from .writer import MEASURE_WORDS, SERVICE_WORDS, TIME_NUMBERS, facts_for, scope_words, template_reply
 
 # Starting points; the eval tunes these on the tuning split.
-THRESHOLDS = {"intent": 0.6, "detail": 0.5, "injection": 0.5, "compound": 0.5, "single": 0.5}
+THRESHOLDS = {"intent": 0.6, "detail": 0.5, "injection": 0.5, "compound": 0.5, "single": 0.5, "claim": 0.5}
 
-SUPPORTED_INTENTS = {"total_or_average", "ranking"}
+SUPPORTED_INTENTS = {"total_or_average", "ranking", "trend", "compare", "distribution"}
 
 # Only these details are gated for each intent: a total question's "direction"
 # is meaningless, so a low confidence on it must not decline the question.
+_COMMON = ["service", "year", "month", "place", "place_role", "day", "time_of_day"]
 RELEVANT_DETAILS = {
-    "total_or_average": ["measure", "service", "year", "month", "place", "place_role", "day", "time_of_day"],
-    "ranking": ["measure", "service", "year", "month", "place", "day", "time_of_day", "direction", "rank_unit"],
+    "total_or_average": ["measure", *_COMMON],
+    "ranking": ["measure", *_COMMON, "direction", "rank_unit"],
+    "trend": ["measure", *_COMMON],  # its step and end year are handled where they're used
+    "compare": ["measure", *_COMMON, "compare_by"],
+    "distribution": ["distribution_of", *_COMMON],
 }
+# A comparison also gates the detail that names its second item.
+COMPARE_SECOND = {"services": "service_b", "places": "place_b", "periods": "year_to"}
 
 DEFAULT_RANK_N = 5
 MAX_RANK_N = 20
 NUMBER_WORDS = {w: i for i, w in enumerate("one two three four five six seven eight nine ten".split(), start=1)}
+THRESHOLD_PATTERN = re.compile(r"\b(under|below|less than|shorter than|cheaper than|over|above|more than|longer than)\s+\$?(\d+(?:\.\d+)?)")
 
 DECLINE_MESSAGES = {
     "injection": "That reads like instructions rather than a question about the trip data, so I won't act on it.",
     "compound": "That asks more than one thing. Ask them one at a time and I'll answer each.",
     "out_of_scope": "That isn't something the NYC trip records can answer.",
     "uncertain_intent": "I'm not confident what you're asking. Try rephrasing it as a question about trips, fares, tips, distance or duration.",
-    "not_supported_yet": "I can answer totals, averages and rankings so far; trends, comparisons and distributions are coming.",
-    "dropoff_not_supported_yet": "Questions about where trips end need the raw trip data, which I can't search yet; I can answer about where trips start.",
+    "not_supported_yet": "I can't answer that kind of question yet.",
+    "missing_second": "That compares two things, but I couldn't tell which {what} is the second one. Try naming both.",
     "uncertain_detail": "I'm not confident about part of your question ({detail}). Try stating it more directly.",
     "outside_data": f"I don't have data for {{period}}; the data covers {DATA_LABEL}. The nearest period I can answer is {{nearest}}.",
 }
@@ -68,8 +76,47 @@ def rank_size(question: str) -> int | None:
     return None
 
 
+def threshold_in(question: str) -> float | None:
+    """The 2 in "under 2 miles", read in code; None when there isn't one."""
+    match = THRESHOLD_PATTERN.search(question.lower())
+    return float(match.group(2)) if match else None
+
+
+def _year(option: str, today) -> int | None:
+    """A year option as a number, or None when it doesn't name one."""
+    if option in ("this_year",):
+        return today.year
+    if option in ("last_year", "most_recent"):
+        return today.year - 1
+    return int(option) if option.isdigit() else None
+
+
+def _numbers(value) -> list[float]:
+    """Every number written anywhere in the facts, which the reply may therefore use."""
+    if isinstance(value, dict):
+        return [n for v in value.values() for n in _numbers(v)]
+    if isinstance(value, list):
+        return [n for v in value for n in _numbers(v)]
+    if isinstance(value, (int, float)):
+        return [value]
+    return [n for _, n, _ in numbers_in(str(value))]
+
+
+def _empty(intent: str, values: dict) -> bool:
+    if intent == "ranking":
+        return not values["rows"]
+    if intent == "trend":
+        return not values["series"]
+    if intent == "compare":
+        return all(g["trips"] == 0 for g in values["groups"])
+    if intent == "distribution":
+        return values["trips"] == 0
+    return values["value"] is None
+
+
 def answer(question: str, now: datetime, *, classifier, writer, db: Database) -> Iterator[dict]:
     trace = AnswerTrace(question=question, now=now.isoformat())
+    today = now.date()
 
     def decline(reason: str, **fmt) -> Iterator[dict]:
         trace.declined = reason
@@ -86,8 +133,9 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
     trace.models["classifier"] = c.model
     trace.intent = c.intent
     trace.details = {
-        "measure": c.measure, "service": c.service, "year": c.year, "month": c.month, "place": c.place,
-        "place_role": c.place_role, "day": c.day, "time_of_day": c.time_of_day, "direction": c.direction, "rank_unit": c.rank_unit,
+        name: getattr(c, name)
+        for name in ("measure", "service", "year", "month", "place", "place_role", "day", "time_of_day", "direction",
+                     "rank_unit", "grain", "year_to", "compare_by", "service_b", "place_b", "distribution_of")
     }
     yield {"stage": "classified", "intent": c.intent.__dict__, "details": {k: v.__dict__ for k, v in trace.details.items()}, "injection": c.injection, "compound": c.compound}
 
@@ -101,6 +149,13 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
     if c.intent.value == "out_of_scope":
         yield from decline("out_of_scope")
         return
+    # Jev wavers between a single total and a trend for "weekly trips in 2023", but
+    # its step answer doesn't: a question that names a step wants a series.
+    if c.intent.value in ("total_or_average", "trend") and c.grain.value != "not_stated" and c.grain.confidence >= THRESHOLDS["detail"]:
+        if c.intent.value != "trend" or c.intent.confidence < THRESHOLDS["intent"]:
+            trace.notes.append(f"treated as a trend because it asks for {c.grain.value}-by-{c.grain.value} figures (step confidence {c.grain.confidence:.2f})")
+        c.intent = Detail("trend", max(c.intent.confidence, c.grain.confidence))
+        trace.intent = c.intent
     if c.intent.confidence < THRESHOLDS["intent"]:
         yield from decline("uncertain_intent")
         return
@@ -108,7 +163,8 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
         yield from decline("not_supported_yet")
         return
     intent = c.intent.value
-    for name in RELEVANT_DETAILS[intent]:
+    gated = RELEVANT_DETAILS[intent] + ([COMPARE_SECOND[c.compare_by.value]] if intent == "compare" else [])
+    for name in gated:
         if trace.details[name].confidence < THRESHOLDS["detail"]:
             yield from decline("uncertain_detail", detail=name.replace("_", " "))
             return
@@ -117,22 +173,35 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
         trace.details["service"] = Detail("all", c.service.confidence, defaulted=True)
         trace.assumptions.append("all services, since none was named")
     service = trace.details["service"].value
+    role = "dropoff" if c.place_role.value == "dropoff" else "pickup"
 
-    place = all_places()[c.place.value] if c.place.value != "no_place" else None
-    if place is not None:
-        if c.place_role.value == "dropoff":
-            yield from decline("dropoff_not_supported_yet")
-            return
+    def place_assumptions(place) -> None:
         if c.place_role.value == "not_stated":
             trace.assumptions.append(f"trips that start in {place.label}")
         if place.kind == "group":
             trace.assumptions.append(f"{place.label} means all {len(place.zone_ids)} of its zones")
 
-    period, date_assumptions = resolve_period(c.year.value, c.month.value, now.date())
-    trace.period = period
+    place = all_places()[c.place.value] if c.place.value != "no_place" else None
+    if place is not None:
+        place_assumptions(place)
+
+    period, date_assumptions = resolve_period(c.year.value, c.month.value, today)
     trace.assumptions += date_assumptions
     day = None if c.day.value == "not_stated" else c.day.value
     time_of_day = None if c.time_of_day.value == "not_stated" else c.time_of_day.value
+
+    # A range of years ("from 2019 to 2024") widens a trend's period. Uncertainty
+    # only matters when the end year would change the answer: wavering between
+    # "2020" and "not stated" for "monthly trips in 2020" is harmless.
+    year_to = _year(c.year_to.value, today)
+    widens = intent == "trend" and year_to is not None and c.month.value == "not_stated" and year_to != period.start.year and period.end.year - period.start.year == 1
+    if widens and c.year_to.confidence < THRESHOLDS["detail"]:
+        yield from decline("uncertain_detail", detail="end year")
+        return
+    if widens:
+        first, last = sorted((period.start.year, year_to))
+        period = Period(date(first, 1, 1), date(last + 1, 1, 1), f"{first} to {last}")
+    trace.period = period
 
     n = None
     if intent == "ranking":
@@ -144,29 +213,81 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
             trace.assumptions.append(f"the top {n}, since no number was given")
         if c.measure.value != "trip_count":
             trace.assumptions.append("only places with at least 100 trips, so a handful of trips can't top an average")
-    yield {"stage": "resolved", "period": period.label, "service": service, "place": place.label if place else None, "day": day, "time_of_day": time_of_day, "assumptions": trace.assumptions}
+
+    grain = None
+    if intent == "trend":
+        # The step is presentation, not correctness: an unsure one gets the stated default.
+        grain = c.grain.value if c.grain.confidence >= THRESHOLDS["detail"] else "not_stated"
+        if grain == "not_stated":
+            days = (period.end - period.start).days
+            grain = "day" if days <= 62 else "month" if days <= 731 else "year"
+            trace.assumptions.append(f"by {grain}, since no step was given")
+
+    base = Filters(period, service, place.zone_ids if place else None, day, time_of_day, role)
+    groups = None
+    compare_by = c.compare_by.value if intent == "compare" else None
+    if compare_by == "services":
+        if c.service_b.value == "not_stated" or service == "all":
+            yield from decline("missing_second", what="service")
+            return
+        groups = [(SERVICE_WORDS[service], base), (SERVICE_WORDS[c.service_b.value], replace(base, service=c.service_b.value))]
+    elif compare_by == "places":
+        if place is None or c.place_b.value == "no_place" or c.place_b.value == c.place.value:
+            yield from decline("missing_second", what="place")
+            return
+        place_b = all_places()[c.place_b.value]
+        place_assumptions(place_b)
+        groups = [(place.label, base), (place_b.label, replace(base, zone_ids=place_b.zone_ids))]
+    elif compare_by == "periods":
+        if year_to is None or year_to == period.start.year:
+            yield from decline("missing_second", what="period")
+            return
+        period_b, _ = resolve_period(str(year_to), c.month.value, today)
+        if not covered(period_b):
+            yield from decline_outside_data(question, now, period_b, c.month.value, trace, writer)
+            return
+        groups = [(period.label, base), (period_b.label, replace(base, period=period_b))]
+
+    yield {"stage": "resolved", "period": period.label, "service": service, "place": place.label if place else None, "role": role, "day": day, "time_of_day": time_of_day, "assumptions": trace.assumptions}
 
     if not covered(period):
         yield from decline_outside_data(question, now, period, c.month.value, trace, writer)
         return
 
+    # The rollups are keyed by pickup and hold sums; anything else needs the raw trips.
+    source = "raw" if role == "dropoff" or intent == "distribution" else "rollup"
     measure = c.measure.value
-    filters = Filters(period, service, place.zone_ids if place else None, day, time_of_day)
     if intent == "ranking":
-        q = db.ranking(measure, filters, unit_of_rank=c.rank_unit.value, direction=c.direction.value, n=n)
+        q = db.ranking(measure, base, unit_of_rank=c.rank_unit.value, direction=c.direction.value, n=n, source=source)
+    elif intent == "trend":
+        q = db.trend(measure, base, grain=grain, source=source)
+    elif intent == "compare":
+        q = db.compare(measure, groups, source=source)
+    elif intent == "distribution":
+        q = db.distribution(c.distribution_of.value, base, threshold=threshold_in(question))
     else:
-        q = db.total_or_average(measure, filters)
+        q = db.total_or_average(measure, base, source=source)
     trace.query, trace.source, trace.rows_scanned, trace.result = q.sql, q.source, q.rows_scanned, q.values
     trace.timings_ms["query"] = round(q.ms, 1)
     yield {"stage": "queried", "sql": q.sql, "params": q.params, "source": q.source, "rows_scanned": q.rows_scanned, "result": q.values}
 
-    scope = scope_words(service, place.label if place else None, day, time_of_day, period.label)
-    if q.values.get("value", 0) is None or q.values.get("rows") == []:
+    scope = scope_words(
+        None if compare_by == "services" else service,
+        None if compare_by == "places" or not place else place.label,
+        day,
+        time_of_day,
+        None if compare_by == "periods" else period.label,
+        role,
+    )
+    if _empty(intent, q.values):
         trace.reply, trace.reply_source = f"There are no trips for {scope} in the data.", "template"
         yield {"stage": "written", "reply": trace.reply, "source": "template"}
         yield {"stage": "done", "trace": trace.to_dict()}
         return
-    template = template_reply(measure, scope, q.values, trace.assumptions)
+    derived, ratios = derive(intent, q.values)
+    trace.derived = derived
+    facts = facts_for(intent, q.values, derived)
+    template = template_reply(intent, measure, scope, q.values, derived, trace.assumptions)
 
     if writer is None:
         # No language model configured: the template is the reply.
@@ -176,29 +297,33 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
         return
 
     allowed: list[float] = [period.start.year, period.end.year - 1, DATA_START.year, DATA_END.year - 1, now.year]
-    allowed += TIME_NUMBERS.get(time_of_day, [])
+    allowed += TIME_NUMBERS.get(time_of_day, []) + _numbers(facts) + _numbers(q.values)
+    allowed += [n for g in (groups or []) for n in _numbers(g[0])]
+    details_words = {"question_type": intent.replace("_", " "), "measure": MEASURE_WORDS.get(measure, measure), "scope": scope}
     if intent == "ranking":
-        allowed += [n, q.values["min_trips"]]
-        for row in q.values["rows"]:
-            allowed += [row["rank"], row["value"], row["trips"]]
-    else:
-        allowed += [q.values["value"], q.values["trips"]]
-    details_words = {"measure": MEASURE_WORDS[measure], "scope": scope}
-    if intent == "ranking":
-        details_words["ranking"] = f"{'top' if c.direction.value == 'highest' else 'bottom'} {n} {c.rank_unit.value} by pickups"
-    facts = facts_for(q.values)
+        details_words["ranking"] = f"{'top' if c.direction.value == 'highest' else 'bottom'} {n} {c.rank_unit.value} by {role}s"
+    if compare_by:
+        details_words["comparing"] = compare_by
     feedback = None
-    for source in ("llm", "llm_retry"):
+    for attempt in ("llm", "llm_retry"):
         started = time.perf_counter()
-        reply = writer.write(question=question, details=details_words, facts=facts, assumptions=trace.assumptions, today=now.date().isoformat(), feedback=feedback)
-        trace.timings_ms[f"write_{source}"] = _ms(started)
-        check = check_numbers(reply, allowed)
-        trace.checks.append(Check(f"{check.name}:{source}", check.passed, check.detail))
-        yield {"stage": "checked", "attempt": source, "reply": reply, "passed": check.passed, "detail": check.detail}
-        if check.passed:
-            trace.reply, trace.reply_source = reply, source
+        reply = writer.write(question=question, details=details_words, facts=facts, assumptions=trace.assumptions, today=today.isoformat(), feedback=feedback)
+        trace.timings_ms[f"write_{attempt}"] = _ms(started)
+        checks = [check_numbers(reply, allowed), check_size_words(reply, ratios)]
+        if all(ch.passed for ch in checks) and hasattr(classifier, "unsupported_claim"):
+            started = time.perf_counter()
+            # The check must see everything the writer saw about what the figures cover, or a
+            # reply naming the service and period would read as a claim beyond the result.
+            p = classifier.unsupported_claim(reply, {"about": details_words, "facts": facts, "assumptions": trace.assumptions})
+            trace.timings_ms[f"claim_{attempt}"] = _ms(started)
+            checks.append(Check("claim", p < THRESHOLDS["claim"], f"Jev rates an unsupported claim at {p:.2f}"))
+        trace.checks += [Check(f"{ch.name}:{attempt}", ch.passed, ch.detail) for ch in checks]
+        failed = [ch for ch in checks if not ch.passed]
+        yield {"stage": "checked", "attempt": attempt, "reply": reply, "passed": not failed, "detail": "; ".join(ch.detail for ch in failed)}
+        if not failed:
+            trace.reply, trace.reply_source = reply, attempt
             break
-        feedback = check.detail
+        feedback = "; ".join(ch.detail for ch in failed)
     else:
         trace.reply, trace.reply_source = template, "template"
 

@@ -32,6 +32,27 @@ def numbers_in(text: str) -> list[tuple[str, float, float]]:
     return found
 
 
+# Words that claim a size without a number, and the ratio each implies.
+SIZE_WORDS = {
+    "doubled": 2, "double": 2, "twice": 2, "tripled": 3, "triple": 3, "three times": 3,
+    "quadrupled": 4, "four times": 4, "halved": 0.5, "half": 0.5,
+}
+SIZE_TOLERANCE = 0.15  # "doubled" is fine for a ratio of 1.7 to 2.3; "nearly double" lands in that too
+SIZE_PATTERN = re.compile(r"\b(" + "|".join(sorted(map(re.escape, SIZE_WORDS), key=len, reverse=True)) + r")\b", re.IGNORECASE)
+
+
+def check_size_words(reply: str, ratios: list[float]) -> Check:
+    """Every size word must be backed by a ratio computed in code."""
+    unsupported = [
+        match.group(0)
+        for match in SIZE_PATTERN.finditer(reply)
+        if not any(abs(r - SIZE_WORDS[match.group(0).lower()]) <= SIZE_TOLERANCE * SIZE_WORDS[match.group(0).lower()] for r in ratios)
+    ]
+    if unsupported:
+        return Check("size_words", False, "no computed ratio supports: " + ", ".join(unsupported))
+    return Check("size_words", True)
+
+
 def check_numbers(reply: str, allowed: list[float]) -> Check:
     unsupported = [
         written
