@@ -1,0 +1,25 @@
+{
+  "thresholds": {
+    "intent": 0.9,
+    "detail": 0.7,
+    "refuse": 0.7
+  },
+  "tuning_summary": {
+    "intent": 0.9,
+    "detail": 0.7,
+    "refuse": 0.7,
+    "questions": 193,
+    "answerable": 151,
+    "should_decline": 42,
+    "correct": 148,
+    "wrong": 1,
+    "missed": 2,
+    "correct_decline": 42,
+    "harmful": 0,
+    "precision": 0.9932885906040269,
+    "coverage": 0.9867549668874173,
+    "routing_accuracy": 0.9867549668874173,
+    "extraction_accuracy": 0.9933774834437086
+  },
+  "chosen_at": "2026-10-19T19:37:02.965549+00:00"
+}

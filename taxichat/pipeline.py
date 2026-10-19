@@ -48,7 +48,12 @@ COMPARE_SECOND = {"services": "service_b", "places": "place_b", "periods": "year
 DEFAULT_RANK_N = 5
 MAX_RANK_N = 20
 NUMBER_WORDS = {w: i for i, w in enumerate("one two three four five six seven eight nine ten".split(), start=1)}
-THRESHOLD_PATTERN = re.compile(r"\b(under|below|less than|shorter than|cheaper than|over|above|more than|longer than)\s+\$?(\d+(?:\.\d+)?)")
+THRESHOLD_PATTERN = re.compile(
+    r"\b(?:under|below|less than|shorter than|cheaper than|over|above|more than|longer than)\s+"
+    r"(?:\$\s?)?(\d+(?:\.\d+)?|half an?|an|a|one|two|three|four|five|six|seven|eight|nine|ten|twenty|thirty|forty|fifty|sixty)"
+    r"\s*(hours?|hrs?)?"
+)
+THRESHOLD_WORDS = {"a": 1, "an": 1, "half a": 0.5, "half an": 0.5, "twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60, **NUMBER_WORDS}
 
 DECLINE_MESSAGES = {
     "injection": "That reads like instructions rather than a question about the trip data, so I won't act on it.",
@@ -77,9 +82,16 @@ def rank_size(question: str) -> int | None:
 
 
 def threshold_in(question: str) -> float | None:
-    """The 2 in "under 2 miles", read in code; None when there isn't one."""
+    """The 2 in "under 2 miles", read in code; None when there isn't one.
+
+    Words count too ("less than a dollar", "over half an hour"), and hours become
+    minutes, the unit durations are measured in."""
     match = THRESHOLD_PATTERN.search(question.lower())
-    return float(match.group(2)) if match else None
+    if not match:
+        return None
+    amount, hours = match.groups()
+    value = float(amount) if amount[0].isdigit() else float(THRESHOLD_WORDS[amount])
+    return value * 60 if hours else value
 
 
 def steps_in(period: Period, grain: str) -> int:

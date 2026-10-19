@@ -256,12 +256,29 @@ def parse_response(response: dict) -> Classification:
     )
 
 
+def shuffled(request: dict, rng) -> dict:
+    """The same request with every Choice's options in a random order.
+
+    Jev's docs warn it can lean towards the first option; the eval asks twice
+    and counts how often the answer moves."""
+    questions = {}
+    for name, q in request["questions"].items():
+        if q["type"] == "choice":
+            items = list(q["criteria"].items())
+            rng.shuffle(items)
+            q = {**q, "criteria": dict(items)}
+        questions[name] = q
+    return {**request, "questions": questions}
+
+
 class JevClassifier:
-    def __init__(self, transport: Transport):
+    def __init__(self, transport: Transport, rng=None):
         self.transport = transport
+        self.rng = rng  # set only by the option-order check
 
     def classify(self, question: str, places: list[Place]) -> Classification:
-        return parse_response(self.transport(build_request(question, places)))
+        request = build_request(question, places)
+        return parse_response(self.transport(shuffled(request, self.rng) if self.rng else request))
 
     def unsupported_claim(self, reply: str, facts: dict) -> float:
         """Probability that `reply` states something `result` doesn't support."""

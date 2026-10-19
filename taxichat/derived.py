@@ -43,7 +43,7 @@ def derive(intent: str, result: dict) -> tuple[dict, list[float]]:
         derived = {"bucket_pcts": [b["share"] * 100 if b["share"] is not None else None for b in result["buckets"]]}
         if result.get("share_below") is not None:
             derived["pct_below"] = result["share_below"] * 100
-            derived["pct_above"] = 100 - derived["pct_below"]
+            derived["pct_above"] = result["share_above"] * 100
         return derived, []
 
     return {}, []

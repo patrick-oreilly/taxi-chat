@@ -140,3 +140,21 @@ def test_a_step_as_long_as_the_period_stays_a_single_total(classifier, db):
     trace = ask("How many yellow cab trips were there last year?", classifier, db)
 
     assert trace["intent"]["value"] == "total_or_average"
+
+
+@pytest.mark.parametrize(
+    "question, threshold",
+    [
+        ("share of trips under 2 miles", 2),
+        ("what percent of tips were less than a dollar", 1),
+        ("trips over half an hour", 30),
+        ("rides longer than an hour", 60),
+        ("fares over $20", 20),
+        ("trips over thirty minutes", 30),
+        ("how are fares spread", None),
+    ],
+)
+def test_thresholds_are_read_in_words_as_well_as_digits(question, threshold):
+    from taxichat.pipeline import threshold_in
+
+    assert threshold_in(question) == threshold
