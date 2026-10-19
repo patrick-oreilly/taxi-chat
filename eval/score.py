@@ -50,7 +50,7 @@ def _matches(seed: dict, gold: list, trace: dict) -> tuple[bool, str]:
     if intent == "ranking":
         got, want = [r["id"] for r in result["rows"]], [g[0] for g in gold]
         values_ok = all(_close(r["value"], g[1]) for r, g in zip(result["rows"], gold))
-        return got == want and values_ok, f"ranked {got} vs {want}"
+        return got == want and values_ok, f"ranked {[(r['id'], r['value']) for r in result['rows']]} vs {[tuple(g) for g in gold]}"
     if intent == "trend":
         got = [(p["t"], p["value"]) for p in result["series"]]
         ok = len(got) == len(gold) and all(a[0] == b[0] and _close(a[1], b[1]) for a, b in zip(got, gold))
