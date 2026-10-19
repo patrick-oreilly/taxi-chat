@@ -44,7 +44,8 @@ def test_compound_decline_says_to_ask_separately(classifier, db):
 def test_a_single_comparison_is_not_treated_as_compound(classifier, db):
     trace = ask("Uber vs Lyft trips in Brooklyn last summer?", classifier, db)
 
-    assert trace["declined"] == "not_supported_yet"
+    assert trace["intent"]["value"] == "compare"
+    assert trace["declined"] != "compound"
 
 
 def test_uncertain_intent_declines(classifier, db):
