@@ -100,3 +100,24 @@ def test_without_a_writer_the_template_is_the_reply(classifier, db):
 
     assert trace["reply"] == "Trips for yellow taxis in March 2020: 150."
     assert trace["reply_source"] == "template"
+
+
+@pytest.mark.parametrize(
+    "question",
+    [
+        "How many yellow cab trips in March 2020?",
+        "What was the average fare on Uber in March 2020?",
+        "how many trips were there in march 2020",
+    ],
+)
+def test_real_writer_replies_pass_the_number_check(question, classifier, deepseek_writer, db):
+    trace = run(question, NOW, classifier=classifier, writer=deepseek_writer, db=db)
+
+    assert trace["reply_source"] in ("llm", "llm_retry"), trace["checks"]
+    assert trace["checks"][-1]["passed"]
+
+
+def test_real_writer_states_the_default_it_assumed(classifier, deepseek_writer, db):
+    trace = run("how many trips were there in march 2020", NOW, classifier=classifier, writer=deepseek_writer, db=db)
+
+    assert "all" in trace["reply"].lower()

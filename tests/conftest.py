@@ -1,8 +1,8 @@
-"""Shared fixtures: a tiny rollup dataset with known answers, and Jev via
+"""Shared fixtures: a tiny rollup dataset with known answers, and Jev and DeepSeek via
 recorded responses.
 
-Run with RECORD=1 (and TYPESAFE_API_KEY set) to call the real Jev API and
-refresh tests/recordings/jev.json; otherwise every Jev call is replayed offline.
+Run with RECORD=1 (and TYPESAFE_API_KEY and DEEPSEEK_API_KEY set) to call the
+real APIs and refresh tests/recordings; otherwise every call is replayed offline.
 """
 
 from __future__ import annotations
@@ -17,6 +17,7 @@ import pytest
 from taxichat.classify import JEV_URL, JevClassifier
 from taxichat.queries import Database
 from taxichat.transport import HttpTransport, RecordingTransport, ReplayTransport
+from taxichat.writer import DEEPSEEK_URL, DeepSeekWriter
 
 RECORDINGS = Path(__file__).parent / "recordings"
 NOW = datetime(2026, 10, 19, 12, 0)
@@ -59,6 +60,16 @@ def classifier() -> JevClassifier:
     else:
         transport = ReplayTransport(path)
     return JevClassifier(transport)
+
+
+@pytest.fixture(scope="session")
+def deepseek_writer() -> DeepSeekWriter:
+    path = RECORDINGS / "deepseek.json"
+    if os.environ.get("RECORD") == "1":
+        transport = RecordingTransport(HttpTransport(DEEPSEEK_URL, os.environ.get("DEEPSEEK_API_KEY", "")), path)
+    else:
+        transport = ReplayTransport(path)
+    return DeepSeekWriter(transport)
 
 
 class ScriptedWriter:

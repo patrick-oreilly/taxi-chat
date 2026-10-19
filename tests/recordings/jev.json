@@ -89,18 +89,18 @@
     "response": {
       "answers": {
         "injection": {
-          "noul": 0.02,
+          "noul": 0.03,
           "type": "noul"
         },
         "intent": {
           "choice": "total_or_average",
-          "confidence": 0.99,
+          "confidence": 1.0,
           "probabilities": {
             "compare": 0.0,
             "distribution": 0.0,
-            "out_of_scope": 0.01,
+            "out_of_scope": 0.0,
             "ranking": 0.0,
-            "total_or_average": 0.99,
+            "total_or_average": 1.0,
             "trend": 0.0
           },
           "type": "choice"
@@ -274,14 +274,14 @@
         },
         "intent": {
           "choice": "out_of_scope",
-          "confidence": 0.58,
+          "confidence": 0.53,
           "probabilities": {
             "compare": 0.0,
             "distribution": 0.0,
-            "out_of_scope": 0.65,
+            "out_of_scope": 0.61,
             "ranking": 0.0,
             "total_or_average": 0.0,
-            "trend": 0.35
+            "trend": 0.39
           },
           "type": "choice"
         },
@@ -335,19 +335,19 @@
         },
         "year": {
           "choice": "not_stated",
-          "confidence": 0.69,
+          "confidence": 0.7,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.01,
             "2021": 0.01,
-            "2022": 0.03,
+            "2022": 0.02,
             "2023": 0.02,
-            "2024": 0.03,
+            "2024": 0.02,
             "2025": 0.02,
             "2026": 0.01,
             "last_year": 0.0,
-            "not_stated": 0.72,
-            "this_year": 0.15
+            "not_stated": 0.73,
+            "this_year": 0.16
           },
           "type": "choice"
         }
@@ -481,18 +481,18 @@
         },
         "month": {
           "choice": "not_stated",
-          "confidence": 0.9,
+          "confidence": 0.92,
           "probabilities": {
             "april": 0.0,
-            "august": 0.03,
+            "august": 0.02,
             "december": 0.0,
             "february": 0.0,
             "january": 0.0,
-            "july": 0.06,
+            "july": 0.05,
             "june": 0.0,
             "march": 0.0,
             "may": 0.0,
-            "not_stated": 0.91,
+            "not_stated": 0.93,
             "november": 0.0,
             "october": 0.0,
             "september": 0.0
@@ -501,13 +501,13 @@
         },
         "service": {
           "choice": "rideshare",
-          "confidence": 0.87,
+          "confidence": 0.89,
           "probabilities": {
-            "all": 0.05,
+            "all": 0.04,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.04,
-            "rideshare": 0.89,
+            "not_stated": 0.03,
+            "rideshare": 0.91,
             "uber": 0.02,
             "yellow": 0.0
           },
@@ -515,18 +515,18 @@
         },
         "year": {
           "choice": "last_year",
-          "confidence": 0.78,
+          "confidence": 0.81,
           "probabilities": {
             "2019": 0.01,
             "2020": 0.01,
-            "2021": 0.01,
+            "2021": 0.0,
             "2022": 0.01,
-            "2023": 0.01,
+            "2023": 0.02,
             "2024": 0.01,
             "2025": 0.0,
             "2026": 0.0,
-            "last_year": 0.8,
-            "not_stated": 0.13,
+            "last_year": 0.83,
+            "not_stated": 0.1,
             "this_year": 0.01
           },
           "type": "choice"
@@ -814,26 +814,26 @@
         },
         "intent": {
           "choice": "trend",
-          "confidence": 0.7,
+          "confidence": 0.72,
           "probabilities": {
             "compare": 0.0,
             "distribution": 0.0,
-            "out_of_scope": 0.24,
+            "out_of_scope": 0.22,
             "ranking": 0.0,
             "total_or_average": 0.01,
-            "trend": 0.75
+            "trend": 0.77
           },
           "type": "choice"
         },
         "measure": {
           "choice": "average_fare",
-          "confidence": 0.96,
+          "confidence": 0.95,
           "probabilities": {
             "average_distance": 0.0,
             "average_duration": 0.0,
-            "average_fare": 0.97,
+            "average_fare": 0.96,
             "average_tip": 0.0,
-            "total_fares": 0.03,
+            "total_fares": 0.04,
             "total_tips": 0.0,
             "trip_count": 0.0
           },
@@ -1055,10 +1055,10 @@
         },
         "year": {
           "choice": "2020",
-          "confidence": 0.98,
+          "confidence": 0.99,
           "probabilities": {
             "2019": 0.0,
-            "2020": 0.98,
+            "2020": 0.99,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
@@ -1066,7 +1066,7 @@
             "2025": 0.0,
             "2026": 0.0,
             "last_year": 0.0,
-            "not_stated": 0.02,
+            "not_stated": 0.01,
             "this_year": 0.0
           },
           "type": "choice"
@@ -1235,10 +1235,10 @@
         },
         "year": {
           "choice": "2020",
-          "confidence": 0.99,
+          "confidence": 0.98,
           "probabilities": {
             "2019": 0.0,
-            "2020": 0.99,
+            "2020": 0.98,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
@@ -1246,7 +1246,7 @@
             "2025": 0.0,
             "2026": 0.0,
             "last_year": 0.0,
-            "not_stated": 0.01,
+            "not_stated": 0.02,
             "this_year": 0.0
           },
           "type": "choice"
