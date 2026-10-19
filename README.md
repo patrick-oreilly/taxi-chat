@@ -18,7 +18,7 @@ rejects the first reply and the second passes), and a question it declines.
 
 ## Demo
 
-https://github.com/user-attachments/assets/551ed134-7139-4def-a6a2-b369c9e031e3
+https://github.com/user-attachments/assets/13059032-d087-4eb7-9c16-20894d215eb9
 
 ## How it stays honest
 
