@@ -45,6 +45,10 @@ ROLLUP_ROWS = [
     ("green", "green", "2023-06-01 12:00", 1, 5, 0, 0.0, 0.0, 0.0, 0.0, 0.0),
     ("green", "green", "2023-06-01 12:00", 74, 40, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # East Harlem North, Manhattan
     ("green", "green", "2023-06-01 12:00", 3, 60, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Allerton/Pelham Gardens, Bronx
+    # Nights across New Year: Friday 31 Dec 2021 ends in 2022; Saturday 31 Dec 2022 ends in 2023.
+    ("fhvhv", "uber", "2022-01-01 01:00", 161, 11, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Friday night of 2021
+    ("fhvhv", "uber", "2022-01-07 22:00", 161, 13, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Friday night of 2022
+    ("fhvhv", "uber", "2023-01-01 02:00", 161, 17, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Saturday night of 2022
     # January 2024 weeks: 8th and 15th are whole weeks; the week of the 29th is cut off by the month's end.
     ("yellow", "yellow", "2024-01-10 12:00", 161, 100, 0, 0.0, 0.0, 0.0, 0.0, 0.0),
     ("yellow", "yellow", "2024-01-17 12:00", 161, 120, 0, 0.0, 0.0, 0.0, 0.0, 0.0),

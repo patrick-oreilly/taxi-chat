@@ -257,10 +257,10 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.77,
+          "confidence": 0.76,
           "probabilities": {
-            "periods": 0.85,
-            "places": 0.15,
+            "periods": 0.84,
+            "places": 0.16,
             "services": 0.0
           },
           "type": "choice"
@@ -288,31 +288,31 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.04,
+          "confidence": 0.08,
           "probabilities": {
-            "highest": 0.52,
-            "lowest": 0.48
+            "highest": 0.54,
+            "lowest": 0.46
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.85,
+          "confidence": 0.81,
           "probabilities": {
-            "distance": 0.89,
-            "duration": 0.09,
-            "fare": 0.02,
+            "distance": 0.86,
+            "duration": 0.11,
+            "fare": 0.03,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "day",
-          "confidence": 0.79,
+          "confidence": 0.81,
           "probabilities": {
-            "day": 0.83,
+            "day": 0.85,
             "month": 0.0,
-            "not_stated": 0.17,
+            "not_stated": 0.15,
             "week": 0.0,
             "year": 0.0
           },
@@ -337,15 +337,15 @@
         },
         "measure": {
           "choice": "trip_count",
-          "confidence": 0.95,
+          "confidence": 0.96,
           "probabilities": {
             "average_distance": 0.01,
-            "average_duration": 0.03,
+            "average_duration": 0.02,
             "average_fare": 0.0,
             "average_tip": 0.0,
             "total_fares": 0.0,
             "total_tips": 0.0,
-            "trip_count": 0.96
+            "trip_count": 0.97
           },
           "type": "choice"
         },
@@ -388,10 +388,10 @@
         },
         "place_b": {
           "choice": "no_place",
-          "confidence": 0.93,
+          "confidence": 0.9,
           "probabilities": {
-            "borough:manhattan": 0.06,
-            "no_place": 0.9400000000000001,
+            "borough:manhattan": 0.08,
+            "no_place": 0.92,
             "zone:150": 0.0,
             "zone:151": 0.0,
             "zone:152": 0.0,
@@ -411,10 +411,10 @@
         },
         "rank_unit": {
           "choice": "boroughs",
-          "confidence": 0.6,
+          "confidence": 0.64,
           "probabilities": {
-            "boroughs": 0.8,
-            "zones": 0.2
+            "boroughs": 0.82,
+            "zones": 0.18
           },
           "type": "choice"
         },
@@ -447,7 +447,7 @@
           "type": "choice"
         },
         "single": {
-          "noul": 0.06,
+          "noul": 0.04,
           "type": "noul"
         },
         "time_of_day": {
@@ -477,20 +477,20 @@
             "2022": 0.0,
             "2023": 0.0,
             "2024": 0.0,
-            "2025": 0.0,
+            "2025": 0.01,
             "2026": 0.0,
             "earlier_year": 0.0,
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.08,
             "not_stated": 0.91,
-            "this_year": 0.01
+            "this_year": 0.0
           },
           "type": "choice"
         },
         "year_to": {
           "choice": "not_stated",
-          "confidence": 0.95,
+          "confidence": 0.96,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
@@ -503,9 +503,9 @@
             "earlier_year": 0.0,
             "last_year": 0.0,
             "later_year": 0.0,
-            "most_recent": 0.05,
-            "not_stated": 0.95,
-            "this_year": 0.0
+            "most_recent": 0.03,
+            "not_stated": 0.96,
+            "this_year": 0.01
           },
           "type": "choice"
         }
@@ -550,7 +550,7 @@
     "response": {
       "answers": {
         "unsupported": {
-          "noul": 0.06,
+          "noul": 0.07,
           "type": "noul"
         }
       },
@@ -834,11 +834,11 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.8,
+          "confidence": 0.79,
           "probabilities": {
-            "periods": 0.87,
+            "periods": 0.86,
             "places": 0.1,
-            "services": 0.03
+            "services": 0.04
           },
           "type": "choice"
         },
@@ -865,19 +865,19 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.72,
+          "confidence": 0.7,
           "probabilities": {
-            "highest": 0.86,
-            "lowest": 0.14
+            "highest": 0.85,
+            "lowest": 0.15
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.75,
+          "confidence": 0.65,
           "probabilities": {
-            "distance": 0.81,
-            "duration": 0.17,
+            "distance": 0.74,
+            "duration": 0.24,
             "fare": 0.02,
             "tip": 0.0
           },
@@ -890,8 +890,8 @@
             "day": 0.14,
             "month": 0.01,
             "not_stated": 0.53,
-            "week": 0.23,
-            "year": 0.09
+            "week": 0.24,
+            "year": 0.08
           },
           "type": "choice"
         },
@@ -928,7 +928,7 @@
         },
         "month": {
           "choice": "not_stated",
-          "confidence": 0.99,
+          "confidence": 1.0,
           "probabilities": {
             "april": 0.0,
             "august": 0.0,
@@ -940,13 +940,13 @@
             "june": 0.0,
             "march": 0.0,
             "may": 0.0,
-            "not_stated": 0.99,
+            "not_stated": 1.0,
             "november": 0.0,
             "october": 0.0,
             "september": 0.0,
             "spring": 0.0,
             "summer": 0.0,
-            "winter": 0.01
+            "winter": 0.0
           },
           "type": "choice"
         },
@@ -965,11 +965,11 @@
         },
         "place_b": {
           "choice": "no_place",
-          "confidence": 0.98,
+          "confidence": 0.99,
           "probabilities": {
             "group:crown heights": 0.0,
-            "no_place": 0.98,
-            "zone:132": 0.02,
+            "no_place": 0.99,
+            "zone:132": 0.01,
             "zone:38": 0.0,
             "zone:5": 0.0,
             "zone:67": 0.0
@@ -988,21 +988,21 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.58,
+          "confidence": 0.6,
           "probabilities": {
-            "boroughs": 0.21,
-            "zones": 0.79
+            "boroughs": 0.2,
+            "zones": 0.8
           },
           "type": "choice"
         },
         "service": {
           "choice": "not_stated",
-          "confidence": 1.0,
+          "confidence": 0.99,
           "probabilities": {
-            "all": 0.0,
+            "all": 0.01,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 1.0,
+            "not_stated": 0.99,
             "rideshare": 0.0,
             "uber": 0.0,
             "yellow": 0.0
@@ -1011,12 +1011,12 @@
         },
         "service_b": {
           "choice": "not_stated",
-          "confidence": 1.0,
+          "confidence": 0.99,
           "probabilities": {
-            "all": 0.0,
+            "all": 0.01,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 1.0,
+            "not_stated": 0.99,
             "rideshare": 0.0,
             "uber": 0.0,
             "yellow": 0.0
@@ -1024,7 +1024,7 @@
           "type": "choice"
         },
         "single": {
-          "noul": 0.06,
+          "noul": 0.07,
           "type": "noul"
         },
         "time_of_day": {
@@ -1041,7 +1041,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.27,
+          "noul": 0.33,
           "type": "noul"
         },
         "year": {
@@ -1067,13 +1067,13 @@
         },
         "year_to": {
           "choice": "2023",
-          "confidence": 0.72,
+          "confidence": 0.68,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
-            "2023": 0.74,
+            "2023": 0.7,
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
@@ -1081,7 +1081,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.26,
+            "not_stated": 0.3,
             "this_year": 0.0
           },
           "type": "choice"
@@ -1361,7 +1361,7 @@
           "type": "choice"
         },
         "compound": {
-          "noul": 0.18,
+          "noul": 0.17,
           "type": "noul"
         },
         "day": {
@@ -1383,31 +1383,31 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.82,
+          "confidence": 0.76,
           "probabilities": {
-            "highest": 0.91,
-            "lowest": 0.09
+            "highest": 0.88,
+            "lowest": 0.12
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.8,
+          "confidence": 0.85,
           "probabilities": {
-            "distance": 0.85,
-            "duration": 0.11,
-            "fare": 0.04,
+            "distance": 0.89,
+            "duration": 0.09,
+            "fare": 0.02,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.64,
+          "confidence": 0.61,
           "probabilities": {
             "day": 0.01,
-            "month": 0.27,
-            "not_stated": 0.71,
+            "month": 0.29,
+            "not_stated": 0.6900000000000001,
             "week": 0.01,
             "year": 0.0
           },
@@ -1506,23 +1506,23 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.88,
+          "confidence": 0.86,
           "probabilities": {
-            "boroughs": 0.06,
-            "zones": 0.94
+            "boroughs": 0.07,
+            "zones": 0.93
           },
           "type": "choice"
         },
         "service": {
           "choice": "uber",
-          "confidence": 0.8,
+          "confidence": 0.77,
           "probabilities": {
             "all": 0.02,
             "green": 0.0,
             "lyft": 0.0,
             "not_stated": 0.0,
-            "rideshare": 0.15,
-            "uber": 0.83,
+            "rideshare": 0.17,
+            "uber": 0.8,
             "yellow": 0.0
           },
           "type": "choice"
@@ -1542,7 +1542,7 @@
           "type": "choice"
         },
         "single": {
-          "noul": 0.14,
+          "noul": 0.15,
           "type": "noul"
         },
         "time_of_day": {
@@ -1585,10 +1585,10 @@
         },
         "year_to": {
           "choice": "2020",
-          "confidence": 0.82,
+          "confidence": 0.8,
           "probabilities": {
             "2019": 0.0,
-            "2020": 0.83,
+            "2020": 0.81,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
@@ -1599,7 +1599,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.17,
+            "not_stated": 0.19,
             "this_year": 0.0
           },
           "type": "choice"
@@ -1981,7 +1981,7 @@
           "type": "choice"
         },
         "compound": {
-          "noul": 0.11,
+          "noul": 0.1,
           "type": "noul"
         },
         "day": {
@@ -2015,7 +2015,7 @@
           "confidence": 0.91,
           "probabilities": {
             "distance": 0.93,
-            "duration": 0.05,
+            "duration": 0.06,
             "fare": 0.01,
             "tip": 0.0
           },
@@ -2023,18 +2023,18 @@
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.65,
+          "confidence": 0.57,
           "probabilities": {
-            "day": 0.15,
+            "day": 0.16,
             "month": 0.0,
-            "not_stated": 0.72,
-            "week": 0.03,
-            "year": 0.1
+            "not_stated": 0.66,
+            "week": 0.04,
+            "year": 0.14
           },
           "type": "choice"
         },
         "injection": {
-          "noul": 0.06,
+          "noul": 0.07,
           "type": "noul"
         },
         "intent": {
@@ -2066,7 +2066,7 @@
         },
         "month": {
           "choice": "not_stated",
-          "confidence": 0.99,
+          "confidence": 0.96,
           "probabilities": {
             "april": 0.0,
             "august": 0.0,
@@ -2074,16 +2074,16 @@
             "december": 0.0,
             "february": 0.0,
             "january": 0.0,
-            "july": 0.0,
+            "july": 0.01,
             "june": 0.0,
             "march": 0.0,
             "may": 0.0,
-            "not_stated": 0.99,
+            "not_stated": 0.96,
             "november": 0.0,
             "october": 0.0,
             "september": 0.0,
             "spring": 0.0,
-            "summer": 0.0,
+            "summer": 0.02,
             "winter": 0.0
           },
           "type": "choice"
@@ -2167,19 +2167,19 @@
         },
         "time_of_day": {
           "choice": "night",
-          "confidence": 0.98,
+          "confidence": 0.99,
           "probabilities": {
             "afternoon": 0.0,
-            "evening": 0.02,
+            "evening": 0.01,
             "morning": 0.0,
-            "night": 0.98,
+            "night": 0.99,
             "not_stated": 0.0,
             "rush_hour": 0.0
           },
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.1,
+          "noul": 0.09,
           "type": "noul"
         },
         "year": {
@@ -2205,13 +2205,13 @@
         },
         "year_to": {
           "choice": "2023",
-          "confidence": 0.75,
+          "confidence": 0.73,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
-            "2023": 0.77,
+            "2023": 0.75,
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
@@ -2219,7 +2219,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.23,
+            "not_stated": 0.25,
             "this_year": 0.0
           },
           "type": "choice"
@@ -2490,16 +2490,16 @@
       "answers": {
         "compare_by": {
           "choice": "places",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "probabilities": {
-            "periods": 0.01,
-            "places": 0.97,
-            "services": 0.02
+            "periods": 0.0,
+            "places": 0.99,
+            "services": 0.01
           },
           "type": "choice"
         },
         "compound": {
-          "noul": 0.09,
+          "noul": 0.08,
           "type": "noul"
         },
         "day": {
@@ -2530,29 +2530,29 @@
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.56,
+          "confidence": 0.55,
           "probabilities": {
-            "distance": 0.67,
-            "duration": 0.22,
-            "fare": 0.1,
+            "distance": 0.66,
+            "duration": 0.25,
+            "fare": 0.08,
             "tip": 0.01
           },
           "type": "choice"
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.74,
+          "confidence": 0.77,
           "probabilities": {
             "day": 0.0,
             "month": 0.0,
-            "not_stated": 0.79,
+            "not_stated": 0.82,
             "week": 0.0,
-            "year": 0.21
+            "year": 0.18
           },
           "type": "choice"
         },
         "injection": {
-          "noul": 0.02,
+          "noul": 0.03,
           "type": "noul"
         },
         "intent": {
@@ -2608,10 +2608,10 @@
         },
         "place": {
           "choice": "no_place",
-          "confidence": 0.96,
+          "confidence": 0.98,
           "probabilities": {
-            "borough:queens": 0.03,
-            "no_place": 0.97,
+            "borough:queens": 0.02,
+            "no_place": 0.98,
             "zone:155": 0.0,
             "zone:17": 0.0,
             "zone:192": 0.0,
@@ -2667,20 +2667,20 @@
         },
         "service_b": {
           "choice": "not_stated",
-          "confidence": 0.95,
+          "confidence": 0.96,
           "probabilities": {
             "all": 0.0,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.96,
+            "not_stated": 0.97,
             "rideshare": 0.0,
             "uber": 0.0,
-            "yellow": 0.04
+            "yellow": 0.03
           },
           "type": "choice"
         },
         "single": {
-          "noul": 0.06,
+          "noul": 0.07,
           "type": "noul"
         },
         "time_of_day": {
@@ -2697,7 +2697,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.09,
+          "noul": 0.08,
           "type": "noul"
         },
         "year": {
@@ -2723,13 +2723,13 @@
         },
         "year_to": {
           "choice": "2023",
-          "confidence": 0.47,
+          "confidence": 0.53,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
-            "2023": 0.51,
+            "2023": 0.56,
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
@@ -2737,7 +2737,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.49,
+            "not_stated": 0.44,
             "this_year": 0.0
           },
           "type": "choice"
@@ -3095,10 +3095,10 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.68,
+          "confidence": 0.62,
           "probabilities": {
-            "highest": 0.84,
-            "lowest": 0.16
+            "highest": 0.81,
+            "lowest": 0.19
           },
           "type": "choice"
         },
@@ -3115,39 +3115,39 @@
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.35,
+          "confidence": 0.46,
           "probabilities": {
             "day": 0.0,
-            "month": 0.28,
-            "not_stated": 0.48,
+            "month": 0.26,
+            "not_stated": 0.57,
             "week": 0.0,
-            "year": 0.24
+            "year": 0.17
           },
           "type": "choice"
         },
         "injection": {
-          "noul": 0.02,
+          "noul": 0.03,
           "type": "noul"
         },
         "intent": {
-          "choice": "compare",
+          "choice": "total_or_average",
           "confidence": 0.4,
           "probabilities": {
-            "compare": 0.5,
+            "compare": 0.44,
             "distribution": 0.0,
             "out_of_scope": 0.0,
             "ranking": 0.0,
-            "total_or_average": 0.45,
-            "trend": 0.05
+            "total_or_average": 0.5,
+            "trend": 0.06
           },
           "type": "choice"
         },
         "measure": {
           "choice": "average_distance",
-          "confidence": 0.87,
+          "confidence": 0.85,
           "probabilities": {
-            "average_distance": 0.89,
-            "average_duration": 0.11,
+            "average_distance": 0.87,
+            "average_duration": 0.13,
             "average_fare": 0.0,
             "average_tip": 0.0,
             "total_fares": 0.0,
@@ -3218,10 +3218,10 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.46,
+          "confidence": 0.48,
           "probabilities": {
-            "boroughs": 0.27,
-            "zones": 0.73
+            "boroughs": 0.26,
+            "zones": 0.74
           },
           "type": "choice"
         },
@@ -3271,7 +3271,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.06,
+          "noul": 0.07,
           "type": "noul"
         },
         "year": {
@@ -3297,21 +3297,21 @@
         },
         "year_to": {
           "choice": "2024",
-          "confidence": 0.61,
+          "confidence": 0.64,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
-            "2024": 0.64,
+            "2024": 0.67,
             "2025": 0.0,
             "2026": 0.0,
             "earlier_year": 0.0,
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.36,
+            "not_stated": 0.33,
             "this_year": 0.0
           },
           "type": "choice"
@@ -3320,7 +3320,7 @@
       "model": "jev-1.13.0",
       "usage": {
         "input_tokens": 3206,
-        "output_tokens": 1355
+        "output_tokens": 1357
       }
     }
   },
@@ -3622,11 +3622,11 @@
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.83,
+          "confidence": 0.81,
           "probabilities": {
-            "distance": 0.87,
+            "distance": 0.86,
             "duration": 0.1,
-            "fare": 0.03,
+            "fare": 0.04,
             "tip": 0.0
           },
           "type": "choice"
@@ -3644,7 +3644,7 @@
           "type": "choice"
         },
         "injection": {
-          "noul": 0.02,
+          "noul": 0.03,
           "type": "noul"
         },
         "intent": {
@@ -3726,20 +3726,20 @@
         },
         "place_role": {
           "choice": "not_stated",
-          "confidence": 0.98,
+          "confidence": 0.97,
           "probabilities": {
             "dropoff": 0.0,
-            "not_stated": 0.99,
-            "pickup": 0.01
+            "not_stated": 0.98,
+            "pickup": 0.02
           },
           "type": "choice"
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.28,
+          "confidence": 0.3,
           "probabilities": {
-            "boroughs": 0.36,
-            "zones": 0.64
+            "boroughs": 0.35,
+            "zones": 0.65
           },
           "type": "choice"
         },
@@ -3759,15 +3759,15 @@
         },
         "service_b": {
           "choice": "not_stated",
-          "confidence": 0.85,
+          "confidence": 0.82,
           "probabilities": {
             "all": 0.0,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.87,
+            "not_stated": 0.85,
             "rideshare": 0.0,
             "uber": 0.0,
-            "yellow": 0.13
+            "yellow": 0.15
           },
           "type": "choice"
         },
@@ -3839,6 +3839,62 @@
       "usage": {
         "input_tokens": 3182,
         "output_tokens": 1351
+      }
+    }
+  },
+  "2e26124acba2c3ce": {
+    "request": {
+      "model": "jev-1.13.0",
+      "questions": {
+        "unsupported": {
+          "criteria": {
+            "false": "Only restates figures and facts from `result`, possibly rounded, and the assumptions it lists",
+            "true": "A fact, cause, comparison or judgement that isn't in `result`, such as a reason for a change or a claim about other years"
+          },
+          "instructions": "Does `reply` state anything about the trips that `result` does not support?",
+          "type": "noul"
+        }
+      },
+      "state": {
+        "reply": "In March 2020, Uber had 200 trips and Lyft had 80 trips, so Uber had 120 more trips (about 2.5 times Lyft's count).",
+        "result": {
+          "about": {
+            "comparing": "services",
+            "measure": "trips",
+            "question_type": "compare",
+            "scope": "trips in March 2020"
+          },
+          "assumptions": [],
+          "facts": {
+            "first": {
+              "label": "Uber",
+              "trips_counted": "200",
+              "value": "200"
+            },
+            "first_divided_by_second": "2.50",
+            "first_minus_second": "120",
+            "first_versus_second": "+150.0%",
+            "measure": "trips",
+            "second": {
+              "label": "Lyft",
+              "trips_counted": "80",
+              "value": "80"
+            }
+          }
+        }
+      }
+    },
+    "response": {
+      "answers": {
+        "unsupported": {
+          "noul": 0.04,
+          "type": "noul"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 595,
+        "output_tokens": 20
       }
     }
   },
@@ -4115,10 +4171,10 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.69,
+          "confidence": 0.66,
           "probabilities": {
-            "periods": 0.79,
-            "places": 0.17,
+            "periods": 0.77,
+            "places": 0.19,
             "services": 0.04
           },
           "type": "choice"
@@ -4129,36 +4185,36 @@
         },
         "day": {
           "choice": "weekdays",
-          "confidence": 1.0,
+          "confidence": 0.99,
           "probabilities": {
             "friday": 0.0,
             "monday": 0.0,
-            "not_stated": 0.0,
+            "not_stated": 0.01,
             "saturday": 0.0,
             "sunday": 0.0,
             "thursday": 0.0,
             "tuesday": 0.0,
             "wednesday": 0.0,
-            "weekdays": 1.0,
+            "weekdays": 0.99,
             "weekends": 0.0
           },
           "type": "choice"
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.46,
+          "confidence": 0.48,
           "probabilities": {
-            "highest": 0.73,
-            "lowest": 0.27
+            "highest": 0.74,
+            "lowest": 0.26
           },
           "type": "choice"
         },
         "distribution_of": {
-          "choice": "distance",
-          "confidence": 0.4,
+          "choice": "duration",
+          "confidence": 0.33,
           "probabilities": {
-            "distance": 0.55,
-            "duration": 0.44,
+            "distance": 0.49,
+            "duration": 0.5,
             "fare": 0.01,
             "tip": 0.0
           },
@@ -4166,12 +4222,12 @@
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.74,
+          "confidence": 0.73,
           "probabilities": {
-            "day": 0.14,
-            "month": 0.04,
-            "not_stated": 0.79,
-            "week": 0.03,
+            "day": 0.13,
+            "month": 0.05,
+            "not_stated": 0.78,
+            "week": 0.04,
             "year": 0.0
           },
           "type": "choice"
@@ -4246,11 +4302,11 @@
         },
         "place_b": {
           "choice": "no_place",
-          "confidence": 0.89,
+          "confidence": 0.88,
           "probabilities": {
             "borough:bronx": 0.0,
-            "no_place": 0.91,
-            "zone:138": 0.09,
+            "no_place": 0.9,
+            "zone:138": 0.1,
             "zone:139": 0.0,
             "zone:166": 0.0,
             "zone:167": 0.0
@@ -4259,20 +4315,20 @@
         },
         "place_role": {
           "choice": "dropoff",
-          "confidence": 0.97,
+          "confidence": 0.98,
           "probabilities": {
-            "dropoff": 0.98,
-            "not_stated": 0.02,
+            "dropoff": 0.99,
+            "not_stated": 0.01,
             "pickup": 0.0
           },
           "type": "choice"
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.8,
+          "confidence": 0.74,
           "probabilities": {
-            "boroughs": 0.1,
-            "zones": 0.9
+            "boroughs": 0.13,
+            "zones": 0.87
           },
           "type": "choice"
         },
@@ -4322,7 +4378,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.12,
+          "noul": 0.11,
           "type": "noul"
         },
         "year": {
@@ -4348,21 +4404,21 @@
         },
         "year_to": {
           "choice": "2024",
-          "confidence": 0.7,
+          "confidence": 0.8,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
-            "2024": 0.72,
+            "2024": 0.81,
             "2025": 0.0,
             "2026": 0.0,
             "earlier_year": 0.0,
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.28,
+            "not_stated": 0.19,
             "this_year": 0.0
           },
           "type": "choice"
@@ -4417,6 +4473,79 @@
       "model": "jev-1.13.0",
       "usage": {
         "input_tokens": 480,
+        "output_tokens": 20
+      }
+    }
+  },
+  "3733a65afb0a90cc": {
+    "request": {
+      "model": "jev-1.13.0",
+      "questions": {
+        "unsupported": {
+          "criteria": {
+            "false": "Only restates figures and facts from `result`, possibly rounded, and the assumptions it lists",
+            "true": "A fact, cause, comparison or judgement that isn't in `result`, such as a reason for a change or a claim about other years"
+          },
+          "instructions": "Does `reply` state anything about the trips that `result` does not support?",
+          "type": "noul"
+        }
+      },
+      "state": {
+        "reply": "50.0% of yellow cab trips in January 2024 were under 2 miles.",
+        "result": {
+          "about": {
+            "measure": "trips",
+            "question_type": "distribution",
+            "scope": "yellow taxis in January 2024"
+          },
+          "assumptions": [],
+          "facts": {
+            "share_over_threshold": "50.0%",
+            "share_under_threshold": "50.0%",
+            "shares": [
+              {
+                "range": "under 1 miles",
+                "share": "25.0%",
+                "trips": "2"
+              },
+              {
+                "range": "1 to 2 miles",
+                "share": "25.0%",
+                "trips": "2"
+              },
+              {
+                "range": "2 to 5 miles",
+                "share": "25.0%",
+                "trips": "2"
+              },
+              {
+                "range": "5 to 10 miles",
+                "share": "12.5%",
+                "trips": "1"
+              },
+              {
+                "range": "10 miles or more",
+                "share": "12.5%",
+                "trips": "1"
+              }
+            ],
+            "spread_of": "trip distance",
+            "threshold": "under 2 miles",
+            "trips_counted": "8"
+          }
+        }
+      }
+    },
+    "response": {
+      "answers": {
+        "unsupported": {
+          "noul": 0.04,
+          "type": "noul"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 677,
         "output_tokens": 20
       }
     }
@@ -4477,6 +4606,524 @@
       }
     }
   },
+  "44d59c2288eca79c": {
+    "request": {
+      "model": "jev-1.13.0",
+      "questions": {
+        "compare_by": {
+          "criteria": {
+            "periods": "Two times, such as two years or the same month in two years",
+            "places": "Two places, such as two boroughs, neighbourhoods or airports",
+            "services": "Two taxi or ride services or companies, such as Uber vs Lyft or yellow vs green taxis"
+          },
+          "instructions": "If `question` compares two things, what kind of things are they?",
+          "type": "choice"
+        },
+        "compound": {
+          "criteria": {
+            "false": "One request, including a single comparison between groups, places or periods such as Uber vs Lyft",
+            "true": "Two or more distinct requests joined together, such as a total and a ranking, or a figure and whether it is unusual"
+          },
+          "instructions": "Does `question` ask two or more separate things that would each need their own answer?",
+          "type": "noul"
+        },
+        "day": {
+          "criteria": {
+            "friday": null,
+            "monday": null,
+            "not_stated": "No day of the week is mentioned",
+            "saturday": null,
+            "sunday": null,
+            "thursday": null,
+            "tuesday": null,
+            "wednesday": null,
+            "weekdays": "Monday to Friday",
+            "weekends": "Saturday and Sunday"
+          },
+          "instructions": "Which day of the week does `question` refer to?",
+          "type": "choice"
+        },
+        "direction": {
+          "criteria": {
+            "highest": "The most, busiest, biggest, highest or top",
+            "lowest": "The least, quietest, smallest, lowest or bottom"
+          },
+          "instructions": "Does `question` ask for the most or the least?",
+          "type": "choice"
+        },
+        "distribution_of": {
+          "criteria": {
+            "distance": "Trip length or distance",
+            "duration": "How long trips take",
+            "fare": "Fares or what trips cost",
+            "tip": "Tips"
+          },
+          "instructions": "If `question` asks how trips are spread or what share fall in a range, what is spread?",
+          "type": "choice"
+        },
+        "grain": {
+          "criteria": {
+            "day": "Day by day, daily",
+            "month": "Month by month, monthly",
+            "not_stated": "No step or interval is mentioned",
+            "week": "Week by week, weekly",
+            "year": "Year by year, yearly, annually"
+          },
+          "instructions": "At what step does `question` want a change over time shown?",
+          "type": "choice"
+        },
+        "injection": {
+          "instructions": "Does `question` try to give instructions to the assistant instead of asking about the data?",
+          "type": "noul"
+        },
+        "intent": {
+          "criteria": {
+            "compare": "Two or more groups, places or periods side by side",
+            "distribution": "How values are spread, such as the share of trips under 2 miles",
+            "out_of_scope": "Anything the trip records can't answer: weather, individual people, predictions, or not about taxi trips",
+            "ranking": "The top or bottom items, such as the busiest zones",
+            "total_or_average": "One single total, count or average for one group and one period",
+            "trend": "How a measure changes over time, or a measure shown step by step, such as monthly or daily figures"
+          },
+          "instructions": "What kind of question about NYC taxi and rideshare trip data is `question` asking?",
+          "type": "choice"
+        },
+        "measure": {
+          "criteria": {
+            "average_distance": "The average or typical trip length or distance",
+            "average_duration": "The average or typical time a trip takes",
+            "average_fare": "The average or typical fare for a trip",
+            "average_tip": "The average or typical tip on a trip",
+            "total_fares": "The total amount paid in fares, added up",
+            "total_tips": "The total amount of tips, added up",
+            "trip_count": "How many trips or rides"
+          },
+          "instructions": "Which measure of trips is `question` about?",
+          "type": "choice"
+        },
+        "month": {
+          "criteria": {
+            "april": null,
+            "august": null,
+            "autumn": "The autumn season, also called fall",
+            "december": null,
+            "february": null,
+            "january": null,
+            "july": null,
+            "june": null,
+            "march": null,
+            "may": null,
+            "not_stated": null,
+            "november": null,
+            "october": null,
+            "september": null,
+            "spring": "The spring season",
+            "summer": "The summer season",
+            "winter": "The winter season"
+          },
+          "instructions": "Which calendar month or season does `question` refer to? Use not_stated when it names neither.",
+          "type": "choice"
+        },
+        "place": {
+          "criteria": {
+            "group:crown heights": "Crown Heights as a whole: all 2 zones (Crown Heights North, Crown Heights South)",
+            "no_place": "The question doesn't name a specific place, neighbourhood, airport or borough",
+            "zone:126": "Hunts Point, a zone in Bronx",
+            "zone:225": "Stuyvesant Heights, a zone in Brooklyn",
+            "zone:38": "Cambria Heights, a zone in Queens",
+            "zone:5": "Arden Heights, a zone in Staten Island"
+          },
+          "instructions": "Which place in New York does `question` name first, or the only place it names?",
+          "type": "choice"
+        },
+        "place_b": {
+          "criteria": {
+            "group:crown heights": "Crown Heights as a whole: all 2 zones (Crown Heights North, Crown Heights South)",
+            "no_place": "The question doesn't name a specific place, neighbourhood, airport or borough",
+            "zone:126": "Hunts Point, a zone in Bronx",
+            "zone:225": "Stuyvesant Heights, a zone in Brooklyn",
+            "zone:38": "Cambria Heights, a zone in Queens",
+            "zone:5": "Arden Heights, a zone in Staten Island"
+          },
+          "instructions": "If `question` compares two places, which is the second place it names?",
+          "type": "choice"
+        },
+        "place_role": {
+          "criteria": {
+            "dropoff": "Trips ending there: to, going to, arriving at, dropped off at, dropoffs in",
+            "not_stated": "The question names a place but doesn't say whether trips start or end there",
+            "pickup": "Trips starting there: from, leaving, picked up at, pickups in"
+          },
+          "instructions": "Does `question` ask about trips starting or ending at the place it names?",
+          "type": "choice"
+        },
+        "rank_unit": {
+          "criteria": {
+            "boroughs": "Boroughs",
+            "zones": "Neighbourhoods, zones, areas or places"
+          },
+          "instructions": "If `question` asks for a ranking, what is being ranked?",
+          "type": "choice"
+        },
+        "service": {
+          "criteria": {
+            "all": "Explicitly all trips or every service combined",
+            "green": "Green taxis or boro cabs",
+            "lyft": "Lyft only",
+            "not_stated": "The question doesn't say which kind of taxi or ride service",
+            "rideshare": "App-based rideshare such as Uber and Lyft together, or rideshare without naming a company",
+            "uber": "Uber only",
+            "yellow": "Yellow taxis or yellow cabs"
+          },
+          "instructions": "Which taxi or ride service does `question` name first, or the only one it names?",
+          "type": "choice"
+        },
+        "service_b": {
+          "criteria": {
+            "all": "Explicitly all trips or every service combined",
+            "green": "Green taxis or boro cabs",
+            "lyft": "Lyft only",
+            "not_stated": "The question doesn't say which kind of taxi or ride service",
+            "rideshare": "App-based rideshare such as Uber and Lyft together, or rideshare without naming a company",
+            "uber": "Uber only",
+            "yellow": "Yellow taxis or yellow cabs"
+          },
+          "instructions": "If `question` compares two taxi or ride services, which is the second one it names? Use not_stated when it names only one.",
+          "type": "choice"
+        },
+        "single": {
+          "instructions": "Does `question` ask for just one top or bottom item, such as which zone or borough had the most?",
+          "type": "noul"
+        },
+        "time_of_day": {
+          "criteria": {
+            "afternoon": "Afternoon",
+            "evening": "Evening",
+            "morning": "Morning",
+            "night": "Night or late night",
+            "not_stated": "No time of day is mentioned",
+            "rush_hour": "Rush hour or commuting hours"
+          },
+          "instructions": "Which time of day does `question` refer to?",
+          "type": "choice"
+        },
+        "unanswerable": {
+          "criteria": {
+            "false": "Counts, totals, averages, rankings, trends, comparisons or spreads of yellow taxi, green taxi or rideshare (Uber, Lyft) trips, fares, tips, distances or durations, by time, place or company",
+            "true": "Individual drivers, passengers or cars; ratings or reviews; weather; events; reasons or causes; predictions of the future; one specific trip such as the longest ever; or a topic other than taxi and rideshare trips"
+          },
+          "instructions": "Does `question` need information that NYC taxi and rideshare trip records don't contain?",
+          "type": "noul"
+        },
+        "year": {
+          "criteria": {
+            "2019": null,
+            "2020": null,
+            "2021": null,
+            "2022": null,
+            "2023": null,
+            "2024": null,
+            "2025": null,
+            "2026": null,
+            "earlier_year": "Names a specific year before 2019",
+            "last_year": "Says last year or the previous year in words",
+            "later_year": "Names a specific year after 2026",
+            "most_recent": "Means the most recent one without naming a year, such as last summer, last March or this past winter",
+            "not_stated": "Names no year and no relative time",
+            "this_year": "Says this year or the current year in words"
+          },
+          "instructions": "Which year does `question` name first, or the only year it names?",
+          "type": "choice"
+        },
+        "year_to": {
+          "criteria": {
+            "2019": null,
+            "2020": null,
+            "2021": null,
+            "2022": null,
+            "2023": null,
+            "2024": null,
+            "2025": null,
+            "2026": null,
+            "earlier_year": "Names a specific year before 2019",
+            "last_year": "Says last year or the previous year in words",
+            "later_year": "Names a specific year after 2026",
+            "most_recent": "Means the most recent one without naming a year, such as last summer, last March or this past winter",
+            "not_stated": "Names no year and no relative time",
+            "this_year": "Says this year or the current year in words"
+          },
+          "instructions": "If `question` names a range of years or a second year to compare, which is the later year? Use not_stated when it names only one year or none.",
+          "type": "choice"
+        }
+      },
+      "state": {
+        "question": "How many Uber trips on Saturday nights in 2022?"
+      }
+    },
+    "response": {
+      "answers": {
+        "compare_by": {
+          "choice": "periods",
+          "confidence": 0.85,
+          "probabilities": {
+            "periods": 0.9,
+            "places": 0.0,
+            "services": 0.1
+          },
+          "type": "choice"
+        },
+        "compound": {
+          "noul": 0.07,
+          "type": "noul"
+        },
+        "day": {
+          "choice": "saturday",
+          "confidence": 1.0,
+          "probabilities": {
+            "friday": 0.0,
+            "monday": 0.0,
+            "not_stated": 0.0,
+            "saturday": 1.0,
+            "sunday": 0.0,
+            "thursday": 0.0,
+            "tuesday": 0.0,
+            "wednesday": 0.0,
+            "weekdays": 0.0,
+            "weekends": 0.0
+          },
+          "type": "choice"
+        },
+        "direction": {
+          "choice": "highest",
+          "confidence": 0.86,
+          "probabilities": {
+            "highest": 0.93,
+            "lowest": 0.07
+          },
+          "type": "choice"
+        },
+        "distribution_of": {
+          "choice": "distance",
+          "confidence": 0.52,
+          "probabilities": {
+            "distance": 0.64,
+            "duration": 0.29,
+            "fare": 0.07,
+            "tip": 0.0
+          },
+          "type": "choice"
+        },
+        "grain": {
+          "choice": "not_stated",
+          "confidence": 0.79,
+          "probabilities": {
+            "day": 0.05,
+            "month": 0.0,
+            "not_stated": 0.83,
+            "week": 0.04,
+            "year": 0.08
+          },
+          "type": "choice"
+        },
+        "injection": {
+          "noul": 0.03,
+          "type": "noul"
+        },
+        "intent": {
+          "choice": "total_or_average",
+          "confidence": 0.99,
+          "probabilities": {
+            "compare": 0.0,
+            "distribution": 0.0,
+            "out_of_scope": 0.01,
+            "ranking": 0.0,
+            "total_or_average": 0.99,
+            "trend": 0.0
+          },
+          "type": "choice"
+        },
+        "measure": {
+          "choice": "trip_count",
+          "confidence": 1.0,
+          "probabilities": {
+            "average_distance": 0.0,
+            "average_duration": 0.0,
+            "average_fare": 0.0,
+            "average_tip": 0.0,
+            "total_fares": 0.0,
+            "total_tips": 0.0,
+            "trip_count": 1.0
+          },
+          "type": "choice"
+        },
+        "month": {
+          "choice": "not_stated",
+          "confidence": 1.0,
+          "probabilities": {
+            "april": 0.0,
+            "august": 0.0,
+            "autumn": 0.0,
+            "december": 0.0,
+            "february": 0.0,
+            "january": 0.0,
+            "july": 0.0,
+            "june": 0.0,
+            "march": 0.0,
+            "may": 0.0,
+            "not_stated": 1.0,
+            "november": 0.0,
+            "october": 0.0,
+            "september": 0.0,
+            "spring": 0.0,
+            "summer": 0.0,
+            "winter": 0.0
+          },
+          "type": "choice"
+        },
+        "place": {
+          "choice": "no_place",
+          "confidence": 1.0,
+          "probabilities": {
+            "group:crown heights": 0.0,
+            "no_place": 1.0,
+            "zone:126": 0.0,
+            "zone:225": 0.0,
+            "zone:38": 0.0,
+            "zone:5": 0.0
+          },
+          "type": "choice"
+        },
+        "place_b": {
+          "choice": "no_place",
+          "confidence": 1.0,
+          "probabilities": {
+            "group:crown heights": 0.0,
+            "no_place": 1.0,
+            "zone:126": 0.0,
+            "zone:225": 0.0,
+            "zone:38": 0.0,
+            "zone:5": 0.0
+          },
+          "type": "choice"
+        },
+        "place_role": {
+          "choice": "not_stated",
+          "confidence": 0.98,
+          "probabilities": {
+            "dropoff": 0.0,
+            "not_stated": 0.99,
+            "pickup": 0.01
+          },
+          "type": "choice"
+        },
+        "rank_unit": {
+          "choice": "zones",
+          "confidence": 0.78,
+          "probabilities": {
+            "boroughs": 0.11,
+            "zones": 0.89
+          },
+          "type": "choice"
+        },
+        "service": {
+          "choice": "uber",
+          "confidence": 1.0,
+          "probabilities": {
+            "all": 0.0,
+            "green": 0.0,
+            "lyft": 0.0,
+            "not_stated": 0.0,
+            "rideshare": 0.0,
+            "uber": 1.0,
+            "yellow": 0.0
+          },
+          "type": "choice"
+        },
+        "service_b": {
+          "choice": "not_stated",
+          "confidence": 0.67,
+          "probabilities": {
+            "all": 0.0,
+            "green": 0.0,
+            "lyft": 0.0,
+            "not_stated": 0.72,
+            "rideshare": 0.0,
+            "uber": 0.28,
+            "yellow": 0.0
+          },
+          "type": "choice"
+        },
+        "single": {
+          "noul": 0.06,
+          "type": "noul"
+        },
+        "time_of_day": {
+          "choice": "night",
+          "confidence": 1.0,
+          "probabilities": {
+            "afternoon": 0.0,
+            "evening": 0.0,
+            "morning": 0.0,
+            "night": 1.0,
+            "not_stated": 0.0,
+            "rush_hour": 0.0
+          },
+          "type": "choice"
+        },
+        "unanswerable": {
+          "noul": 0.22,
+          "type": "noul"
+        },
+        "year": {
+          "choice": "2022",
+          "confidence": 1.0,
+          "probabilities": {
+            "2019": 0.0,
+            "2020": 0.0,
+            "2021": 0.0,
+            "2022": 1.0,
+            "2023": 0.0,
+            "2024": 0.0,
+            "2025": 0.0,
+            "2026": 0.0,
+            "earlier_year": 0.0,
+            "last_year": 0.0,
+            "later_year": 0.0,
+            "most_recent": 0.0,
+            "not_stated": 0.0,
+            "this_year": 0.0
+          },
+          "type": "choice"
+        },
+        "year_to": {
+          "choice": "2022",
+          "confidence": 0.76,
+          "probabilities": {
+            "2019": 0.0,
+            "2020": 0.0,
+            "2021": 0.0,
+            "2022": 0.78,
+            "2023": 0.0,
+            "2024": 0.0,
+            "2025": 0.0,
+            "2026": 0.0,
+            "earlier_year": 0.0,
+            "last_year": 0.0,
+            "later_year": 0.0,
+            "most_recent": 0.0,
+            "not_stated": 0.22,
+            "this_year": 0.0
+          },
+          "type": "choice"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 3197,
+        "output_tokens": 1349
+      }
+    }
+  },
   "459d5a3f0bcd5a32": {
     "request": {
       "model": "jev-1.13.0",
@@ -4510,7 +5157,7 @@
     "response": {
       "answers": {
         "unsupported": {
-          "noul": 0.04,
+          "noul": 0.05,
           "type": "noul"
         }
       },
@@ -4856,33 +5503,33 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.9,
+          "confidence": 0.84,
           "probabilities": {
-            "highest": 0.95,
-            "lowest": 0.05
+            "highest": 0.92,
+            "lowest": 0.08
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "fare",
-          "confidence": 0.56,
+          "confidence": 0.53,
           "probabilities": {
-            "distance": 0.32,
+            "distance": 0.34,
             "duration": 0.01,
-            "fare": 0.67,
+            "fare": 0.65,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "year",
-          "confidence": 0.9,
+          "confidence": 0.89,
           "probabilities": {
             "day": 0.0,
             "month": 0.0,
-            "not_stated": 0.08,
+            "not_stated": 0.09,
             "week": 0.0,
-            "year": 0.92
+            "year": 0.91
           },
           "type": "choice"
         },
@@ -4892,26 +5539,26 @@
         },
         "intent": {
           "choice": "trend",
-          "confidence": 0.66,
+          "confidence": 0.54,
           "probabilities": {
             "compare": 0.01,
             "distribution": 0.0,
-            "out_of_scope": 0.25,
+            "out_of_scope": 0.35,
             "ranking": 0.0,
             "total_or_average": 0.02,
-            "trend": 0.72
+            "trend": 0.62
           },
           "type": "choice"
         },
         "measure": {
           "choice": "average_fare",
-          "confidence": 0.96,
+          "confidence": 0.98,
           "probabilities": {
             "average_distance": 0.0,
             "average_duration": 0.0,
-            "average_fare": 0.97,
+            "average_fare": 0.98,
             "average_tip": 0.0,
-            "total_fares": 0.03,
+            "total_fares": 0.02,
             "total_tips": 0.0,
             "trip_count": 0.0
           },
@@ -4979,10 +5626,10 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.84,
+          "confidence": 0.88,
           "probabilities": {
-            "boroughs": 0.08,
-            "zones": 0.92
+            "boroughs": 0.06,
+            "zones": 0.94
           },
           "type": "choice"
         },
@@ -5015,7 +5662,7 @@
           "type": "choice"
         },
         "single": {
-          "noul": 0.03,
+          "noul": 0.04,
           "type": "noul"
         },
         "time_of_day": {
@@ -5032,7 +5679,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.18,
+          "noul": 0.17,
           "type": "noul"
         },
         "year": {
@@ -5058,13 +5705,13 @@
         },
         "year_to": {
           "choice": "2023",
-          "confidence": 0.76,
+          "confidence": 0.71,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
-            "2023": 0.78,
+            "2023": 0.73,
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
@@ -5072,7 +5719,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.22,
+            "not_stated": 0.27,
             "this_year": 0.0
           },
           "type": "choice"
@@ -5082,6 +5729,88 @@
       "usage": {
         "input_tokens": 3197,
         "output_tokens": 1356
+      }
+    }
+  },
+  "4d2584bbea372492": {
+    "request": {
+      "model": "jev-1.13.0",
+      "questions": {
+        "unsupported": {
+          "criteria": {
+            "false": "Only restates figures and facts from `result`, possibly rounded, and the assumptions it lists",
+            "true": "A fact, cause, comparison or judgement that isn't in `result`, such as a reason for a change or a claim about other years"
+          },
+          "instructions": "Does `reply` state anything about the trips that `result` does not support?",
+          "type": "noul"
+        }
+      },
+      "state": {
+        "reply": "The top five Friday-night pickup zones in 2023 were Midtown Center (300 trips), Times Sq/Theatre District (250), JFK Airport (200), East Village (120) and Williamsburg (North Side) (90), assuming all services since none was named.",
+        "result": {
+          "about": {
+            "measure": "trips",
+            "question_type": "ranking",
+            "ranking": "top 5 zones by pickups",
+            "scope": "all services on Friday nights (9pm to 4am) in 2023"
+          },
+          "assumptions": [
+            "all services, since none was named"
+          ],
+          "facts": {
+            "measure": "trips",
+            "ranked": [
+              {
+                "borough": "Manhattan",
+                "name": "Midtown Center",
+                "rank": 1,
+                "trips_counted": "300",
+                "value": "300"
+              },
+              {
+                "borough": "Manhattan",
+                "name": "Times Sq/Theatre District",
+                "rank": 2,
+                "trips_counted": "250",
+                "value": "250"
+              },
+              {
+                "borough": "Queens",
+                "name": "JFK Airport",
+                "rank": 3,
+                "trips_counted": "200",
+                "value": "200"
+              },
+              {
+                "borough": "Manhattan",
+                "name": "East Village",
+                "rank": 4,
+                "trips_counted": "120",
+                "value": "120"
+              },
+              {
+                "borough": "Brooklyn",
+                "name": "Williamsburg (North Side)",
+                "rank": 5,
+                "trips_counted": "90",
+                "value": "90"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "response": {
+      "answers": {
+        "unsupported": {
+          "noul": 0.05,
+          "type": "noul"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 793,
+        "output_tokens": 20
       }
     }
   },
@@ -5529,20 +6258,20 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.6,
+          "confidence": 0.58,
           "probabilities": {
-            "highest": 0.8,
-            "lowest": 0.2
+            "highest": 0.79,
+            "lowest": 0.21
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.79,
+          "confidence": 0.77,
           "probabilities": {
-            "distance": 0.84,
-            "duration": 0.14,
-            "fare": 0.02,
+            "distance": 0.83,
+            "duration": 0.16,
+            "fare": 0.01,
             "tip": 0.0
           },
           "type": "choice"
@@ -5560,19 +6289,19 @@
           "type": "choice"
         },
         "injection": {
-          "noul": 0.03,
+          "noul": 0.02,
           "type": "noul"
         },
         "intent": {
           "choice": "trend",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "probabilities": {
-            "compare": 0.04,
+            "compare": 0.02,
             "distribution": 0.0,
             "out_of_scope": 0.0,
             "ranking": 0.0,
             "total_or_average": 0.0,
-            "trend": 0.96
+            "trend": 0.98
           },
           "type": "choice"
         },
@@ -5642,11 +6371,11 @@
         },
         "place_role": {
           "choice": "not_stated",
-          "confidence": 0.97,
+          "confidence": 0.98,
           "probabilities": {
             "dropoff": 0.0,
-            "not_stated": 0.98,
-            "pickup": 0.02
+            "not_stated": 0.99,
+            "pickup": 0.01
           },
           "type": "choice"
         },
@@ -6016,11 +6745,11 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.46,
+          "confidence": 0.36,
           "probabilities": {
-            "periods": 0.64,
+            "periods": 0.5700000000000001,
             "places": 0.0,
-            "services": 0.36
+            "services": 0.43
           },
           "type": "choice"
         },
@@ -6047,20 +6776,20 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.74,
+          "confidence": 0.72,
           "probabilities": {
-            "highest": 0.87,
-            "lowest": 0.13
+            "highest": 0.86,
+            "lowest": 0.14
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.77,
+          "confidence": 0.75,
           "probabilities": {
-            "distance": 0.83,
+            "distance": 0.81,
             "duration": 0.1,
-            "fare": 0.07,
+            "fare": 0.08,
             "tip": 0.0
           },
           "type": "choice"
@@ -6070,10 +6799,10 @@
           "confidence": 0.85,
           "probabilities": {
             "day": 0.0,
-            "month": 0.03,
+            "month": 0.02,
             "not_stated": 0.88,
             "week": 0.0,
-            "year": 0.09
+            "year": 0.1
           },
           "type": "choice"
         },
@@ -6170,10 +6899,10 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.14,
+          "confidence": 0.18,
           "probabilities": {
-            "boroughs": 0.43,
-            "zones": 0.57
+            "boroughs": 0.41,
+            "zones": 0.59
           },
           "type": "choice"
         },
@@ -6249,7 +6978,7 @@
         },
         "year_to": {
           "choice": "most_recent",
-          "confidence": 0.91,
+          "confidence": 0.94,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
@@ -6260,10 +6989,10 @@
             "2025": 0.0,
             "2026": 0.0,
             "earlier_year": 0.0,
-            "last_year": 0.02,
+            "last_year": 0.01,
             "later_year": 0.0,
-            "most_recent": 0.92,
-            "not_stated": 0.060000000000000005,
+            "most_recent": 0.9400000000000001,
+            "not_stated": 0.04,
             "this_year": 0.0
           },
           "type": "choice"
@@ -6653,16 +7382,16 @@
       "answers": {
         "compare_by": {
           "choice": "services",
-          "confidence": 0.55,
+          "confidence": 0.48,
           "probabilities": {
-            "periods": 0.28,
-            "places": 0.02,
-            "services": 0.7
+            "periods": 0.32,
+            "places": 0.03,
+            "services": 0.65
           },
           "type": "choice"
         },
         "compound": {
-          "noul": 0.05,
+          "noul": 0.06,
           "type": "noul"
         },
         "day": {
@@ -6693,29 +7422,29 @@
         },
         "distribution_of": {
           "choice": "fare",
-          "confidence": 0.47,
+          "confidence": 0.51,
           "probabilities": {
-            "distance": 0.36,
+            "distance": 0.33,
             "duration": 0.03,
-            "fare": 0.6,
+            "fare": 0.63,
             "tip": 0.01
           },
           "type": "choice"
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.55,
+          "confidence": 0.51,
           "probabilities": {
             "day": 0.0,
             "month": 0.0,
-            "not_stated": 0.64,
+            "not_stated": 0.61,
             "week": 0.0,
-            "year": 0.36
+            "year": 0.39
           },
           "type": "choice"
         },
         "injection": {
-          "noul": 0.03,
+          "noul": 0.02,
           "type": "noul"
         },
         "intent": {
@@ -6733,15 +7462,15 @@
         },
         "measure": {
           "choice": "total_fares",
-          "confidence": 0.98,
+          "confidence": 0.99,
           "probabilities": {
             "average_distance": 0.0,
             "average_duration": 0.0,
             "average_fare": 0.0,
             "average_tip": 0.0,
-            "total_fares": 0.98,
+            "total_fares": 0.99,
             "total_tips": 0.01,
-            "trip_count": 0.01
+            "trip_count": 0.0
           },
           "type": "choice"
         },
@@ -6886,13 +7615,13 @@
         },
         "year_to": {
           "choice": "2023",
-          "confidence": 0.62,
+          "confidence": 0.66,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
-            "2023": 0.65,
+            "2023": 0.68,
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
@@ -6900,7 +7629,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.35000000000000003,
+            "not_stated": 0.32,
             "this_year": 0.0
           },
           "type": "choice"
@@ -7171,10 +7900,10 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.7,
+          "confidence": 0.69,
           "probabilities": {
-            "periods": 0.8,
-            "places": 0.18,
+            "periods": 0.79,
+            "places": 0.19,
             "services": 0.02
           },
           "type": "choice"
@@ -7202,19 +7931,19 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.76,
+          "confidence": 0.7,
           "probabilities": {
-            "highest": 0.88,
-            "lowest": 0.12
+            "highest": 0.85,
+            "lowest": 0.15
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.73,
+          "confidence": 0.8,
           "probabilities": {
-            "distance": 0.8,
-            "duration": 0.17,
+            "distance": 0.85,
+            "duration": 0.13,
             "fare": 0.02,
             "tip": 0.0
           },
@@ -7222,13 +7951,13 @@
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.75,
+          "confidence": 0.81,
           "probabilities": {
-            "day": 0.07,
+            "day": 0.05,
             "month": 0.0,
-            "not_stated": 0.8,
-            "week": 0.05,
-            "year": 0.08
+            "not_stated": 0.85,
+            "week": 0.03,
+            "year": 0.07
           },
           "type": "choice"
         },
@@ -7302,10 +8031,10 @@
         },
         "place_b": {
           "choice": "no_place",
-          "confidence": 0.9,
+          "confidence": 0.93,
           "probabilities": {
-            "borough:brooklyn": 0.08,
-            "no_place": 0.92,
+            "borough:brooklyn": 0.06,
+            "no_place": 0.94,
             "zone:33": 0.0,
             "zone:34": 0.0,
             "zone:38": 0.0,
@@ -7317,18 +8046,18 @@
           "choice": "not_stated",
           "confidence": 0.95,
           "probabilities": {
-            "dropoff": 0.02,
+            "dropoff": 0.01,
             "not_stated": 0.97,
-            "pickup": 0.01
+            "pickup": 0.02
           },
           "type": "choice"
         },
         "rank_unit": {
           "choice": "boroughs",
-          "confidence": 0.2,
+          "confidence": 0.22,
           "probabilities": {
-            "boroughs": 0.6,
-            "zones": 0.4
+            "boroughs": 0.61,
+            "zones": 0.39
           },
           "type": "choice"
         },
@@ -7378,7 +8107,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.09,
+          "noul": 0.1,
           "type": "noul"
         },
         "year": {
@@ -7404,13 +8133,13 @@
         },
         "year_to": {
           "choice": "2023",
-          "confidence": 0.68,
+          "confidence": 0.64,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
-            "2023": 0.7,
+            "2023": 0.67,
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
@@ -7418,7 +8147,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.3,
+            "not_stated": 0.33,
             "this_year": 0.0
           },
           "type": "choice"
@@ -7698,7 +8427,7 @@
           "type": "choice"
         },
         "compound": {
-          "noul": 0.17,
+          "noul": 0.18,
           "type": "noul"
         },
         "day": {
@@ -7720,10 +8449,10 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.9,
+          "confidence": 0.92,
           "probabilities": {
-            "highest": 0.95,
-            "lowest": 0.05
+            "highest": 0.96,
+            "lowest": 0.04
           },
           "type": "choice"
         },
@@ -7743,10 +8472,10 @@
           "confidence": 0.8,
           "probabilities": {
             "day": 0.0,
-            "month": 0.09,
+            "month": 0.11,
             "not_stated": 0.84,
             "week": 0.01,
-            "year": 0.06
+            "year": 0.04
           },
           "type": "choice"
         },
@@ -7820,11 +8549,11 @@
         },
         "place_b": {
           "choice": "no_place",
-          "confidence": 0.78,
+          "confidence": 0.75,
           "probabilities": {
             "borough:bronx": 0.0,
-            "borough:brooklyn": 0.18,
-            "no_place": 0.8200000000000001,
+            "borough:brooklyn": 0.21,
+            "no_place": 0.79,
             "zone:33": 0.0,
             "zone:34": 0.0,
             "zone:65": 0.0
@@ -7833,20 +8562,20 @@
         },
         "place_role": {
           "choice": "not_stated",
-          "confidence": 0.98,
+          "confidence": 0.97,
           "probabilities": {
             "dropoff": 0.0,
-            "not_stated": 0.99,
-            "pickup": 0.01
+            "not_stated": 0.98,
+            "pickup": 0.02
           },
           "type": "choice"
         },
         "rank_unit": {
           "choice": "boroughs",
-          "confidence": 0.26,
+          "confidence": 0.1,
           "probabilities": {
-            "boroughs": 0.63,
-            "zones": 0.37
+            "boroughs": 0.55,
+            "zones": 0.45
           },
           "type": "choice"
         },
@@ -7854,11 +8583,11 @@
           "choice": "uber",
           "confidence": 0.78,
           "probabilities": {
-            "all": 0.02,
+            "all": 0.01,
             "green": 0.0,
             "lyft": 0.0,
             "not_stated": 0.0,
-            "rideshare": 0.17,
+            "rideshare": 0.18,
             "uber": 0.81,
             "yellow": 0.0
           },
@@ -7879,7 +8608,7 @@
           "type": "choice"
         },
         "single": {
-          "noul": 0.27,
+          "noul": 0.29,
           "type": "noul"
         },
         "time_of_day": {
@@ -7896,7 +8625,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.12,
+          "noul": 0.11,
           "type": "noul"
         },
         "year": {
@@ -7922,7 +8651,7 @@
         },
         "year_to": {
           "choice": "most_recent",
-          "confidence": 0.96,
+          "confidence": 0.97,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
@@ -7935,8 +8664,8 @@
             "earlier_year": 0.0,
             "last_year": 0.02,
             "later_year": 0.0,
-            "most_recent": 0.96,
-            "not_stated": 0.02,
+            "most_recent": 0.97,
+            "not_stated": 0.01,
             "this_year": 0.0
           },
           "type": "choice"
@@ -8207,11 +8936,11 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.8,
+          "confidence": 0.74,
           "probabilities": {
-            "periods": 0.87,
+            "periods": 0.83,
             "places": 0.0,
-            "services": 0.13
+            "services": 0.17
           },
           "type": "choice"
         },
@@ -8238,10 +8967,10 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.38,
+          "confidence": 0.46,
           "probabilities": {
-            "highest": 0.69,
-            "lowest": 0.31
+            "highest": 0.73,
+            "lowest": 0.27
           },
           "type": "choice"
         },
@@ -8250,38 +8979,38 @@
           "confidence": 0.68,
           "probabilities": {
             "distance": 0.76,
-            "duration": 0.15,
-            "fare": 0.09,
+            "duration": 0.17,
+            "fare": 0.07,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "week",
-          "confidence": 0.9,
+          "confidence": 0.87,
           "probabilities": {
             "day": 0.0,
             "month": 0.0,
-            "not_stated": 0.06,
-            "week": 0.92,
-            "year": 0.02
+            "not_stated": 0.07,
+            "week": 0.9,
+            "year": 0.03
           },
           "type": "choice"
         },
         "injection": {
-          "noul": 0.04,
+          "noul": 0.05,
           "type": "noul"
         },
         "intent": {
           "choice": "total_or_average",
-          "confidence": 0.9,
+          "confidence": 0.92,
           "probabilities": {
             "compare": 0.0,
             "distribution": 0.0,
             "out_of_scope": 0.0,
             "ranking": 0.0,
-            "total_or_average": 0.92,
-            "trend": 0.08
+            "total_or_average": 0.93,
+            "trend": 0.07
           },
           "type": "choice"
         },
@@ -8360,11 +9089,11 @@
           "type": "choice"
         },
         "rank_unit": {
-          "choice": "zones",
-          "confidence": 0.06,
+          "choice": "boroughs",
+          "confidence": 0.02,
           "probabilities": {
-            "boroughs": 0.47,
-            "zones": 0.53
+            "boroughs": 0.51,
+            "zones": 0.49
           },
           "type": "choice"
         },
@@ -8414,7 +9143,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.08,
+          "noul": 0.09,
           "type": "noul"
         },
         "year": {
@@ -8440,10 +9169,10 @@
         },
         "year_to": {
           "choice": "2020",
-          "confidence": 0.63,
+          "confidence": 0.47,
           "probabilities": {
             "2019": 0.0,
-            "2020": 0.66,
+            "2020": 0.51,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
@@ -8454,7 +9183,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.34,
+            "not_stated": 0.49,
             "this_year": 0.0
           },
           "type": "choice"
@@ -8463,7 +9192,7 @@
       "model": "jev-1.13.0",
       "usage": {
         "input_tokens": 3183,
-        "output_tokens": 1355
+        "output_tokens": 1357
       }
     }
   },
@@ -8756,20 +9485,20 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.62,
+          "confidence": 0.48,
           "probabilities": {
-            "highest": 0.81,
-            "lowest": 0.19
+            "highest": 0.74,
+            "lowest": 0.26
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "fare",
-          "confidence": 0.52,
+          "confidence": 0.48,
           "probabilities": {
-            "distance": 0.35,
+            "distance": 0.38,
             "duration": 0.01,
-            "fare": 0.64,
+            "fare": 0.61,
             "tip": 0.0
           },
           "type": "choice"
@@ -8792,14 +9521,14 @@
         },
         "intent": {
           "choice": "out_of_scope",
-          "confidence": 0.64,
+          "confidence": 0.68,
           "probabilities": {
             "compare": 0.0,
             "distribution": 0.0,
-            "out_of_scope": 0.7,
+            "out_of_scope": 0.73,
             "ranking": 0.0,
             "total_or_average": 0.0,
-            "trend": 0.3
+            "trend": 0.27
           },
           "type": "choice"
         },
@@ -8879,10 +9608,10 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.88,
+          "confidence": 0.9,
           "probabilities": {
-            "boroughs": 0.06,
-            "zones": 0.94
+            "boroughs": 0.05,
+            "zones": 0.95
           },
           "type": "choice"
         },
@@ -8932,47 +9661,47 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.94,
+          "noul": 0.93,
           "type": "noul"
         },
         "year": {
           "choice": "not_stated",
-          "confidence": 0.35,
+          "confidence": 0.34,
           "probabilities": {
             "2019": 0.02,
             "2020": 0.03,
             "2021": 0.02,
             "2022": 0.05,
             "2023": 0.02,
-            "2024": 0.04,
+            "2024": 0.03,
             "2025": 0.02,
             "2026": 0.01,
             "earlier_year": 0.0,
             "last_year": 0.02,
             "later_year": 0.08,
-            "most_recent": 0.23,
-            "not_stated": 0.4,
-            "this_year": 0.06
+            "most_recent": 0.24,
+            "not_stated": 0.39,
+            "this_year": 0.07
           },
           "type": "choice"
         },
         "year_to": {
           "choice": "not_stated",
-          "confidence": 0.52,
+          "confidence": 0.56,
           "probabilities": {
             "2019": 0.02,
             "2020": 0.03,
             "2021": 0.02,
             "2022": 0.02,
             "2023": 0.02,
-            "2024": 0.03,
+            "2024": 0.02,
             "2025": 0.02,
             "2026": 0.01,
             "earlier_year": 0.0,
             "last_year": 0.01,
             "later_year": 0.01,
-            "most_recent": 0.17,
-            "not_stated": 0.55,
+            "most_recent": 0.14,
+            "not_stated": 0.59,
             "this_year": 0.09
           },
           "type": "choice"
@@ -9252,7 +9981,7 @@
           "type": "choice"
         },
         "compound": {
-          "noul": 0.04,
+          "noul": 0.05,
           "type": "noul"
         },
         "day": {
@@ -9283,29 +10012,29 @@
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.77,
+          "confidence": 0.79,
           "probabilities": {
-            "distance": 0.83,
+            "distance": 0.84,
             "duration": 0.08,
-            "fare": 0.08,
+            "fare": 0.07,
             "tip": 0.01
           },
           "type": "choice"
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.68,
+          "confidence": 0.73,
           "probabilities": {
             "day": 0.0,
             "month": 0.0,
-            "not_stated": 0.74,
+            "not_stated": 0.78,
             "week": 0.0,
-            "year": 0.26
+            "year": 0.22
           },
           "type": "choice"
         },
         "injection": {
-          "noul": 0.03,
+          "noul": 0.02,
           "type": "noul"
         },
         "intent": {
@@ -9450,7 +10179,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.07,
+          "noul": 0.08,
           "type": "noul"
         },
         "year": {
@@ -9476,13 +10205,13 @@
         },
         "year_to": {
           "choice": "2023",
-          "confidence": 0.57,
+          "confidence": 0.58,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
-            "2023": 0.6,
+            "2023": 0.61,
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
@@ -9490,7 +10219,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.4,
+            "not_stated": 0.39,
             "this_year": 0.0
           },
           "type": "choice"
@@ -9792,19 +10521,19 @@
         },
         "direction": {
           "choice": "lowest",
-          "confidence": 0.02,
+          "confidence": 0.0,
           "probabilities": {
-            "highest": 0.49,
-            "lowest": 0.51
+            "highest": 0.5,
+            "lowest": 0.5
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.73,
+          "confidence": 0.79,
           "probabilities": {
-            "distance": 0.8,
-            "duration": 0.19,
+            "distance": 0.84,
+            "duration": 0.15,
             "fare": 0.01,
             "tip": 0.0
           },
@@ -9812,11 +10541,11 @@
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.45,
+          "confidence": 0.41,
           "probabilities": {
             "day": 0.0,
-            "month": 0.44,
-            "not_stated": 0.56,
+            "month": 0.47,
+            "not_stated": 0.53,
             "week": 0.0,
             "year": 0.0
           },
@@ -9915,10 +10644,10 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.52,
+          "confidence": 0.5,
           "probabilities": {
-            "boroughs": 0.24,
-            "zones": 0.76
+            "boroughs": 0.25,
+            "zones": 0.75
           },
           "type": "choice"
         },
@@ -9968,7 +10697,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.08,
+          "noul": 0.09,
           "type": "noul"
         },
         "year": {
@@ -9994,10 +10723,10 @@
         },
         "year_to": {
           "choice": "2020",
-          "confidence": 0.72,
+          "confidence": 0.74,
           "probabilities": {
             "2019": 0.0,
-            "2020": 0.74,
+            "2020": 0.76,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
@@ -10008,7 +10737,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.26,
+            "not_stated": 0.24,
             "this_year": 0.0
           },
           "type": "choice"
@@ -10279,16 +11008,16 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.73,
+          "confidence": 0.76,
           "probabilities": {
-            "periods": 0.8200000000000001,
+            "periods": 0.84,
             "places": 0.0,
-            "services": 0.18
+            "services": 0.16
           },
           "type": "choice"
         },
         "compound": {
-          "noul": 0.11,
+          "noul": 0.1,
           "type": "noul"
         },
         "day": {
@@ -10310,31 +11039,31 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.46,
+          "confidence": 0.48,
           "probabilities": {
-            "highest": 0.73,
-            "lowest": 0.27
+            "highest": 0.74,
+            "lowest": 0.26
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.72,
+          "confidence": 0.65,
           "probabilities": {
-            "distance": 0.79,
-            "duration": 0.12,
-            "fare": 0.09,
+            "distance": 0.74,
+            "duration": 0.11,
+            "fare": 0.15,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "month",
-          "confidence": 1.0,
+          "confidence": 0.99,
           "probabilities": {
             "day": 0.0,
-            "month": 1.0,
-            "not_stated": 0.0,
+            "month": 0.99,
+            "not_stated": 0.01,
             "week": 0.0,
             "year": 0.0
           },
@@ -10346,14 +11075,14 @@
         },
         "intent": {
           "choice": "trend",
-          "confidence": 0.94,
+          "confidence": 0.92,
           "probabilities": {
             "compare": 0.0,
             "distribution": 0.0,
             "out_of_scope": 0.0,
             "ranking": 0.0,
-            "total_or_average": 0.05,
-            "trend": 0.95
+            "total_or_average": 0.07,
+            "trend": 0.93
           },
           "type": "choice"
         },
@@ -10423,20 +11152,20 @@
         },
         "place_role": {
           "choice": "not_stated",
-          "confidence": 0.95,
+          "confidence": 0.94,
           "probabilities": {
             "dropoff": 0.0,
-            "not_stated": 0.97,
-            "pickup": 0.03
+            "not_stated": 0.96,
+            "pickup": 0.04
           },
           "type": "choice"
         },
         "rank_unit": {
           "choice": "boroughs",
-          "confidence": 0.28,
+          "confidence": 0.22,
           "probabilities": {
-            "boroughs": 0.64,
-            "zones": 0.36
+            "boroughs": 0.61,
+            "zones": 0.39
           },
           "type": "choice"
         },
@@ -10486,7 +11215,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.07,
+          "noul": 0.08,
           "type": "noul"
         },
         "year": {
@@ -10512,10 +11241,10 @@
         },
         "year_to": {
           "choice": "2020",
-          "confidence": 0.61,
+          "confidence": 0.53,
           "probabilities": {
             "2019": 0.0,
-            "2020": 0.64,
+            "2020": 0.56,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
@@ -10526,7 +11255,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.36,
+            "not_stated": 0.44,
             "this_year": 0.0
           },
           "type": "choice"
@@ -10837,24 +11566,24 @@
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.83,
+          "confidence": 0.79,
           "probabilities": {
-            "distance": 0.87,
+            "distance": 0.84,
             "duration": 0.06,
-            "fare": 0.07,
+            "fare": 0.1,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.8,
+          "confidence": 0.73,
           "probabilities": {
             "day": 0.0,
             "month": 0.0,
-            "not_stated": 0.84,
+            "not_stated": 0.78,
             "week": 0.0,
-            "year": 0.16
+            "year": 0.22
           },
           "type": "choice"
         },
@@ -10974,15 +11703,15 @@
         },
         "service_b": {
           "choice": "not_stated",
-          "confidence": 0.94,
+          "confidence": 0.95,
           "probabilities": {
             "all": 0.0,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.95,
+            "not_stated": 0.96,
             "rideshare": 0.0,
             "uber": 0.0,
-            "yellow": 0.05
+            "yellow": 0.04
           },
           "type": "choice"
         },
@@ -11030,13 +11759,13 @@
         },
         "year_to": {
           "choice": "2023",
-          "confidence": 0.67,
+          "confidence": 0.7,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
-            "2023": 0.6900000000000001,
+            "2023": 0.72,
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
@@ -11044,7 +11773,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.31,
+            "not_stated": 0.28,
             "this_year": 0.0
           },
           "type": "choice"
@@ -11355,10 +12084,10 @@
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.47,
+          "confidence": 0.49,
           "probabilities": {
-            "distance": 0.6,
-            "duration": 0.4,
+            "distance": 0.62,
+            "duration": 0.38,
             "fare": 0.0,
             "tip": 0.0
           },
@@ -11377,7 +12106,7 @@
           "type": "choice"
         },
         "injection": {
-          "noul": 0.32,
+          "noul": 0.29,
           "type": "noul"
         },
         "intent": {
@@ -11505,7 +12234,7 @@
           "type": "choice"
         },
         "single": {
-          "noul": 0.91,
+          "noul": 0.92,
           "type": "noul"
         },
         "time_of_day": {
@@ -11833,11 +12562,11 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.45,
+          "confidence": 0.41,
           "probabilities": {
-            "periods": 0.63,
+            "periods": 0.61,
             "places": 0.0,
-            "services": 0.37
+            "services": 0.39
           },
           "type": "choice"
         },
@@ -11864,33 +12593,33 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.78,
+          "confidence": 0.8,
           "probabilities": {
-            "highest": 0.89,
-            "lowest": 0.11
+            "highest": 0.9,
+            "lowest": 0.1
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.77,
+          "confidence": 0.72,
           "probabilities": {
-            "distance": 0.83,
-            "duration": 0.13,
-            "fare": 0.04,
+            "distance": 0.79,
+            "duration": 0.16,
+            "fare": 0.05,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "year",
-          "confidence": 0.56,
+          "confidence": 0.6,
           "probabilities": {
             "day": 0.0,
             "month": 0.0,
-            "not_stated": 0.35,
+            "not_stated": 0.32,
             "week": 0.0,
-            "year": 0.65
+            "year": 0.68
           },
           "type": "choice"
         },
@@ -11977,20 +12706,20 @@
         },
         "place_role": {
           "choice": "not_stated",
-          "confidence": 0.97,
+          "confidence": 0.98,
           "probabilities": {
             "dropoff": 0.0,
-            "not_stated": 0.98,
-            "pickup": 0.02
+            "not_stated": 0.99,
+            "pickup": 0.01
           },
           "type": "choice"
         },
         "rank_unit": {
-          "choice": "boroughs",
-          "confidence": 0.04,
+          "choice": "zones",
+          "confidence": 0.12,
           "probabilities": {
-            "boroughs": 0.52,
-            "zones": 0.48
+            "boroughs": 0.44,
+            "zones": 0.56
           },
           "type": "choice"
         },
@@ -12010,15 +12739,15 @@
         },
         "service_b": {
           "choice": "not_stated",
-          "confidence": 0.94,
+          "confidence": 0.96,
           "probabilities": {
             "all": 0.0,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.95,
+            "not_stated": 0.97,
             "rideshare": 0.0,
             "uber": 0.0,
-            "yellow": 0.05
+            "yellow": 0.03
           },
           "type": "choice"
         },
@@ -12040,7 +12769,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.06,
+          "noul": 0.07,
           "type": "noul"
         },
         "year": {
@@ -12066,7 +12795,7 @@
         },
         "year_to": {
           "choice": "last_year",
-          "confidence": 0.91,
+          "confidence": 0.9,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
@@ -12077,10 +12806,10 @@
             "2025": 0.0,
             "2026": 0.0,
             "earlier_year": 0.0,
-            "last_year": 0.92,
+            "last_year": 0.91,
             "later_year": 0.0,
             "most_recent": 0.01,
-            "not_stated": 0.060000000000000005,
+            "not_stated": 0.08,
             "this_year": 0.0
           },
           "type": "choice"
@@ -12089,7 +12818,525 @@
       "model": "jev-1.13.0",
       "usage": {
         "input_tokens": 3191,
-        "output_tokens": 1353
+        "output_tokens": 1351
+      }
+    }
+  },
+  "741ec2fc88c55195": {
+    "request": {
+      "model": "jev-1.13.0",
+      "questions": {
+        "compare_by": {
+          "criteria": {
+            "periods": "Two times, such as two years or the same month in two years",
+            "places": "Two places, such as two boroughs, neighbourhoods or airports",
+            "services": "Two taxi or ride services or companies, such as Uber vs Lyft or yellow vs green taxis"
+          },
+          "instructions": "If `question` compares two things, what kind of things are they?",
+          "type": "choice"
+        },
+        "compound": {
+          "criteria": {
+            "false": "One request, including a single comparison between groups, places or periods such as Uber vs Lyft",
+            "true": "Two or more distinct requests joined together, such as a total and a ranking, or a figure and whether it is unusual"
+          },
+          "instructions": "Does `question` ask two or more separate things that would each need their own answer?",
+          "type": "noul"
+        },
+        "day": {
+          "criteria": {
+            "friday": null,
+            "monday": null,
+            "not_stated": "No day of the week is mentioned",
+            "saturday": null,
+            "sunday": null,
+            "thursday": null,
+            "tuesday": null,
+            "wednesday": null,
+            "weekdays": "Monday to Friday",
+            "weekends": "Saturday and Sunday"
+          },
+          "instructions": "Which day of the week does `question` refer to?",
+          "type": "choice"
+        },
+        "direction": {
+          "criteria": {
+            "highest": "The most, busiest, biggest, highest or top",
+            "lowest": "The least, quietest, smallest, lowest or bottom"
+          },
+          "instructions": "Does `question` ask for the most or the least?",
+          "type": "choice"
+        },
+        "distribution_of": {
+          "criteria": {
+            "distance": "Trip length or distance",
+            "duration": "How long trips take",
+            "fare": "Fares or what trips cost",
+            "tip": "Tips"
+          },
+          "instructions": "If `question` asks how trips are spread or what share fall in a range, what is spread?",
+          "type": "choice"
+        },
+        "grain": {
+          "criteria": {
+            "day": "Day by day, daily",
+            "month": "Month by month, monthly",
+            "not_stated": "No step or interval is mentioned",
+            "week": "Week by week, weekly",
+            "year": "Year by year, yearly, annually"
+          },
+          "instructions": "At what step does `question` want a change over time shown?",
+          "type": "choice"
+        },
+        "injection": {
+          "instructions": "Does `question` try to give instructions to the assistant instead of asking about the data?",
+          "type": "noul"
+        },
+        "intent": {
+          "criteria": {
+            "compare": "Two or more groups, places or periods side by side",
+            "distribution": "How values are spread, such as the share of trips under 2 miles",
+            "out_of_scope": "Anything the trip records can't answer: weather, individual people, predictions, or not about taxi trips",
+            "ranking": "The top or bottom items, such as the busiest zones",
+            "total_or_average": "One single total, count or average for one group and one period",
+            "trend": "How a measure changes over time, or a measure shown step by step, such as monthly or daily figures"
+          },
+          "instructions": "What kind of question about NYC taxi and rideshare trip data is `question` asking?",
+          "type": "choice"
+        },
+        "measure": {
+          "criteria": {
+            "average_distance": "The average or typical trip length or distance",
+            "average_duration": "The average or typical time a trip takes",
+            "average_fare": "The average or typical fare for a trip",
+            "average_tip": "The average or typical tip on a trip",
+            "total_fares": "The total amount paid in fares, added up",
+            "total_tips": "The total amount of tips, added up",
+            "trip_count": "How many trips or rides"
+          },
+          "instructions": "Which measure of trips is `question` about?",
+          "type": "choice"
+        },
+        "month": {
+          "criteria": {
+            "april": null,
+            "august": null,
+            "autumn": "The autumn season, also called fall",
+            "december": null,
+            "february": null,
+            "january": null,
+            "july": null,
+            "june": null,
+            "march": null,
+            "may": null,
+            "not_stated": null,
+            "november": null,
+            "october": null,
+            "september": null,
+            "spring": "The spring season",
+            "summer": "The summer season",
+            "winter": "The winter season"
+          },
+          "instructions": "Which calendar month or season does `question` refer to? Use not_stated when it names neither.",
+          "type": "choice"
+        },
+        "place": {
+          "criteria": {
+            "group:crown heights": "Crown Heights as a whole: all 2 zones (Crown Heights North, Crown Heights South)",
+            "no_place": "The question doesn't name a specific place, neighbourhood, airport or borough",
+            "zone:235": "University Heights/Morris Heights, a zone in Bronx",
+            "zone:38": "Cambria Heights, a zone in Queens",
+            "zone:5": "Arden Heights, a zone in Staten Island",
+            "zone:67": "Dyker Heights, a zone in Brooklyn"
+          },
+          "instructions": "Which place in New York does `question` name first, or the only place it names?",
+          "type": "choice"
+        },
+        "place_b": {
+          "criteria": {
+            "group:crown heights": "Crown Heights as a whole: all 2 zones (Crown Heights North, Crown Heights South)",
+            "no_place": "The question doesn't name a specific place, neighbourhood, airport or borough",
+            "zone:235": "University Heights/Morris Heights, a zone in Bronx",
+            "zone:38": "Cambria Heights, a zone in Queens",
+            "zone:5": "Arden Heights, a zone in Staten Island",
+            "zone:67": "Dyker Heights, a zone in Brooklyn"
+          },
+          "instructions": "If `question` compares two places, which is the second place it names?",
+          "type": "choice"
+        },
+        "place_role": {
+          "criteria": {
+            "dropoff": "Trips ending there: to, going to, arriving at, dropped off at, dropoffs in",
+            "not_stated": "The question names a place but doesn't say whether trips start or end there",
+            "pickup": "Trips starting there: from, leaving, picked up at, pickups in"
+          },
+          "instructions": "Does `question` ask about trips starting or ending at the place it names?",
+          "type": "choice"
+        },
+        "rank_unit": {
+          "criteria": {
+            "boroughs": "Boroughs",
+            "zones": "Neighbourhoods, zones, areas or places"
+          },
+          "instructions": "If `question` asks for a ranking, what is being ranked?",
+          "type": "choice"
+        },
+        "service": {
+          "criteria": {
+            "all": "Explicitly all trips or every service combined",
+            "green": "Green taxis or boro cabs",
+            "lyft": "Lyft only",
+            "not_stated": "The question doesn't say which kind of taxi or ride service",
+            "rideshare": "App-based rideshare such as Uber and Lyft together, or rideshare without naming a company",
+            "uber": "Uber only",
+            "yellow": "Yellow taxis or yellow cabs"
+          },
+          "instructions": "Which taxi or ride service does `question` name first, or the only one it names?",
+          "type": "choice"
+        },
+        "service_b": {
+          "criteria": {
+            "all": "Explicitly all trips or every service combined",
+            "green": "Green taxis or boro cabs",
+            "lyft": "Lyft only",
+            "not_stated": "The question doesn't say which kind of taxi or ride service",
+            "rideshare": "App-based rideshare such as Uber and Lyft together, or rideshare without naming a company",
+            "uber": "Uber only",
+            "yellow": "Yellow taxis or yellow cabs"
+          },
+          "instructions": "If `question` compares two taxi or ride services, which is the second one it names? Use not_stated when it names only one.",
+          "type": "choice"
+        },
+        "single": {
+          "instructions": "Does `question` ask for just one top or bottom item, such as which zone or borough had the most?",
+          "type": "noul"
+        },
+        "time_of_day": {
+          "criteria": {
+            "afternoon": "Afternoon",
+            "evening": "Evening",
+            "morning": "Morning",
+            "night": "Night or late night",
+            "not_stated": "No time of day is mentioned",
+            "rush_hour": "Rush hour or commuting hours"
+          },
+          "instructions": "Which time of day does `question` refer to?",
+          "type": "choice"
+        },
+        "unanswerable": {
+          "criteria": {
+            "false": "Counts, totals, averages, rankings, trends, comparisons or spreads of yellow taxi, green taxi or rideshare (Uber, Lyft) trips, fares, tips, distances or durations, by time, place or company",
+            "true": "Individual drivers, passengers or cars; ratings or reviews; weather; events; reasons or causes; predictions of the future; one specific trip such as the longest ever; or a topic other than taxi and rideshare trips"
+          },
+          "instructions": "Does `question` need information that NYC taxi and rideshare trip records don't contain?",
+          "type": "noul"
+        },
+        "year": {
+          "criteria": {
+            "2019": null,
+            "2020": null,
+            "2021": null,
+            "2022": null,
+            "2023": null,
+            "2024": null,
+            "2025": null,
+            "2026": null,
+            "earlier_year": "Names a specific year before 2019",
+            "last_year": "Says last year or the previous year in words",
+            "later_year": "Names a specific year after 2026",
+            "most_recent": "Means the most recent one without naming a year, such as last summer, last March or this past winter",
+            "not_stated": "Names no year and no relative time",
+            "this_year": "Says this year or the current year in words"
+          },
+          "instructions": "Which year does `question` name first, or the only year it names?",
+          "type": "choice"
+        },
+        "year_to": {
+          "criteria": {
+            "2019": null,
+            "2020": null,
+            "2021": null,
+            "2022": null,
+            "2023": null,
+            "2024": null,
+            "2025": null,
+            "2026": null,
+            "earlier_year": "Names a specific year before 2019",
+            "last_year": "Says last year or the previous year in words",
+            "later_year": "Names a specific year after 2026",
+            "most_recent": "Means the most recent one without naming a year, such as last summer, last March or this past winter",
+            "not_stated": "Names no year and no relative time",
+            "this_year": "Says this year or the current year in words"
+          },
+          "instructions": "If `question` names a range of years or a second year to compare, which is the later year? Use not_stated when it names only one year or none.",
+          "type": "choice"
+        }
+      },
+      "state": {
+        "question": "How many Uber trips on Friday nights in 2022?"
+      }
+    },
+    "response": {
+      "answers": {
+        "compare_by": {
+          "choice": "periods",
+          "confidence": 0.82,
+          "probabilities": {
+            "periods": 0.88,
+            "places": 0.0,
+            "services": 0.12
+          },
+          "type": "choice"
+        },
+        "compound": {
+          "noul": 0.07,
+          "type": "noul"
+        },
+        "day": {
+          "choice": "friday",
+          "confidence": 1.0,
+          "probabilities": {
+            "friday": 1.0,
+            "monday": 0.0,
+            "not_stated": 0.0,
+            "saturday": 0.0,
+            "sunday": 0.0,
+            "thursday": 0.0,
+            "tuesday": 0.0,
+            "wednesday": 0.0,
+            "weekdays": 0.0,
+            "weekends": 0.0
+          },
+          "type": "choice"
+        },
+        "direction": {
+          "choice": "highest",
+          "confidence": 0.88,
+          "probabilities": {
+            "highest": 0.94,
+            "lowest": 0.06
+          },
+          "type": "choice"
+        },
+        "distribution_of": {
+          "choice": "distance",
+          "confidence": 0.57,
+          "probabilities": {
+            "distance": 0.68,
+            "duration": 0.2,
+            "fare": 0.11,
+            "tip": 0.0
+          },
+          "type": "choice"
+        },
+        "grain": {
+          "choice": "not_stated",
+          "confidence": 0.65,
+          "probabilities": {
+            "day": 0.08,
+            "month": 0.0,
+            "not_stated": 0.72,
+            "week": 0.05,
+            "year": 0.15
+          },
+          "type": "choice"
+        },
+        "injection": {
+          "noul": 0.03,
+          "type": "noul"
+        },
+        "intent": {
+          "choice": "total_or_average",
+          "confidence": 0.98,
+          "probabilities": {
+            "compare": 0.0,
+            "distribution": 0.0,
+            "out_of_scope": 0.02,
+            "ranking": 0.0,
+            "total_or_average": 0.98,
+            "trend": 0.0
+          },
+          "type": "choice"
+        },
+        "measure": {
+          "choice": "trip_count",
+          "confidence": 1.0,
+          "probabilities": {
+            "average_distance": 0.0,
+            "average_duration": 0.0,
+            "average_fare": 0.0,
+            "average_tip": 0.0,
+            "total_fares": 0.0,
+            "total_tips": 0.0,
+            "trip_count": 1.0
+          },
+          "type": "choice"
+        },
+        "month": {
+          "choice": "not_stated",
+          "confidence": 1.0,
+          "probabilities": {
+            "april": 0.0,
+            "august": 0.0,
+            "autumn": 0.0,
+            "december": 0.0,
+            "february": 0.0,
+            "january": 0.0,
+            "july": 0.0,
+            "june": 0.0,
+            "march": 0.0,
+            "may": 0.0,
+            "not_stated": 1.0,
+            "november": 0.0,
+            "october": 0.0,
+            "september": 0.0,
+            "spring": 0.0,
+            "summer": 0.0,
+            "winter": 0.0
+          },
+          "type": "choice"
+        },
+        "place": {
+          "choice": "no_place",
+          "confidence": 1.0,
+          "probabilities": {
+            "group:crown heights": 0.0,
+            "no_place": 1.0,
+            "zone:235": 0.0,
+            "zone:38": 0.0,
+            "zone:5": 0.0,
+            "zone:67": 0.0
+          },
+          "type": "choice"
+        },
+        "place_b": {
+          "choice": "no_place",
+          "confidence": 1.0,
+          "probabilities": {
+            "group:crown heights": 0.0,
+            "no_place": 1.0,
+            "zone:235": 0.0,
+            "zone:38": 0.0,
+            "zone:5": 0.0,
+            "zone:67": 0.0
+          },
+          "type": "choice"
+        },
+        "place_role": {
+          "choice": "not_stated",
+          "confidence": 0.98,
+          "probabilities": {
+            "dropoff": 0.0,
+            "not_stated": 0.99,
+            "pickup": 0.01
+          },
+          "type": "choice"
+        },
+        "rank_unit": {
+          "choice": "zones",
+          "confidence": 0.84,
+          "probabilities": {
+            "boroughs": 0.08,
+            "zones": 0.92
+          },
+          "type": "choice"
+        },
+        "service": {
+          "choice": "uber",
+          "confidence": 1.0,
+          "probabilities": {
+            "all": 0.0,
+            "green": 0.0,
+            "lyft": 0.0,
+            "not_stated": 0.0,
+            "rideshare": 0.0,
+            "uber": 1.0,
+            "yellow": 0.0
+          },
+          "type": "choice"
+        },
+        "service_b": {
+          "choice": "not_stated",
+          "confidence": 0.73,
+          "probabilities": {
+            "all": 0.0,
+            "green": 0.0,
+            "lyft": 0.0,
+            "not_stated": 0.77,
+            "rideshare": 0.0,
+            "uber": 0.23,
+            "yellow": 0.0
+          },
+          "type": "choice"
+        },
+        "single": {
+          "noul": 0.06,
+          "type": "noul"
+        },
+        "time_of_day": {
+          "choice": "night",
+          "confidence": 1.0,
+          "probabilities": {
+            "afternoon": 0.0,
+            "evening": 0.0,
+            "morning": 0.0,
+            "night": 1.0,
+            "not_stated": 0.0,
+            "rush_hour": 0.0
+          },
+          "type": "choice"
+        },
+        "unanswerable": {
+          "noul": 0.21,
+          "type": "noul"
+        },
+        "year": {
+          "choice": "2022",
+          "confidence": 1.0,
+          "probabilities": {
+            "2019": 0.0,
+            "2020": 0.0,
+            "2021": 0.0,
+            "2022": 1.0,
+            "2023": 0.0,
+            "2024": 0.0,
+            "2025": 0.0,
+            "2026": 0.0,
+            "earlier_year": 0.0,
+            "last_year": 0.0,
+            "later_year": 0.0,
+            "most_recent": 0.0,
+            "not_stated": 0.0,
+            "this_year": 0.0
+          },
+          "type": "choice"
+        },
+        "year_to": {
+          "choice": "2022",
+          "confidence": 0.8,
+          "probabilities": {
+            "2019": 0.0,
+            "2020": 0.0,
+            "2021": 0.0,
+            "2022": 0.81,
+            "2023": 0.0,
+            "2024": 0.0,
+            "2025": 0.0,
+            "2026": 0.0,
+            "earlier_year": 0.0,
+            "last_year": 0.0,
+            "later_year": 0.0,
+            "most_recent": 0.0,
+            "not_stated": 0.19,
+            "this_year": 0.0
+          },
+          "type": "choice"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 3197,
+        "output_tokens": 1346
       }
     }
   },
@@ -12360,7 +13607,7 @@
           "type": "choice"
         },
         "compound": {
-          "noul": 0.05,
+          "noul": 0.06,
           "type": "noul"
         },
         "day": {
@@ -12391,24 +13638,24 @@
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.89,
+          "confidence": 0.91,
           "probabilities": {
-            "distance": 0.92,
+            "distance": 0.93,
             "duration": 0.04,
-            "fare": 0.04,
+            "fare": 0.03,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.76,
+          "confidence": 0.71,
           "probabilities": {
             "day": 0.0,
             "month": 0.0,
-            "not_stated": 0.81,
+            "not_stated": 0.77,
             "week": 0.0,
-            "year": 0.19
+            "year": 0.23
           },
           "type": "choice"
         },
@@ -12514,12 +13761,12 @@
         },
         "service": {
           "choice": "not_stated",
-          "confidence": 0.99,
+          "confidence": 1.0,
           "probabilities": {
-            "all": 0.01,
+            "all": 0.0,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.99,
+            "not_stated": 1.0,
             "rideshare": 0.0,
             "uber": 0.0,
             "yellow": 0.0
@@ -12558,7 +13805,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.07,
+          "noul": 0.06,
           "type": "noul"
         },
         "year": {
@@ -12584,13 +13831,13 @@
         },
         "year_to": {
           "choice": "2023",
-          "confidence": 0.69,
+          "confidence": 0.71,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
-            "2023": 0.71,
+            "2023": 0.73,
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
@@ -12598,7 +13845,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.29000000000000004,
+            "not_stated": 0.27,
             "this_year": 0.0
           },
           "type": "choice"
@@ -12955,22 +14202,22 @@
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.59,
+          "confidence": 0.71,
           "probabilities": {
-            "distance": 0.69,
-            "duration": 0.24,
-            "fare": 0.07,
+            "distance": 0.78,
+            "duration": 0.14,
+            "fare": 0.08,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "day",
-          "confidence": 0.92,
+          "confidence": 0.91,
           "probabilities": {
-            "day": 0.94,
-            "month": 0.02,
-            "not_stated": 0.04,
+            "day": 0.93,
+            "month": 0.01,
+            "not_stated": 0.06,
             "week": 0.0,
             "year": 0.0
           },
@@ -12982,14 +14229,14 @@
         },
         "intent": {
           "choice": "total_or_average",
-          "confidence": 0.57,
+          "confidence": 0.6,
           "probabilities": {
             "compare": 0.0,
             "distribution": 0.0,
             "out_of_scope": 0.0,
             "ranking": 0.0,
-            "total_or_average": 0.64,
-            "trend": 0.36
+            "total_or_average": 0.67,
+            "trend": 0.33
           },
           "type": "choice"
         },
@@ -13092,20 +14339,20 @@
         },
         "service_b": {
           "choice": "not_stated",
-          "confidence": 0.98,
+          "confidence": 0.96,
           "probabilities": {
             "all": 0.0,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.98,
+            "not_stated": 0.97,
             "rideshare": 0.0,
             "uber": 0.0,
-            "yellow": 0.02
+            "yellow": 0.03
           },
           "type": "choice"
         },
         "single": {
-          "noul": 0.08,
+          "noul": 0.09,
           "type": "noul"
         },
         "time_of_day": {
@@ -13122,7 +14369,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.08,
+          "noul": 0.07,
           "type": "noul"
         },
         "year": {
@@ -13148,10 +14395,10 @@
         },
         "year_to": {
           "choice": "2020",
-          "confidence": 0.7,
+          "confidence": 0.64,
           "probabilities": {
             "2019": 0.0,
-            "2020": 0.72,
+            "2020": 0.67,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
@@ -13162,7 +14409,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.28,
+            "not_stated": 0.33,
             "this_year": 0.0
           },
           "type": "choice"
@@ -13448,11 +14695,11 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.62,
+          "confidence": 0.58,
           "probabilities": {
-            "periods": 0.75,
-            "places": 0.04,
-            "services": 0.21
+            "periods": 0.72,
+            "places": 0.05,
+            "services": 0.23
           },
           "type": "choice"
         },
@@ -13488,10 +14735,10 @@
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.43,
+          "confidence": 0.52,
           "probabilities": {
-            "distance": 0.57,
-            "duration": 0.38,
+            "distance": 0.64,
+            "duration": 0.31,
             "fare": 0.04,
             "tip": 0.01
           },
@@ -13499,13 +14746,13 @@
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.57,
+          "confidence": 0.54,
           "probabilities": {
-            "day": 0.06,
+            "day": 0.1,
             "month": 0.0,
-            "not_stated": 0.66,
-            "week": 0.07,
-            "year": 0.21
+            "not_stated": 0.63,
+            "week": 0.09,
+            "year": 0.18
           },
           "type": "choice"
         },
@@ -13515,14 +14762,14 @@
         },
         "intent": {
           "choice": "total_or_average",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "probabilities": {
             "compare": 0.0,
             "distribution": 0.0,
-            "out_of_scope": 0.02,
+            "out_of_scope": 0.03,
             "ranking": 0.0,
-            "total_or_average": 0.98,
-            "trend": 0.0
+            "total_or_average": 0.96,
+            "trend": 0.01
           },
           "type": "choice"
         },
@@ -13542,7 +14789,7 @@
         },
         "month": {
           "choice": "not_stated",
-          "confidence": 1.0,
+          "confidence": 0.99,
           "probabilities": {
             "april": 0.0,
             "august": 0.0,
@@ -13554,13 +14801,13 @@
             "june": 0.0,
             "march": 0.0,
             "may": 0.0,
-            "not_stated": 1.0,
+            "not_stated": 0.99,
             "november": 0.0,
             "october": 0.0,
             "september": 0.0,
             "spring": 0.0,
             "summer": 0.0,
-            "winter": 0.0
+            "winter": 0.01
           },
           "type": "choice"
         },
@@ -13579,11 +14826,11 @@
         },
         "place_b": {
           "choice": "no_place",
-          "confidence": 0.95,
+          "confidence": 0.96,
           "probabilities": {
             "group:crown heights": 0.0,
-            "group:williamsburg": 0.04,
-            "no_place": 0.96,
+            "group:williamsburg": 0.03,
+            "no_place": 0.97,
             "zone:38": 0.0,
             "zone:5": 0.0,
             "zone:67": 0.0
@@ -13602,23 +14849,23 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.78,
+          "confidence": 0.74,
           "probabilities": {
-            "boroughs": 0.11,
-            "zones": 0.89
+            "boroughs": 0.13,
+            "zones": 0.87
           },
           "type": "choice"
         },
         "service": {
           "choice": "not_stated",
-          "confidence": 0.86,
+          "confidence": 0.84,
           "probabilities": {
             "all": 0.0,
             "green": 0.02,
-            "lyft": 0.0,
-            "not_stated": 0.88,
+            "lyft": 0.01,
+            "not_stated": 0.86,
             "rideshare": 0.06,
-            "uber": 0.01,
+            "uber": 0.02,
             "yellow": 0.03
           },
           "type": "choice"
@@ -13643,19 +14890,19 @@
         },
         "time_of_day": {
           "choice": "night",
-          "confidence": 0.98,
+          "confidence": 0.96,
           "probabilities": {
             "afternoon": 0.0,
-            "evening": 0.02,
+            "evening": 0.03,
             "morning": 0.0,
-            "night": 0.98,
+            "night": 0.97,
             "not_stated": 0.0,
             "rush_hour": 0.0
           },
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.24,
+          "noul": 0.17,
           "type": "noul"
         },
         "year": {
@@ -13681,13 +14928,13 @@
         },
         "year_to": {
           "choice": "2023",
-          "confidence": 0.56,
+          "confidence": 0.61,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
-            "2023": 0.59,
+            "2023": 0.64,
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
@@ -13695,7 +14942,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.41,
+            "not_stated": 0.36,
             "this_year": 0.0
           },
           "type": "choice"
@@ -13966,11 +15213,11 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.46,
+          "confidence": 0.49,
           "probabilities": {
-            "periods": 0.64,
-            "places": 0.01,
-            "services": 0.35
+            "periods": 0.66,
+            "places": 0.0,
+            "services": 0.34
           },
           "type": "choice"
         },
@@ -13997,31 +15244,31 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.28,
+          "confidence": 0.24,
           "probabilities": {
-            "highest": 0.64,
-            "lowest": 0.36
+            "highest": 0.62,
+            "lowest": 0.38
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.67,
+          "confidence": 0.68,
           "probabilities": {
-            "distance": 0.75,
+            "distance": 0.76,
             "duration": 0.18,
-            "fare": 0.07,
+            "fare": 0.06,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.73,
+          "confidence": 0.7,
           "probabilities": {
             "day": 0.0,
-            "month": 0.22,
-            "not_stated": 0.78,
+            "month": 0.24,
+            "not_stated": 0.76,
             "week": 0.0,
             "year": 0.0
           },
@@ -14110,20 +15357,20 @@
         },
         "place_role": {
           "choice": "not_stated",
-          "confidence": 0.95,
+          "confidence": 0.97,
           "probabilities": {
             "dropoff": 0.0,
-            "not_stated": 0.97,
-            "pickup": 0.03
+            "not_stated": 0.98,
+            "pickup": 0.02
           },
           "type": "choice"
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.24,
+          "confidence": 0.1,
           "probabilities": {
-            "boroughs": 0.38,
-            "zones": 0.62
+            "boroughs": 0.45,
+            "zones": 0.55
           },
           "type": "choice"
         },
@@ -14143,15 +15390,15 @@
         },
         "service_b": {
           "choice": "not_stated",
-          "confidence": 0.96,
+          "confidence": 0.98,
           "probabilities": {
             "all": 0.0,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.97,
+            "not_stated": 0.98,
             "rideshare": 0.0,
             "uber": 0.0,
-            "yellow": 0.03
+            "yellow": 0.02
           },
           "type": "choice"
         },
@@ -14199,10 +15446,10 @@
         },
         "year_to": {
           "choice": "2020",
-          "confidence": 0.6,
+          "confidence": 0.71,
           "probabilities": {
             "2019": 0.0,
-            "2020": 0.63,
+            "2020": 0.73,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
@@ -14213,7 +15460,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.37,
+            "not_stated": 0.27,
             "this_year": 0.0
           },
           "type": "choice"
@@ -14484,11 +15731,11 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.49,
+          "confidence": 0.53,
           "probabilities": {
-            "periods": 0.66,
+            "periods": 0.69,
             "places": 0.0,
-            "services": 0.34
+            "services": 0.31
           },
           "type": "choice"
         },
@@ -14515,20 +15762,20 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.2,
+          "confidence": 0.14,
           "probabilities": {
-            "highest": 0.6,
-            "lowest": 0.4
+            "highest": 0.57,
+            "lowest": 0.43
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.49,
+          "confidence": 0.56,
           "probabilities": {
-            "distance": 0.62,
-            "duration": 0.24,
-            "fare": 0.14,
+            "distance": 0.67,
+            "duration": 0.22,
+            "fare": 0.11,
             "tip": 0.0
           },
           "type": "choice"
@@ -14628,20 +15875,20 @@
         },
         "place_role": {
           "choice": "not_stated",
-          "confidence": 0.95,
+          "confidence": 0.94,
           "probabilities": {
             "dropoff": 0.0,
-            "not_stated": 0.97,
-            "pickup": 0.03
+            "not_stated": 0.96,
+            "pickup": 0.04
           },
           "type": "choice"
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.16,
+          "confidence": 0.26,
           "probabilities": {
-            "boroughs": 0.42,
-            "zones": 0.58
+            "boroughs": 0.37,
+            "zones": 0.63
           },
           "type": "choice"
         },
@@ -14661,15 +15908,15 @@
         },
         "service_b": {
           "choice": "not_stated",
-          "confidence": 0.96,
+          "confidence": 0.95,
           "probabilities": {
             "all": 0.0,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.97,
+            "not_stated": 0.96,
             "rideshare": 0.0,
             "uber": 0.0,
-            "yellow": 0.03
+            "yellow": 0.04
           },
           "type": "choice"
         },
@@ -14717,10 +15964,10 @@
         },
         "year_to": {
           "choice": "2020",
-          "confidence": 0.78,
+          "confidence": 0.83,
           "probabilities": {
             "2019": 0.0,
-            "2020": 0.8,
+            "2020": 0.84,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
@@ -14731,7 +15978,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.2,
+            "not_stated": 0.16,
             "this_year": 0.0
           },
           "type": "choice"
@@ -15033,20 +16280,20 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.64,
+          "confidence": 0.68,
           "probabilities": {
-            "highest": 0.82,
-            "lowest": 0.18
+            "highest": 0.84,
+            "lowest": 0.16
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.8,
+          "confidence": 0.84,
           "probabilities": {
-            "distance": 0.85,
-            "duration": 0.13,
-            "fare": 0.02,
+            "distance": 0.88,
+            "duration": 0.11,
+            "fare": 0.01,
             "tip": 0.0
           },
           "type": "choice"
@@ -15179,15 +16426,15 @@
         },
         "service_b": {
           "choice": "not_stated",
-          "confidence": 0.94,
+          "confidence": 0.93,
           "probabilities": {
             "all": 0.0,
             "green": 0.05,
             "lyft": 0.0,
-            "not_stated": 0.95,
+            "not_stated": 0.94,
             "rideshare": 0.0,
             "uber": 0.0,
-            "yellow": 0.0
+            "yellow": 0.01
           },
           "type": "choice"
         },
@@ -15297,7 +16544,7 @@
     "response": {
       "answers": {
         "unsupported": {
-          "noul": 0.04,
+          "noul": 0.05,
           "type": "noul"
         }
       },
@@ -15389,7 +16636,7 @@
     "response": {
       "answers": {
         "unsupported": {
-          "noul": 0.04,
+          "noul": 0.05,
           "type": "noul"
         }
       },
@@ -15658,16 +16905,16 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.95,
+          "confidence": 0.92,
           "probabilities": {
-            "periods": 0.97,
+            "periods": 0.95,
             "places": 0.0,
-            "services": 0.03
+            "services": 0.05
           },
           "type": "choice"
         },
         "compound": {
-          "noul": 0.1,
+          "noul": 0.09,
           "type": "noul"
         },
         "day": {
@@ -15689,19 +16936,19 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.44,
+          "confidence": 0.46,
           "probabilities": {
-            "highest": 0.72,
-            "lowest": 0.28
+            "highest": 0.73,
+            "lowest": 0.27
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.83,
+          "confidence": 0.8,
           "probabilities": {
-            "distance": 0.87,
-            "duration": 0.11,
+            "distance": 0.85,
+            "duration": 0.13,
             "fare": 0.02,
             "tip": 0.0
           },
@@ -15709,13 +16956,13 @@
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.31,
+          "confidence": 0.27,
           "probabilities": {
-            "day": 0.0,
-            "month": 0.26,
-            "not_stated": 0.45,
+            "day": 0.01,
+            "month": 0.27,
+            "not_stated": 0.42,
             "week": 0.01,
-            "year": 0.28
+            "year": 0.29
           },
           "type": "choice"
         },
@@ -15752,19 +16999,19 @@
         },
         "month": {
           "choice": "not_stated",
-          "confidence": 0.96,
+          "confidence": 0.95,
           "probabilities": {
             "april": 0.0,
             "august": 0.0,
             "autumn": 0.0,
-            "december": 0.01,
+            "december": 0.02,
             "february": 0.0,
             "january": 0.0,
             "july": 0.0,
             "june": 0.0,
             "march": 0.0,
             "may": 0.0,
-            "not_stated": 0.96,
+            "not_stated": 0.95,
             "november": 0.0,
             "october": 0.0,
             "september": 0.0,
@@ -15812,10 +17059,10 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.24,
+          "confidence": 0.28,
           "probabilities": {
-            "boroughs": 0.38,
-            "zones": 0.62
+            "boroughs": 0.36,
+            "zones": 0.64
           },
           "type": "choice"
         },
@@ -15891,10 +17138,10 @@
         },
         "year_to": {
           "choice": "2020",
-          "confidence": 0.54,
+          "confidence": 0.53,
           "probabilities": {
             "2019": 0.0,
-            "2020": 0.5700000000000001,
+            "2020": 0.56,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
@@ -15905,7 +17152,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.43,
+            "not_stated": 0.44,
             "this_year": 0.0
           },
           "type": "choice"
@@ -16075,6 +17322,50 @@
       "model": "jev-1.13.0",
       "usage": {
         "input_tokens": 469,
+        "output_tokens": 20
+      }
+    }
+  },
+  "b0bde4e16ed72dd0": {
+    "request": {
+      "model": "jev-1.13.0",
+      "questions": {
+        "unsupported": {
+          "criteria": {
+            "false": "Only restates figures and facts from `result`, possibly rounded, and the assumptions it lists",
+            "true": "A fact, cause, comparison or judgement that isn't in `result`, such as a reason for a change or a claim about other years"
+          },
+          "instructions": "Does `reply` state anything about the trips that `result` does not support?",
+          "type": "noul"
+        }
+      },
+      "state": {
+        "reply": "The average Uber fare in March 2020 was $25.00, based on 200 trips counted.",
+        "result": {
+          "about": {
+            "measure": "average fare",
+            "question_type": "total or average",
+            "scope": "Uber in March 2020"
+          },
+          "assumptions": [],
+          "facts": {
+            "measure": "average fare",
+            "trips_counted": "200",
+            "value": "$25.00"
+          }
+        }
+      }
+    },
+    "response": {
+      "answers": {
+        "unsupported": {
+          "noul": 0.03,
+          "type": "noul"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 478,
         "output_tokens": 20
       }
     }
@@ -16501,11 +17792,11 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.35,
+          "confidence": 0.4,
           "probabilities": {
-            "periods": 0.57,
+            "periods": 0.6,
             "places": 0.0,
-            "services": 0.43
+            "services": 0.4
           },
           "type": "choice"
         },
@@ -16541,22 +17832,22 @@
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.55,
+          "confidence": 0.53,
           "probabilities": {
-            "distance": 0.66,
-            "duration": 0.2,
-            "fare": 0.14,
+            "distance": 0.65,
+            "duration": 0.23,
+            "fare": 0.12,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.65,
+          "confidence": 0.7,
           "probabilities": {
             "day": 0.0,
-            "month": 0.28,
-            "not_stated": 0.72,
+            "month": 0.24,
+            "not_stated": 0.76,
             "week": 0.0,
             "year": 0.0
           },
@@ -16645,11 +17936,11 @@
         },
         "place_role": {
           "choice": "not_stated",
-          "confidence": 0.97,
+          "confidence": 0.95,
           "probabilities": {
             "dropoff": 0.0,
-            "not_stated": 0.98,
-            "pickup": 0.02
+            "not_stated": 0.97,
+            "pickup": 0.03
           },
           "type": "choice"
         },
@@ -16691,7 +17982,7 @@
           "type": "choice"
         },
         "single": {
-          "noul": 0.05,
+          "noul": 0.04,
           "type": "noul"
         },
         "time_of_day": {
@@ -16708,7 +17999,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.24,
+          "noul": 0.21,
           "type": "noul"
         },
         "year": {
@@ -16734,7 +18025,7 @@
         },
         "year_to": {
           "choice": "2026",
-          "confidence": 0.74,
+          "confidence": 0.7,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
@@ -16743,12 +18034,12 @@
             "2023": 0.0,
             "2024": 0.0,
             "2025": 0.0,
-            "2026": 0.76,
+            "2026": 0.72,
             "earlier_year": 0.0,
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.24,
+            "not_stated": 0.28,
             "this_year": 0.0
           },
           "type": "choice"
@@ -17019,11 +18310,11 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.8,
+          "confidence": 0.77,
           "probabilities": {
-            "periods": 0.87,
+            "periods": 0.85,
             "places": 0.0,
-            "services": 0.13
+            "services": 0.15
           },
           "type": "choice"
         },
@@ -17050,33 +18341,33 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.8,
+          "confidence": 0.86,
           "probabilities": {
-            "highest": 0.9,
-            "lowest": 0.1
+            "highest": 0.93,
+            "lowest": 0.07
           },
           "type": "choice"
         },
         "distribution_of": {
-          "choice": "tip",
-          "confidence": 0.11,
+          "choice": "distance",
+          "confidence": 0.13,
           "probabilities": {
-            "distance": 0.3,
-            "duration": 0.26,
-            "fare": 0.11,
-            "tip": 0.33
+            "distance": 0.35,
+            "duration": 0.21,
+            "fare": 0.12,
+            "tip": 0.32
           },
           "type": "choice"
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.46,
+          "confidence": 0.49,
           "probabilities": {
             "day": 0.0,
             "month": 0.0,
-            "not_stated": 0.57,
+            "not_stated": 0.59,
             "week": 0.0,
-            "year": 0.43
+            "year": 0.41
           },
           "type": "choice"
         },
@@ -17173,10 +18464,10 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.58,
+          "confidence": 0.66,
           "probabilities": {
-            "boroughs": 0.21,
-            "zones": 0.79
+            "boroughs": 0.17,
+            "zones": 0.83
           },
           "type": "choice"
         },
@@ -17209,7 +18500,7 @@
           "type": "choice"
         },
         "single": {
-          "noul": 0.06,
+          "noul": 0.07,
           "type": "noul"
         },
         "time_of_day": {
@@ -17226,7 +18517,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.71,
+          "noul": 0.76,
           "type": "noul"
         },
         "year": {
@@ -17537,11 +18828,11 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.91,
+          "confidence": 0.92,
           "probabilities": {
-            "periods": 0.94,
+            "periods": 0.95,
             "places": 0.0,
-            "services": 0.06
+            "services": 0.05
           },
           "type": "choice"
         },
@@ -17568,33 +18859,33 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.66,
+          "confidence": 0.64,
           "probabilities": {
-            "highest": 0.83,
-            "lowest": 0.17
+            "highest": 0.82,
+            "lowest": 0.18
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.83,
+          "confidence": 0.88,
           "probabilities": {
-            "distance": 0.87,
-            "duration": 0.1,
-            "fare": 0.03,
+            "distance": 0.91,
+            "duration": 0.07,
+            "fare": 0.02,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.69,
+          "confidence": 0.62,
           "probabilities": {
             "day": 0.0,
             "month": 0.0,
-            "not_stated": 0.75,
+            "not_stated": 0.7,
             "week": 0.0,
-            "year": 0.25
+            "year": 0.3
           },
           "type": "choice"
         },
@@ -17691,24 +18982,24 @@
         },
         "rank_unit": {
           "choice": "boroughs",
-          "confidence": 0.16,
+          "confidence": 0.18,
           "probabilities": {
-            "boroughs": 0.58,
-            "zones": 0.42
+            "boroughs": 0.59,
+            "zones": 0.41
           },
           "type": "choice"
         },
         "service": {
           "choice": "not_stated",
-          "confidence": 0.89,
+          "confidence": 0.86,
           "probabilities": {
             "all": 0.01,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.91,
+            "not_stated": 0.88,
             "rideshare": 0.0,
             "uber": 0.0,
-            "yellow": 0.08
+            "yellow": 0.11
           },
           "type": "choice"
         },
@@ -17744,7 +19035,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.09,
+          "noul": 0.08,
           "type": "noul"
         },
         "year": {
@@ -17770,7 +19061,7 @@
         },
         "year_to": {
           "choice": "not_stated",
-          "confidence": 0.59,
+          "confidence": 0.6,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
@@ -17780,11 +19071,11 @@
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
-            "earlier_year": 0.38,
+            "earlier_year": 0.37,
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.62,
+            "not_stated": 0.63,
             "this_year": 0.0
           },
           "type": "choice"
@@ -18055,16 +19346,16 @@
       "answers": {
         "compare_by": {
           "choice": "services",
-          "confidence": 0.97,
+          "confidence": 0.95,
           "probabilities": {
-            "periods": 0.0,
+            "periods": 0.01,
             "places": 0.02,
-            "services": 0.98
+            "services": 0.97
           },
           "type": "choice"
         },
         "compound": {
-          "noul": 0.32,
+          "noul": 0.2,
           "type": "noul"
         },
         "day": {
@@ -18086,10 +19377,10 @@
         },
         "direction": {
           "choice": "lowest",
-          "confidence": 0.44,
+          "confidence": 0.56,
           "probabilities": {
-            "highest": 0.28,
-            "lowest": 0.72
+            "highest": 0.22,
+            "lowest": 0.78
           },
           "type": "choice"
         },
@@ -18098,8 +19389,8 @@
           "confidence": 0.87,
           "probabilities": {
             "distance": 0.9,
-            "duration": 0.08,
-            "fare": 0.02,
+            "duration": 0.07,
+            "fare": 0.03,
             "tip": 0.0
           },
           "type": "choice"
@@ -18135,15 +19426,15 @@
         },
         "measure": {
           "choice": "trip_count",
-          "confidence": 0.95,
+          "confidence": 0.94,
           "probabilities": {
             "average_distance": 0.01,
             "average_duration": 0.01,
             "average_fare": 0.02,
-            "average_tip": 0.0,
+            "average_tip": 0.01,
             "total_fares": 0.0,
             "total_tips": 0.0,
-            "trip_count": 0.96
+            "trip_count": 0.95
           },
           "type": "choice"
         },
@@ -18209,24 +19500,24 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.86,
+          "confidence": 0.84,
           "probabilities": {
-            "boroughs": 0.07,
-            "zones": 0.93
+            "boroughs": 0.08,
+            "zones": 0.92
           },
           "type": "choice"
         },
         "service": {
           "choice": "not_stated",
-          "confidence": 0.86,
+          "confidence": 0.87,
           "probabilities": {
             "all": 0.0,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.88,
+            "not_stated": 0.89,
             "rideshare": 0.0,
             "uber": 0.0,
-            "yellow": 0.12
+            "yellow": 0.11
           },
           "type": "choice"
         },
@@ -18367,7 +19658,7 @@
     "response": {
       "answers": {
         "unsupported": {
-          "noul": 0.03,
+          "noul": 0.04,
           "type": "noul"
         }
       },
@@ -18636,11 +19927,11 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.55,
+          "confidence": 0.61,
           "probabilities": {
-            "periods": 0.7,
-            "places": 0.01,
-            "services": 0.29
+            "periods": 0.74,
+            "places": 0.0,
+            "services": 0.26
           },
           "type": "choice"
         },
@@ -18650,18 +19941,18 @@
         },
         "day": {
           "choice": "not_stated",
-          "confidence": 0.98,
+          "confidence": 0.99,
           "probabilities": {
             "friday": 0.0,
             "monday": 0.0,
-            "not_stated": 0.98,
+            "not_stated": 0.99,
             "saturday": 0.0,
             "sunday": 0.0,
             "thursday": 0.0,
             "tuesday": 0.0,
             "wednesday": 0.0,
-            "weekdays": 0.02,
-            "weekends": 0.0
+            "weekdays": 0.0,
+            "weekends": 0.01
           },
           "type": "choice"
         },
@@ -18676,10 +19967,10 @@
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.6,
+          "confidence": 0.63,
           "probabilities": {
-            "distance": 0.7,
-            "duration": 0.24,
+            "distance": 0.72,
+            "duration": 0.22,
             "fare": 0.06,
             "tip": 0.0
           },
@@ -18703,14 +19994,14 @@
         },
         "intent": {
           "choice": "trend",
-          "confidence": 0.47,
+          "confidence": 0.44,
           "probabilities": {
             "compare": 0.0,
             "distribution": 0.0,
             "out_of_scope": 0.0,
             "ranking": 0.0,
-            "total_or_average": 0.44,
-            "trend": 0.56
+            "total_or_average": 0.47,
+            "trend": 0.53
           },
           "type": "choice"
         },
@@ -18790,10 +20081,10 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.16,
+          "confidence": 0.18,
           "probabilities": {
-            "boroughs": 0.42,
-            "zones": 0.58
+            "boroughs": 0.41,
+            "zones": 0.59
           },
           "type": "choice"
         },
@@ -18813,20 +20104,20 @@
         },
         "service_b": {
           "choice": "not_stated",
-          "confidence": 0.98,
+          "confidence": 0.96,
           "probabilities": {
             "all": 0.0,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.98,
+            "not_stated": 0.97,
             "rideshare": 0.0,
             "uber": 0.0,
-            "yellow": 0.02
+            "yellow": 0.03
           },
           "type": "choice"
         },
         "single": {
-          "noul": 0.1,
+          "noul": 0.09,
           "type": "noul"
         },
         "time_of_day": {
@@ -18869,21 +20160,21 @@
         },
         "year_to": {
           "choice": "2024",
-          "confidence": 0.67,
+          "confidence": 0.68,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
-            "2024": 0.6900000000000001,
+            "2024": 0.7,
             "2025": 0.0,
             "2026": 0.0,
             "earlier_year": 0.0,
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.31,
+            "not_stated": 0.3,
             "this_year": 0.0
           },
           "type": "choice"
@@ -18982,6 +20273,88 @@
       "model": "jev-1.13.0",
       "usage": {
         "input_tokens": 480,
+        "output_tokens": 20
+      }
+    }
+  },
+  "e52f4f25d33bc915": {
+    "request": {
+      "model": "jev-1.13.0",
+      "questions": {
+        "unsupported": {
+          "criteria": {
+            "false": "Only restates figures and facts from `result`, possibly rounded, and the assumptions it lists",
+            "true": "A fact, cause, comparison or judgement that isn't in `result`, such as a reason for a change or a claim about other years"
+          },
+          "instructions": "Does `reply` state anything about the trips that `result` does not support?",
+          "type": "noul"
+        }
+      },
+      "state": {
+        "reply": "The top pickup zone on Friday nights in 2023 was Midtown Center with 300 trips, followed by Times Sq/Theatre District with 250, JFK Airport with 200, East Village with 120, and Williamsburg (North Side) with 90, assuming all services since none was named.",
+        "result": {
+          "about": {
+            "measure": "trips",
+            "question_type": "ranking",
+            "ranking": "top 5 zones by pickups",
+            "scope": "all services on Friday nights (9pm to 4am) in 2023"
+          },
+          "assumptions": [
+            "all services, since none was named"
+          ],
+          "facts": {
+            "measure": "trips",
+            "ranked": [
+              {
+                "borough": "Manhattan",
+                "name": "Midtown Center",
+                "rank": 1,
+                "trips_counted": "300",
+                "value": "300"
+              },
+              {
+                "borough": "Manhattan",
+                "name": "Times Sq/Theatre District",
+                "rank": 2,
+                "trips_counted": "250",
+                "value": "250"
+              },
+              {
+                "borough": "Queens",
+                "name": "JFK Airport",
+                "rank": 3,
+                "trips_counted": "200",
+                "value": "200"
+              },
+              {
+                "borough": "Manhattan",
+                "name": "East Village",
+                "rank": 4,
+                "trips_counted": "120",
+                "value": "120"
+              },
+              {
+                "borough": "Brooklyn",
+                "name": "Williamsburg (North Side)",
+                "rank": 5,
+                "trips_counted": "90",
+                "value": "90"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "response": {
+      "answers": {
+        "unsupported": {
+          "noul": 0.04,
+          "type": "noul"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 800,
         "output_tokens": 20
       }
     }
@@ -19244,10 +20617,10 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.51,
+          "confidence": 0.38,
           "probabilities": {
-            "periods": 0.67,
-            "places": 0.31,
+            "periods": 0.59,
+            "places": 0.39,
             "services": 0.02
           },
           "type": "choice"
@@ -19275,33 +20648,33 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.64,
+          "confidence": 0.6,
           "probabilities": {
-            "highest": 0.82,
-            "lowest": 0.18
+            "highest": 0.8,
+            "lowest": 0.2
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.84,
+          "confidence": 0.81,
           "probabilities": {
-            "distance": 0.88,
-            "duration": 0.11,
-            "fare": 0.01,
+            "distance": 0.86,
+            "duration": 0.12,
+            "fare": 0.02,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.66,
+          "confidence": 0.65,
           "probabilities": {
             "day": 0.0,
             "month": 0.0,
-            "not_stated": 0.73,
+            "not_stated": 0.72,
             "week": 0.0,
-            "year": 0.27
+            "year": 0.28
           },
           "type": "choice"
         },
@@ -19375,14 +20748,14 @@
         },
         "place_b": {
           "choice": "no_place",
-          "confidence": 0.95,
+          "confidence": 0.93,
           "probabilities": {
             "group:clinton": 0.0,
-            "no_place": 0.96,
+            "no_place": 0.94,
             "zone:115": 0.0,
             "zone:45": 0.0,
             "zone:48": 0.0,
-            "zone:49": 0.04
+            "zone:49": 0.06
           },
           "type": "choice"
         },
@@ -19451,7 +20824,7 @@
           "type": "choice"
         },
         "unanswerable": {
-          "noul": 0.22,
+          "noul": 0.18,
           "type": "noul"
         },
         "year": {
@@ -19477,13 +20850,13 @@
         },
         "year_to": {
           "choice": "2023",
-          "confidence": 0.69,
+          "confidence": 0.6,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
-            "2023": 0.71,
+            "2023": 0.63,
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
@@ -19491,7 +20864,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.29000000000000004,
+            "not_stated": 0.37,
             "this_year": 0.0
           },
           "type": "choice"
@@ -19762,11 +21135,11 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.69,
+          "confidence": 0.76,
           "probabilities": {
-            "periods": 0.79,
+            "periods": 0.84,
             "places": 0.0,
-            "services": 0.21
+            "services": 0.16
           },
           "type": "choice"
         },
@@ -19793,31 +21166,31 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.1,
+          "confidence": 0.06,
           "probabilities": {
-            "highest": 0.55,
-            "lowest": 0.45
+            "highest": 0.53,
+            "lowest": 0.47
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "fare",
-          "confidence": 0.73,
+          "confidence": 0.79,
           "probabilities": {
-            "distance": 0.18,
-            "duration": 0.02,
-            "fare": 0.8,
+            "distance": 0.15,
+            "duration": 0.01,
+            "fare": 0.84,
             "tip": 0.0
           },
           "type": "choice"
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.7,
+          "confidence": 0.78,
           "probabilities": {
             "day": 0.0,
-            "month": 0.24,
-            "not_stated": 0.76,
+            "month": 0.18,
+            "not_stated": 0.8200000000000001,
             "week": 0.0,
             "year": 0.0
           },
@@ -19916,10 +21289,10 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.82,
+          "confidence": 0.8,
           "probabilities": {
-            "boroughs": 0.09,
-            "zones": 0.91
+            "boroughs": 0.1,
+            "zones": 0.9
           },
           "type": "choice"
         },
@@ -19939,14 +21312,14 @@
         },
         "service_b": {
           "choice": "not_stated",
-          "confidence": 0.6,
+          "confidence": 0.58,
           "probabilities": {
             "all": 0.0,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.66,
+            "not_stated": 0.64,
             "rideshare": 0.0,
-            "uber": 0.34,
+            "uber": 0.36,
             "yellow": 0.0
           },
           "type": "choice"
@@ -20280,10 +21653,10 @@
       "answers": {
         "compare_by": {
           "choice": "places",
-          "confidence": 0.88,
+          "confidence": 0.89,
           "probabilities": {
-            "periods": 0.05,
-            "places": 0.92,
+            "periods": 0.04,
+            "places": 0.9299999999999999,
             "services": 0.03
           },
           "type": "choice"
@@ -20320,10 +21693,10 @@
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.85,
+          "confidence": 0.81,
           "probabilities": {
-            "distance": 0.89,
-            "duration": 0.07,
+            "distance": 0.86,
+            "duration": 0.1,
             "fare": 0.04,
             "tip": 0.0
           },
@@ -20331,13 +21704,13 @@
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.81,
+          "confidence": 0.85,
           "probabilities": {
             "day": 0.0,
             "month": 0.0,
-            "not_stated": 0.85,
+            "not_stated": 0.88,
             "week": 0.0,
-            "year": 0.15
+            "year": 0.12
           },
           "type": "choice"
         },
@@ -20347,12 +21720,12 @@
         },
         "intent": {
           "choice": "ranking",
-          "confidence": 0.56,
+          "confidence": 0.58,
           "probabilities": {
             "compare": 0.06,
             "distribution": 0.0,
-            "out_of_scope": 0.05,
-            "ranking": 0.63,
+            "out_of_scope": 0.03,
+            "ranking": 0.65,
             "total_or_average": 0.26,
             "trend": 0.0
           },
@@ -20457,20 +21830,20 @@
         },
         "service_b": {
           "choice": "not_stated",
-          "confidence": 0.76,
+          "confidence": 0.77,
           "probabilities": {
             "all": 0.0,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.79,
+            "not_stated": 0.8,
             "rideshare": 0.0,
-            "uber": 0.21,
+            "uber": 0.2,
             "yellow": 0.0
           },
           "type": "choice"
         },
         "single": {
-          "noul": 0.87,
+          "noul": 0.84,
           "type": "noul"
         },
         "time_of_day": {
@@ -20513,13 +21886,13 @@
         },
         "year_to": {
           "choice": "2023",
-          "confidence": 0.57,
+          "confidence": 0.47,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
-            "2023": 0.6,
+            "2023": 0.51,
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
@@ -20527,7 +21900,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.4,
+            "not_stated": 0.49,
             "this_year": 0.0
           },
           "type": "choice"
@@ -20798,11 +22171,11 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.41,
+          "confidence": 0.46,
           "probabilities": {
-            "periods": 0.61,
+            "periods": 0.64,
             "places": 0.01,
-            "services": 0.38
+            "services": 0.35
           },
           "type": "choice"
         },
@@ -20829,10 +22202,10 @@
         },
         "direction": {
           "choice": "lowest",
-          "confidence": 0.18,
+          "confidence": 0.22,
           "probabilities": {
-            "highest": 0.41,
-            "lowest": 0.59
+            "highest": 0.39,
+            "lowest": 0.61
           },
           "type": "choice"
         },
@@ -20849,11 +22222,11 @@
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.86,
+          "confidence": 0.85,
           "probabilities": {
             "day": 0.0,
-            "month": 0.11,
-            "not_stated": 0.89,
+            "month": 0.12,
+            "not_stated": 0.88,
             "week": 0.0,
             "year": 0.0
           },
@@ -20942,20 +22315,20 @@
         },
         "place_role": {
           "choice": "not_stated",
-          "confidence": 0.95,
+          "confidence": 0.97,
           "probabilities": {
             "dropoff": 0.0,
-            "not_stated": 0.97,
-            "pickup": 0.03
+            "not_stated": 0.98,
+            "pickup": 0.02
           },
           "type": "choice"
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.12,
+          "confidence": 0.18,
           "probabilities": {
-            "boroughs": 0.44,
-            "zones": 0.56
+            "boroughs": 0.41,
+            "zones": 0.59
           },
           "type": "choice"
         },
@@ -20975,20 +22348,20 @@
         },
         "service_b": {
           "choice": "not_stated",
-          "confidence": 0.94,
+          "confidence": 0.96,
           "probabilities": {
             "all": 0.0,
             "green": 0.0,
             "lyft": 0.0,
-            "not_stated": 0.95,
+            "not_stated": 0.97,
             "rideshare": 0.0,
             "uber": 0.0,
-            "yellow": 0.05
+            "yellow": 0.03
           },
           "type": "choice"
         },
         "single": {
-          "noul": 0.05,
+          "noul": 0.06,
           "type": "noul"
         },
         "time_of_day": {
@@ -21031,21 +22404,21 @@
         },
         "year_to": {
           "choice": "2024",
-          "confidence": 0.52,
+          "confidence": 0.6,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
             "2023": 0.0,
-            "2024": 0.55,
+            "2024": 0.63,
             "2025": 0.0,
             "2026": 0.0,
             "earlier_year": 0.0,
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.45,
+            "not_stated": 0.37,
             "this_year": 0.0
           },
           "type": "choice"
@@ -21316,10 +22689,10 @@
       "answers": {
         "compare_by": {
           "choice": "periods",
-          "confidence": 0.64,
+          "confidence": 0.62,
           "probabilities": {
-            "periods": 0.76,
-            "places": 0.17,
+            "periods": 0.75,
+            "places": 0.18,
             "services": 0.07
           },
           "type": "choice"
@@ -21347,19 +22720,19 @@
         },
         "direction": {
           "choice": "highest",
-          "confidence": 0.68,
+          "confidence": 0.66,
           "probabilities": {
-            "highest": 0.84,
-            "lowest": 0.16
+            "highest": 0.83,
+            "lowest": 0.17
           },
           "type": "choice"
         },
         "distribution_of": {
           "choice": "distance",
-          "confidence": 0.69,
+          "confidence": 0.72,
           "probabilities": {
-            "distance": 0.77,
-            "duration": 0.2,
+            "distance": 0.79,
+            "duration": 0.18,
             "fare": 0.03,
             "tip": 0.0
           },
@@ -21367,13 +22740,13 @@
         },
         "grain": {
           "choice": "not_stated",
-          "confidence": 0.74,
+          "confidence": 0.76,
           "probabilities": {
-            "day": 0.06,
+            "day": 0.07,
             "month": 0.0,
-            "not_stated": 0.79,
-            "week": 0.04,
-            "year": 0.11
+            "not_stated": 0.81,
+            "week": 0.03,
+            "year": 0.09
           },
           "type": "choice"
         },
@@ -21410,11 +22783,11 @@
         },
         "month": {
           "choice": "not_stated",
-          "confidence": 0.96,
+          "confidence": 0.99,
           "probabilities": {
             "april": 0.0,
             "august": 0.0,
-            "autumn": 0.02,
+            "autumn": 0.01,
             "december": 0.0,
             "february": 0.0,
             "january": 0.0,
@@ -21422,12 +22795,12 @@
             "june": 0.0,
             "march": 0.0,
             "may": 0.0,
-            "not_stated": 0.96,
+            "not_stated": 0.99,
             "november": 0.0,
             "october": 0.0,
             "september": 0.0,
             "spring": 0.0,
-            "summer": 0.02,
+            "summer": 0.0,
             "winter": 0.0
           },
           "type": "choice"
@@ -21447,10 +22820,10 @@
         },
         "place_b": {
           "choice": "no_place",
-          "confidence": 0.93,
+          "confidence": 0.94,
           "probabilities": {
-            "group:midtown": 0.06,
-            "no_place": 0.94,
+            "group:midtown": 0.05,
+            "no_place": 0.95,
             "zone:161": 0.0,
             "zone:162": 0.0,
             "zone:163": 0.0,
@@ -21470,10 +22843,10 @@
         },
         "rank_unit": {
           "choice": "zones",
-          "confidence": 0.98,
+          "confidence": 0.96,
           "probabilities": {
-            "boroughs": 0.01,
-            "zones": 0.99
+            "boroughs": 0.02,
+            "zones": 0.98
           },
           "type": "choice"
         },
@@ -21549,13 +22922,13 @@
         },
         "year_to": {
           "choice": "2023",
-          "confidence": 0.73,
+          "confidence": 0.71,
           "probabilities": {
             "2019": 0.0,
             "2020": 0.0,
             "2021": 0.0,
             "2022": 0.0,
-            "2023": 0.75,
+            "2023": 0.73,
             "2024": 0.0,
             "2025": 0.0,
             "2026": 0.0,
@@ -21563,7 +22936,7 @@
             "last_year": 0.0,
             "later_year": 0.0,
             "most_recent": 0.0,
-            "not_stated": 0.25,
+            "not_stated": 0.27,
             "this_year": 0.0
           },
           "type": "choice"

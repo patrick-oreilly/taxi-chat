@@ -127,7 +127,12 @@ class QueryResult:
 def _where(f: Filters, source: str) -> tuple[list[str], list]:
     s = SOURCES[source]
     t = s["time"]
-    where = [f"{t} >= ?", f"{t} < ?"]
+    # Shifting by four hours lets a night window that crosses midnight be one range
+    # on one day; it only applies when the window is night. The period uses the
+    # same shifted time, so a night belongs to the year it started in: the small
+    # hours of 1 January 2022 are part of Friday 31 December 2021's night, not 2022's.
+    shifted = f"{t} - INTERVAL {NIGHT_SHIFT_HOURS} HOUR" if f.time_of_day == "night" else t
+    where = [f"{shifted} >= ?", f"{shifted} < ?"]
     params: list = [f.period.start, f.period.end]
     if (service_filter := SERVICE_FILTER[f.service]) is not None:
         where.append(f"{service_filter[0]} = ?")
@@ -135,9 +140,6 @@ def _where(f: Filters, source: str) -> tuple[list[str], list]:
     if f.zone_ids is not None:
         where.append(f"{s['zone'][f.role]} IN ({', '.join('?' * len(f.zone_ids))})")
         params.extend(f.zone_ids)
-    # Shifting by four hours lets a night window that crosses midnight be one range
-    # on one day; it only applies when the window is night.
-    shifted = f"{t} - INTERVAL {NIGHT_SHIFT_HOURS} HOUR" if f.time_of_day == "night" else t
     if f.day is not None:
         where.append(f"isodow({shifted}) IN ({', '.join(map(str, DAY_NUMBERS[f.day]))})")
     if f.time_of_day is not None:
@@ -230,7 +232,10 @@ class Database:
         return QueryResult(";\n".join(sqls), params, source, scanned, values, ms)
 
     def distribution(self, variable: str, f: Filters, *, threshold: float | None) -> QueryResult:
-        """How a raw-trip column is spread across fixed buckets, and the share below a threshold."""
+        """How a raw-trip column is spread across fixed buckets, and the shares under and over a threshold.
+
+        "Over 30 minutes" means strictly more than 30, so trips of exactly 30 are
+        in neither share; both are counted, not one inferred from the other."""
         column, unit, edges = DISTRIBUTIONS[variable]
         where, params = _where(f, "raw")
         cases = []
@@ -243,9 +248,9 @@ class Database:
             else:
                 cases.append(f"count(*) FILTER ({column} >= {lower} AND {column} < {edge})")
             lower = edge
-        below = f", count(*) FILTER ({column} < ?) AS below" if threshold is not None else ""
-        sql = f"SELECT count(*) AS trips, {', '.join(cases)}{below} FROM raw WHERE {' AND '.join(where)}"
-        run_params = ([threshold] if threshold is not None else []) + params
+        split = f", count(*) FILTER ({column} < ?) AS below, count(*) FILTER ({column} > ?) AS above" if threshold is not None else ""
+        sql = f"SELECT count(*) AS trips, {', '.join(cases)}{split} FROM raw WHERE {' AND '.join(where)}"
+        run_params = ([threshold, threshold] if threshold is not None else []) + params
         [row], ms = self._run(sql, run_params)
         trips = row[0]
         bounds = [None] + edges + [None]
@@ -256,8 +261,9 @@ class Database:
         values = {"variable": variable, "unit": unit, "trips": trips, "buckets": buckets}
         if threshold is not None:
             values["threshold"] = threshold
-            values["below"] = row[-1]
-            values["share_below"] = row[-1] / trips if trips else None
+            values["below"], values["above"] = row[-2], row[-1]
+            values["share_below"] = row[-2] / trips if trips else None
+            values["share_above"] = row[-1] / trips if trips else None
         return QueryResult(sql, [str(p) for p in run_params], "raw", trips, values, ms)
 
 

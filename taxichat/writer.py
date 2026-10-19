@@ -189,7 +189,7 @@ def facts_for(intent: str, result: dict, derived: dict) -> dict:
         if "pct_below" in derived:
             facts["threshold"] = bucket_label({"from": None, "to": result["threshold"]}, result["unit"])
             facts["share_under_threshold"] = format_pct(derived["pct_below"])
-            facts["share_at_or_over_threshold"] = format_pct(derived["pct_above"])
+            facts["share_over_threshold"] = format_pct(derived["pct_above"])
         return facts
     return {
         "measure": MEASURE_WORDS[result["measure"]],
