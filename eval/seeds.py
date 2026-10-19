@@ -194,7 +194,7 @@ SEEDS = [
          gold_sql=f"SELECT avg((fare < 20)::INT) FROM t WHERE company = 'uber' AND {_month(2024, 1)}"),
     dict(id="dist-03", question="What share of trips in March 2023 took over 30 minutes?", expect="answer", intent="distribution",
          details={"distribution_of": "duration"},
-         gold_sql=f"SELECT avg((minutes >= 30)::INT) FROM t WHERE {_month(2023, 3)}"),
+         gold_sql=f"SELECT avg((minutes > 30)::INT) FROM t WHERE {_month(2023, 3)}"),  # "over" is strictly more than
     dict(id="dist-04", question="What share of yellow cab tips in 2022 were under $1?", expect="answer", intent="distribution",
          details={"distribution_of": "tip", "service": "yellow"},
          gold_sql=f"SELECT avg((tip < 1)::INT) FROM t WHERE service = 'yellow' AND {_year(2022)}"),

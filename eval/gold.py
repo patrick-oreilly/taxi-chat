@@ -18,6 +18,7 @@ import duckdb
 
 from taxichat.places import ZONES_CSV
 
+from .holdout import HOLDOUT_SEEDS
 from .seeds import SEEDS
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -35,7 +36,7 @@ def main() -> None:
     con.execute(f"CREATE TABLE z AS SELECT LocationID AS zone, Zone AS name, Borough AS borough FROM read_csv('{ZONES_CSV}')")
 
     gold = {}
-    for seed in SEEDS:
+    for seed in SEEDS + HOLDOUT_SEEDS:
         if "gold_sql" not in seed:
             continue
         started = time.perf_counter()
