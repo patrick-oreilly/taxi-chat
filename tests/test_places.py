@@ -123,3 +123,18 @@ def test_borough_rankings_never_include_newark_airport(classifier, db):
     trace = ask("Which borough had the fewest green taxi pickups in 2023?", classifier, db)
 
     assert [r["name"] for r in trace["result"]["rows"]] == ["Manhattan"]  # not "EWR", whose 5 trips are fewer
+
+
+@pytest.mark.parametrize(
+    "question, trips",
+    [
+        # Found by the held-out run: New Year's Eve 2021 was a Friday, and its night's
+        # small hours were counted in 2022.
+        ("How many Uber trips on Friday nights in 2022?", 13),
+        ("How many Uber trips on Saturday nights in 2022?", 17),
+    ],
+)
+def test_a_night_belongs_to_the_year_it_started_in(question, trips, classifier, db):
+    trace = ask(question, classifier, db)
+
+    assert trace["result"]["value"] == trips

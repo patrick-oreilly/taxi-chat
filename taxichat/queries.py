@@ -127,7 +127,12 @@ class QueryResult:
 def _where(f: Filters, source: str) -> tuple[list[str], list]:
     s = SOURCES[source]
     t = s["time"]
-    where = [f"{t} >= ?", f"{t} < ?"]
+    # Shifting by four hours lets a night window that crosses midnight be one range
+    # on one day; it only applies when the window is night. The period uses the
+    # same shifted time, so a night belongs to the year it started in: the small
+    # hours of 1 January 2022 are part of Friday 31 December 2021's night, not 2022's.
+    shifted = f"{t} - INTERVAL {NIGHT_SHIFT_HOURS} HOUR" if f.time_of_day == "night" else t
+    where = [f"{shifted} >= ?", f"{shifted} < ?"]
     params: list = [f.period.start, f.period.end]
     if (service_filter := SERVICE_FILTER[f.service]) is not None:
         where.append(f"{service_filter[0]} = ?")
@@ -135,9 +140,6 @@ def _where(f: Filters, source: str) -> tuple[list[str], list]:
     if f.zone_ids is not None:
         where.append(f"{s['zone'][f.role]} IN ({', '.join('?' * len(f.zone_ids))})")
         params.extend(f.zone_ids)
-    # Shifting by four hours lets a night window that crosses midnight be one range
-    # on one day; it only applies when the window is night.
-    shifted = f"{t} - INTERVAL {NIGHT_SHIFT_HOURS} HOUR" if f.time_of_day == "night" else t
     if f.day is not None:
         where.append(f"isodow({shifted}) IN ({', '.join(map(str, DAY_NUMBERS[f.day]))})")
     if f.time_of_day is not None:

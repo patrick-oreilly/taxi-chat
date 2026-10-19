@@ -25,25 +25,25 @@
           "index": 0,
           "logprobs": null,
           "message": {
-            "content": "The top five Friday-night pickup zones in 2023 were Midtown Center (300 trips), Times Sq/Theatre District (250), JFK Airport (200), East Village (120) and Williamsburg (North Side) (90), assuming all services since none was named.",
+            "content": "The top pickup zone on Friday nights in 2023 was Midtown Center with 300 trips, followed by Times Sq/Theatre District with 250, JFK Airport with 200, East Village with 120, and Williamsburg (North Side) with 90, assuming all services since none was named.",
             "role": "assistant"
           }
         }
       ],
-      "created": 1792438126,
-      "id": "4ebff65d-3e45-43d1-965a-02ffa9153102",
+      "created": 1792439363,
+      "id": "8c42c145-4b72-4901-a391-a98b360f4643",
       "model": "deepseek-flash",
       "object": "chat.completion",
       "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
       "usage": {
-        "completion_tokens": 56,
+        "completion_tokens": 63,
         "prompt_cache_hit_tokens": 256,
         "prompt_cache_miss_tokens": 176,
         "prompt_tokens": 432,
         "prompt_tokens_details": {
           "cached_tokens": 256
         },
-        "total_tokens": 488
+        "total_tokens": 495
       }
     }
   },
@@ -73,25 +73,25 @@
           "index": 0,
           "logprobs": null,
           "message": {
-            "content": "The average fare on Uber in March 2020 was $25.00, based on 200 trips counted.",
+            "content": "The average Uber fare in March 2020 was $25.00, based on 200 trips counted.",
             "role": "assistant"
           }
         }
       ],
-      "created": 1792438120,
-      "id": "8a5df444-5293-4136-ad7c-883b6f2dbfb3",
+      "created": 1792439357,
+      "id": "0e546fc0-8305-48a7-9159-a973a3012423",
       "model": "deepseek-flash",
       "object": "chat.completion",
       "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
       "usage": {
-        "completion_tokens": 23,
+        "completion_tokens": 22,
         "prompt_cache_hit_tokens": 0,
         "prompt_cache_miss_tokens": 231,
         "prompt_tokens": 231,
         "prompt_tokens_details": {
           "cached_tokens": 0
         },
-        "total_tokens": 254
+        "total_tokens": 253
       }
     }
   },
@@ -126,8 +126,8 @@
           }
         }
       ],
-      "created": 1792438118,
-      "id": "b5217621-74e4-441d-8e8b-153157c12798",
+      "created": 1792439356,
+      "id": "a17660aa-7ea1-4658-92af-585969786afb",
       "model": "deepseek-flash",
       "object": "chat.completion",
       "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
@@ -169,25 +169,25 @@
           "index": 0,
           "logprobs": null,
           "message": {
-            "content": "There's no data for summer 2026, since the data covers January 2019 to December 2025. Try asking about summer 2025 instead.",
+            "content": "I don't have data for summer 2026; the data covers January 2019 to December 2025. You could ask about summer 2025 instead.",
             "role": "assistant"
           }
         }
       ],
-      "created": 1792438103,
-      "id": "ddcf1e63-2e1c-4c93-9f06-752689fa4409",
+      "created": 1792439341,
+      "id": "bc694870-35c0-4880-ae54-e81acce3382b",
       "model": "deepseek-flash",
       "object": "chat.completion",
       "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
       "usage": {
-        "completion_tokens": 33,
+        "completion_tokens": 34,
         "prompt_cache_hit_tokens": 0,
         "prompt_cache_miss_tokens": 207,
         "prompt_tokens": 207,
         "prompt_tokens_details": {
           "cached_tokens": 0
         },
-        "total_tokens": 240
+        "total_tokens": 241
       }
     }
   },
@@ -270,8 +270,8 @@
           }
         }
       ],
-      "created": 1792438123,
-      "id": "b58c7d0b-bc33-4e70-bb2c-a89ec5034a89",
+      "created": 1792439360,
+      "id": "09f5dbee-ca2c-4c68-ab3f-240c224e1caa",
       "model": "deepseek-flash",
       "object": "chat.completion",
       "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
@@ -318,8 +318,8 @@
           }
         }
       ],
-      "created": 1792438110,
-      "id": "27a18019-6edd-42f6-99c4-a4f3e24d672d",
+      "created": 1792439347,
+      "id": "efc45d5e-90f2-4236-bdf0-e44cdca7d260",
       "model": "deepseek-flash",
       "object": "chat.completion",
       "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
@@ -366,18 +366,18 @@
           }
         }
       ],
-      "created": 1792438113,
-      "id": "575abce6-4bc2-4d21-bc43-c6786edab538",
+      "created": 1792439350,
+      "id": "41b2bc26-ad2d-4c1f-b11d-36a0a419b2b9",
       "model": "deepseek-flash",
       "object": "chat.completion",
       "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
       "usage": {
         "completion_tokens": 19,
-        "prompt_cache_hit_tokens": 128,
-        "prompt_cache_miss_tokens": 269,
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 141,
         "prompt_tokens": 397,
         "prompt_tokens_details": {
-          "cached_tokens": 128
+          "cached_tokens": 256
         },
         "total_tokens": 416
       }
@@ -409,25 +409,25 @@
           "index": 0,
           "logprobs": null,
           "message": {
-            "content": "In March 2020, Uber had 200 trips and Lyft had 80 trips, so Uber had 120 more trips (about 2.5 times Lyft's count).",
+            "content": "In March 2020, Uber had 200 trips and Lyft had 80 trips.",
             "role": "assistant"
           }
         }
       ],
-      "created": 1792438111,
-      "id": "624e0d00-619a-4f00-a034-c35d94deb49a",
+      "created": 1792439348,
+      "id": "2e646c0b-93ab-49b8-ac9e-e23bc2196323",
       "model": "deepseek-flash",
       "object": "chat.completion",
       "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
       "usage": {
-        "completion_tokens": 38,
+        "completion_tokens": 19,
         "prompt_cache_hit_tokens": 128,
         "prompt_cache_miss_tokens": 177,
         "prompt_tokens": 305,
         "prompt_tokens_details": {
           "cached_tokens": 128
         },
-        "total_tokens": 343
+        "total_tokens": 324
       }
     }
   }
