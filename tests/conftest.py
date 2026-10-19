@@ -84,3 +84,20 @@ class ScriptedWriter:
     def write(self, **kwargs) -> str:
         self.calls.append(kwargs)
         return self.replies.pop(0)
+
+    write_decline = write
+
+
+class Adjusted:
+    """Wraps a classifier and overrides parts of its classification, to reach
+    gate branches that real questions only hit unpredictably."""
+
+    def __init__(self, inner, **overrides):
+        self.inner = inner
+        self.overrides = overrides
+
+    def classify(self, question: str):
+        classification = self.inner.classify(question)
+        for name, value in self.overrides.items():
+            setattr(classification, name, value)
+        return classification
