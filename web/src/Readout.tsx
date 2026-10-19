@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 // Counts from the last shown value to the new one with an exponential ease-out.
-export function useCountUp(target: number, duration = 1100) {
+function useCountUp(target: number, duration = 1100) {
   const [shown, setShown] = useState(target)
   const from = useRef(target)
   useEffect(() => {
@@ -23,10 +23,19 @@ export function useCountUp(target: number, duration = 1100) {
   return shown
 }
 
-export function Readout({ rows, source, ms }: { rows: number; source: string | null; ms: number | null }) {
-  const shown = useCountUp(rows)
+// Queries report once they finish, so while one runs the readout says so; a
+// raw-trip scan then counts up slower, so tens of millions of rows read as such.
+export function Readout({ rows, source, ms, pending }: { rows: number; source: string | null; ms: number | null; pending: boolean }) {
+  const shown = useCountUp(rows, source === 'raw' ? 2400 : 1100)
+  if (pending) {
+    return (
+      <div className="readout is-pending" aria-live="off">
+        <span className="readout-label">running the query…</span>
+      </div>
+    )
+  }
   return (
-    <div className="readout" aria-live="off">
+    <div className={`readout${source === 'raw' ? ' is-raw' : ''}`} aria-live="off">
       <span className="readout-value num">{Math.round(shown).toLocaleString('en-US')}</span>
       <span className="readout-label">
         rows scanned{source ? ` from ${source === 'raw' ? 'raw trips' : 'hourly rollups'}` : ''}

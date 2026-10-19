@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 
 import { Icon } from './Icon'
-import { InlineChart, seriesFrom } from './InlineChart'
+import { CompareBars, Histogram, TrendChart } from './InlineChart'
 import type { Turn } from './types'
 
 const SUGGESTIONS = [
   'What were the 5 busiest pickup zones in January 2024?',
-  'Average Uber fare from JFK in January 2024?',
-  'Which borough had the highest average tip for yellow cabs on weekend nights in January 2024?',
-  'How many Lyft rides were there in January 2024?',
+  'How did daily Uber trips change through January 2024?',
+  'Uber vs Lyft average fare in January 2024?',
+  'What share of yellow cab trips in January 2024 were under 2 miles?',
   'Will fares go up next year?',
 ]
 
@@ -28,7 +28,6 @@ function format(unit: string | undefined, value: number) {
 
 function Answer({ turn }: { turn: Turn }) {
   const result = turn.trace?.result
-  const points = seriesFrom(result)
   if (turn.status === 'streaming') {
     const last = turn.events[turn.events.length - 1]?.stage
     return <p className="answer is-pending">{(last && PROGRESS[last]) || 'Reading the question…'}</p>
@@ -55,7 +54,9 @@ function Answer({ turn }: { turn: Turn }) {
           ))}
         </ol>
       )}
-      {points && <InlineChart points={points} format={(v) => format(result?.unit, v)} />}
+      {result?.series && <TrendChart result={result} format={(v) => format(result.unit, v)} />}
+      {result?.groups && <CompareBars result={result} derived={turn.trace?.derived} format={(v) => format(result.unit, v)} />}
+      {result?.buckets && <Histogram result={result} />}
     </div>
   )
 }

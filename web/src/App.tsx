@@ -39,6 +39,7 @@ export default function App() {
   const lastFinished = [...turns].reverse().find((t) => t.status !== 'streaming')
   const declined = !busy && (active?.status === 'declined' || active?.status === 'error')
   const queried = active?.events.find((e) => e.stage === 'queried')
+  const querying = busy && !!active?.events.find((e) => e.stage === 'resolved') && !queried
 
   return (
     <div className={`app${busy ? ' is-busy' : ''}`}>
@@ -51,11 +52,12 @@ export default function App() {
       )}
       <Conversation turns={turns} onAsk={ask} busy={busy} header={<Masthead stats={stats} />} />
       <TracePanel turn={active} />
-      {queried && (
+      {(queried || querying) && (
         <Readout
-          rows={queried.rows_scanned as number}
-          source={queried.source as string}
+          rows={(queried?.rows_scanned as number) ?? 0}
+          source={(queried?.source as string) ?? null}
           ms={active?.trace?.timings_ms?.query ?? null}
+          pending={querying}
         />
       )}
     </div>

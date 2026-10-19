@@ -15,9 +15,22 @@ export type Result = {
   rows?: RankedRow[]
   rank_unit?: string
   direction?: string
-  // Trend results (#6) are expected to carry a series; the chart reads either key.
-  series?: { label?: string; period?: string; value: number }[]
+  grain?: 'day' | 'week' | 'month' | 'year'
+  series?: { t: string; value: number | null; trips: number; complete: boolean }[]
+  groups?: { label: string; value: number | null; trips: number }[]
+  variable?: string
+  buckets?: { from: number | null; to: number | null; trips: number; share: number | null }[]
+  threshold?: number
+  share_below?: number | null
   [key: string]: unknown
+}
+
+export type Derived = Record<string, unknown> & {
+  pct_change?: number | null
+  ratio?: number | null
+  pct_difference?: number | null
+  difference?: number | null
+  peak?: { t: string; value: number }
 }
 
 export type Trace = {
@@ -32,6 +45,8 @@ export type Trace = {
   source: string | null
   rows_scanned: number | null
   result: Result | null
+  derived?: Derived | null
+  notes?: string[]
   reply: string | null
   reply_source: string | null
   checks: Check[]

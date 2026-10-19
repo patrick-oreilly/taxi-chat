@@ -52,9 +52,16 @@ def highlight(trace: dict) -> dict:
             ids = [row["id"]] if result.get("rank_unit") == "zones" else list(places[f"borough:{row['name'].lower()}"].zone_ids)
             zones += [{"id": int(i), "rank": row["rank"], "value": row["value"], "label": row["name"]} for i in ids]
         return {"mode": "ranking", "zones": zones}
-    place = ((trace.get("details") or {}).get("place") or {}).get("value")
-    if place and place in places:
-        p = places[place]
+    details = trace.get("details") or {}
+    key = lambda name: (details.get(name) or {}).get("value")
+    if "groups" in result and key("compare_by") == "places" and key("place") in places and key("place_b") in places:
+        zones = []
+        for group, place_key, row in zip("ab", (key("place"), key("place_b")), result["groups"]):
+            p = places[place_key]
+            zones += [{"id": i, "rank": None, "value": row["value"], "label": p.label, "group": group} for i in p.zone_ids]
+        return {"mode": "compare", "zones": zones}
+    if key("place") in places:
+        p = places[key("place")]
         return {"mode": "place", "zones": [{"id": i, "rank": None, "value": result.get("value"), "label": p.label} for i in p.zone_ids]}
     return {"mode": "city", "zones": []}
 

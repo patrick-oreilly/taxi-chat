@@ -14,9 +14,26 @@ const DETAIL_LABELS: [key: string, label: string][] = [
   ['time_of_day', 'Time'],
   ['direction', 'Ranking'],
   ['rank_unit', 'Ranked by'],
+  ['grain', 'Step'],
+  ['year_to', 'Until'],
+  ['compare_by', 'Comparing'],
+  ['service_b', 'Against'],
+  ['place_b', 'Against'],
+  ['distribution_of', 'Spread of'],
 ]
 const UNSTATED = new Set(['not_stated', 'no_place'])
-const RANKING_ONLY = new Set(['direction', 'rank_unit'])
+// Details Jev answers for every question but that only mean something for one intent.
+const ONLY_FOR: Record<string, string> = {
+  direction: 'ranking',
+  rank_unit: 'ranking',
+  grain: 'trend',
+  year_to: 'trend',
+  compare_by: 'compare',
+  service_b: 'compare',
+  place_b: 'compare',
+  distribution_of: 'distribution',
+}
+const CHECK_NAMES: Record<string, string> = { numbers: 'Numbers', size_words: 'Size words', claim: 'Jev claim check' }
 const LOW_CONFIDENCE = 0.6
 
 const SOURCES: Record<string, string> = {
@@ -34,6 +51,8 @@ const DECLINE_SOURCES: Record<string, string> = {
 
 const NAMES: Record<string, string> = {
   all: 'All services',
+  dropoff: 'Ending there',
+  pickup: 'Starting there',
   yellow: 'Yellow taxis',
   green: 'Green taxis',
   rideshare: 'Rideshare',
@@ -126,10 +145,16 @@ export function TracePanel({ turn }: { turn?: Turn }) {
                 <Confidence value={intent.confidence} />
               </div>
               <dl className="details">
-                {DETAIL_LABELS.filter(([key]) => details[key] && !UNSTATED.has(details[key].value ?? '') && (intent.value === 'ranking' || !RANKING_ONLY.has(key))).map(([key, label]) => (
+                {DETAIL_LABELS.filter(([key]) => details[key] && !UNSTATED.has(details[key].value ?? '') && (!ONLY_FOR[key] || ONLY_FOR[key] === intent.value)).map(([key, label]) => (
                   <div key={key} className="detail-row">
                     <dt>{label}</dt>
-                    <dd>{key === 'place' && resolved?.place ? String(resolved.place) : words(details[key].value)}</dd>
+                    <dd>
+                      {key === 'place' && resolved?.place
+                        ? String(resolved.place)
+                        : key === 'place_b' && turn.highlight?.zones.find((z) => z.group === 'b')
+                          ? turn.highlight.zones.find((z) => z.group === 'b')!.label
+                          : words(details[key].value)}
+                    </dd>
                     <Confidence value={details[key].confidence} />
                   </div>
                 ))}
@@ -151,6 +176,11 @@ export function TracePanel({ turn }: { turn?: Turn }) {
                     .filter(Boolean)
                     .join(' · ')}
                 </p>
+                {(turn.trace?.notes ?? []).length > 0 && (
+                  <ul className="assumptions is-notes">
+                    {turn.trace!.notes!.map((n) => <li key={n}>{n.charAt(0).toUpperCase() + n.slice(1)}</li>)}
+                  </ul>
+                )}
                 {(resolved.assumptions as string[]).length > 0 && (
                   <ul className="assumptions">
                     {(resolved.assumptions as string[]).map((a) => <li key={a}>Assumed {a}</li>)}
@@ -183,14 +213,25 @@ export function TracePanel({ turn }: { turn?: Turn }) {
         {(checks.length > 0 || (!declined && streaming && queried)) && (
           <Step title="Checked" state={checks.length ? (checks.some((c) => c.passed) || written ? 'done' : 'failed') : 'active'}>
             <ul className="checks">
-              {checks.map((c, i) => (
-                <li key={i} className={c.passed ? 'is-pass' : 'is-fail'}>
-                  <Icon name={c.passed ? 'check' : 'cross'} />
-                  <span>
-                    {c.attempt === 'llm_retry' ? 'Second attempt' : 'First attempt'}: {c.passed ? 'every number traced to the result' : (c.detail as string)}
-                  </span>
-                </li>
-              ))}
+              {checks.map((c, i) => {
+                const attempt = String(c.attempt)
+                const named = (turn.trace?.checks ?? []).filter((k) => k.name.endsWith(`:${attempt}`))
+                return (
+                  <li key={i} className={c.passed ? 'is-pass' : 'is-fail'}>
+                    <Icon name={c.passed ? 'check' : 'cross'} />
+                    <span>
+                      {attempt === 'llm_retry' ? 'Second attempt' : 'First attempt'}: {c.passed ? 'every number and claim traced to the result' : (c.detail as string)}
+                      {named.length > 1 && (
+                        <span className="check-names">
+                          {named.map((k) => (
+                            <span key={k.name} className={k.passed ? 'is-pass' : 'is-fail'}>{CHECK_NAMES[k.name.split(':')[0]] ?? k.name.split(':')[0]}</span>
+                          ))}
+                        </span>
+                      )}
+                    </span>
+                  </li>
+                )
+              })}
             </ul>
           </Step>
         )}
