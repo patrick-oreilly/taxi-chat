@@ -78,10 +78,13 @@ def test_similar_name_picks_the_right_zone(classifier, db):
     assert trace["details"]["place"]["value"] == "zone:49"
 
 
-def test_dropoff_questions_decline_until_raw_data_is_searchable(classifier, db):
-    trace = ask("How many trips to LaGuardia on weekday mornings in 2023?", classifier, db)
+def test_dropoff_questions_are_answered_from_the_raw_trips(classifier, db):
+    trace = ask("How many trips to LaGuardia on weekday mornings in January 2024?", classifier, db)
 
-    assert trace["declined"] == "dropoff_not_supported_yet"
+    assert trace["details"]["place_role"]["value"] == "dropoff"
+    assert trace["source"] == "raw"
+    assert trace["result"]["value"] == 3  # the Saturday-morning LaGuardia trip doesn't count
+    assert "to LaGuardia Airport" in trace["reply"]
 
 
 def test_low_confidence_place_declines(classifier, db):

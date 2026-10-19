@@ -89,14 +89,47 @@ def when_words(day: str | None, time_of_day: str | None) -> str:
     return ""
 
 
-def scope_words(service: str, place_label: str | None, day: str | None, time_of_day: str | None, period_label: str) -> str:
-    parts = [SERVICE_WORDS[service]]
+def scope_words(service: str | None, place_label: str | None, day: str | None, time_of_day: str | None, period_label: str | None, role: str = "pickup") -> str:
+    """What a figure covers, in words. A comparison leaves out whatever it compares."""
+    parts = [SERVICE_WORDS[service]] if service else ["trips"]
     if place_label:
-        parts.append(f"from {place_label}")
+        parts.append(f"{'to' if role == 'dropoff' else 'from'} {place_label}")
     if when := when_words(day, time_of_day):
         parts.append(when)
-    parts.append(f"in {period_label}")
+    if period_label:
+        parts.append(f"in {period_label}")
     return " ".join(parts)
+
+
+def format_pct(value: float | None, signed: bool = False) -> str:
+    return "n/a" if value is None else (f"{value:+.1f}%" if signed else f"{value:.1f}%")
+
+
+def format_point(t: str, grain: str) -> str:
+    """A trend point's date as a reply should name it."""
+    year, month, day = t.split("-")
+    month_name = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][int(month) - 1]
+    if grain == "year":
+        return year
+    if grain == "month":
+        return f"{month_name} {year}"
+    prefix = "the week of " if grain == "week" else ""
+    return f"{prefix}{int(day)} {month_name} {year}"
+
+
+DISTRIBUTION_WORDS = {"distance": ("trip distance", "miles"), "fare": ("fare", "dollars"), "tip": ("tip", "dollars"), "duration": ("trip duration", "minutes")}
+
+
+def bucket_label(bucket: dict, unit: str) -> str:
+    money = unit == "usd"
+    fmt = (lambda v: f"${v:g}") if money else (lambda v: f"{v:g}")
+    suffix = "" if money else f" {unit}"
+    if bucket["from"] is None:
+        return f"under {fmt(bucket['to'])}{suffix}"
+    if bucket["to"] is None:
+        return f"{fmt(bucket['from'])}{suffix} or more"
+    return f"{fmt(bucket['from'])} to {fmt(bucket['to'])}{suffix}"
+
 
 
 def format_value(value: float, unit: str) -> str:
@@ -109,8 +142,9 @@ def format_value(value: float, unit: str) -> str:
     return f"{value:.1f} minutes"
 
 
-def facts_for(result: dict) -> dict:
-    if "rows" in result:
+def facts_for(intent: str, result: dict, derived: dict) -> dict:
+    """What the writer may say: every number in here, and only these, can appear in the reply."""
+    if intent == "ranking":
         return {
             "measure": MEASURE_WORDS[result["measure"]],
             "ranked": [
@@ -118,6 +152,45 @@ def facts_for(result: dict) -> dict:
                 for r in result["rows"]
             ],
         }
+    if intent == "trend":
+        point = lambda p: {"when": format_point(p["t"], result["grain"]), "value": format_value(p["value"], result["unit"])}
+        return {
+            "measure": MEASURE_WORDS[result["measure"]],
+            "step": result["grain"],
+            "points": len(result["series"]),
+            "first": point(derived["first"]),
+            "last": point(derived["last"]),
+            "peak": point(derived["peak"]),
+            "low": point(derived["low"]),
+            "change_first_to_last": format_pct(derived["pct_change"], signed=True),
+            "last_divided_by_first": f"{derived['ratio']:.2f}" if derived["ratio"] else "n/a",
+            "partial_steps_left_out": f"{derived['partial_left_out']} {result['grain']}(s) only partly inside the period, left out of the change, peak and low"
+            if derived["partial_left_out"] else "none",
+        }
+    if intent == "compare":
+        a, b = result["groups"]
+        return {
+            "measure": MEASURE_WORDS[result["measure"]],
+            "first": {"label": a["label"], "value": format_value(a["value"] or 0, result["unit"]), "trips_counted": f"{a['trips']:,}"},
+            "second": {"label": b["label"], "value": format_value(b["value"] or 0, result["unit"]), "trips_counted": f"{b['trips']:,}"},
+            "first_minus_second": format_value(derived["difference"], result["unit"]),
+            "first_divided_by_second": f"{derived['ratio']:.2f}" if derived["ratio"] else "n/a",
+            "first_versus_second": format_pct(derived["pct_difference"], signed=True),
+        }
+    if intent == "distribution":
+        facts = {
+            "spread_of": DISTRIBUTION_WORDS[result["variable"]][0],
+            "trips_counted": f"{result['trips']:,}",
+            "shares": [
+                {"range": bucket_label(b, result["unit"]), "share": format_pct(pct), "trips": f"{b['trips']:,}"}
+                for b, pct in zip(result["buckets"], derived["bucket_pcts"])
+            ],
+        }
+        if "pct_below" in derived:
+            facts["threshold"] = bucket_label({"from": None, "to": result["threshold"]}, result["unit"])
+            facts["share_under_threshold"] = format_pct(derived["pct_below"])
+            facts["share_at_or_over_threshold"] = format_pct(derived["pct_above"])
+        return facts
     return {
         "measure": MEASURE_WORDS[result["measure"]],
         "value": format_value(result["value"], result["unit"]),
@@ -129,13 +202,34 @@ def _with_assumptions(text: str, assumptions: list[str]) -> str:
     return text + (" Assuming " + "; ".join(assumptions) + "." if assumptions else "")
 
 
-def template_reply(measure: str, scope: str, result: dict, assumptions: list[str]) -> str:
-    if "rows" in result:
+def template_reply(intent: str, measure: str, scope: str, result: dict, derived: dict, assumptions: list[str]) -> str:
+    facts = facts_for(intent, result, derived)
+    if intent == "ranking":
         which = "Top" if result["direction"] == "highest" else "Bottom"
-        things = "pickup zones" if result["rank_unit"] == "zones" else "boroughs (by pickups)"
-        listed = ", ".join(f"{r['rank']}. {r['name']} ({format_value(r['value'], result['unit'])})" for r in result["rows"])
+        where = "dropoff" if result.get("role") == "dropoff" else "pickup"
+        things = f"{where} zones" if result["rank_unit"] == "zones" else f"boroughs (by {where}s)"
+        listed = ", ".join(f"{r['rank']}. {r['name']} ({r['value']})" for r in facts["ranked"])
         return _with_assumptions(f"{which} {len(result['rows'])} {things} by {MEASURE_WORDS[measure]} for {scope}: {listed}.", assumptions)
-    return _with_assumptions(f"{MEASURE_WORDS[measure].capitalize()} for {scope}: {format_value(result['value'], result['unit'])}.", assumptions)
+    if intent == "trend":
+        text = (
+            f"{MEASURE_WORDS[measure].capitalize()} for {scope}, by {result['grain']}: {facts['first']['value']} in {facts['first']['when']} "
+            f"to {facts['last']['value']} in {facts['last']['when']} ({facts['change_first_to_last']}). "
+            f"Highest: {facts['peak']['value']} in {facts['peak']['when']}."
+        )
+        if derived["partial_left_out"]:
+            text += f" Partial {result['grain']}s at the edges of the period are left out of these figures."
+        return _with_assumptions(text, assumptions)
+    if intent == "compare":
+        a, b = facts["first"], facts["second"]
+        text = f"{MEASURE_WORDS[measure].capitalize()} for {scope}: {a['label']} {a['value']} vs {b['label']} {b['value']} ({a['label']} {facts['first_versus_second']})."
+        return _with_assumptions(text, assumptions)
+    if intent == "distribution":
+        shares = "; ".join(f"{s['range']}: {s['share']}" for s in facts["shares"])
+        text = f"Of {facts['trips_counted']} trips for {scope}, by {facts['spread_of']}: {shares}."
+        if "share_under_threshold" in facts:
+            text += f" {facts['share_under_threshold']} were {facts['threshold']}."
+        return _with_assumptions(text, assumptions)
+    return _with_assumptions(f"{MEASURE_WORDS[measure].capitalize()} for {scope}: {facts['value']}.", assumptions)
 
 
 class DeepSeekWriter:
