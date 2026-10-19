@@ -10,12 +10,15 @@ three wrong answers came from one bug: New Year's Eve 2021 was a Friday, and
 the small hours of that night were counted in 2022. The held-out run is what
 found it.
 
-[![Taxi Chat ranking the busiest pickup zones of January 2024](docs/demo.gif)](docs/demo.mp4)
+[![Taxi Chat ranking the busiest pickup zones of January 2024](docs/demo.gif)](#demo)
 
-[Watch the 40-second demo](docs/demo.mp4): the busiest pickup zones, Brooklyn
-against Queens, a year of monthly trips, a neighbourhood nickname (where the
-checker rejects the first reply and the second passes), and a question it
-declines.
+[Watch the 40-second demo](#demo): the busiest pickup zones, Brooklyn against
+Queens, a year of monthly trips, a neighbourhood nickname (where the checker
+rejects the first reply and the second passes), and a question it declines.
+
+## Demo
+
+https://github.com/user-attachments/assets/551ed134-7139-4def-a6a2-b369c9e031e3
 
 ## How it stays honest
 
