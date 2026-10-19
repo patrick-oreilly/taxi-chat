@@ -57,6 +57,48 @@ SERVICE_WORDS = {
 }
 
 
+TIME_WORDS = {
+    "morning": "mornings (6am to noon)",
+    "afternoon": "afternoons (noon to 5pm)",
+    "evening": "evenings (5pm to 9pm)",
+    "night": "nights (9pm to 4am)",
+    "rush_hour": "rush hours (7am to 10am and 4pm to 7pm)",
+}
+# Hours the reply may legitimately mention for each window, in 12h and 24h forms.
+TIME_NUMBERS = {
+    "morning": [6, 12],
+    "afternoon": [12, 5, 17],
+    "evening": [5, 17, 9, 21],
+    "night": [9, 21, 4],
+    "rush_hour": [7, 10, 4, 16, 19],
+}
+DAY_WORDS = {"weekdays": "weekdays", "weekends": "weekends"}
+
+
+def when_words(day: str | None, time_of_day: str | None) -> str:
+    """'on Friday nights (9pm to 4am)', 'on weekdays', 'in mornings (6am to noon)', or ''."""
+    if day and time_of_day:
+        day_word = DAY_WORDS.get(day, day.title())
+        if day in DAY_WORDS:
+            return f"on {day_word}, {TIME_WORDS[time_of_day]}"
+        return f"on {day_word} {TIME_WORDS[time_of_day]}"
+    if day:
+        return f"on {DAY_WORDS.get(day, day.title() + 's')}"
+    if time_of_day:
+        return f"in {TIME_WORDS[time_of_day]}"
+    return ""
+
+
+def scope_words(service: str, place_label: str | None, day: str | None, time_of_day: str | None, period_label: str) -> str:
+    parts = [SERVICE_WORDS[service]]
+    if place_label:
+        parts.append(f"from {place_label}")
+    if when := when_words(day, time_of_day):
+        parts.append(when)
+    parts.append(f"in {period_label}")
+    return " ".join(parts)
+
+
 def format_value(value: float, unit: str) -> str:
     if unit == "trips":
         return f"{round(value):,}"
@@ -68,6 +110,14 @@ def format_value(value: float, unit: str) -> str:
 
 
 def facts_for(result: dict) -> dict:
+    if "rows" in result:
+        return {
+            "measure": MEASURE_WORDS[result["measure"]],
+            "ranked": [
+                {"rank": r["rank"], "name": r["name"], "borough": r["borough"], "value": format_value(r["value"], result["unit"]), "trips_counted": f"{r['trips']:,}"}
+                for r in result["rows"]
+            ],
+        }
     return {
         "measure": MEASURE_WORDS[result["measure"]],
         "value": format_value(result["value"], result["unit"]),
@@ -75,11 +125,17 @@ def facts_for(result: dict) -> dict:
     }
 
 
-def template_reply(measure: str, service: str, period_label: str, result: dict, assumptions: list[str]) -> str:
-    text = f"{MEASURE_WORDS[measure].capitalize()} for {SERVICE_WORDS[service]} in {period_label}: {format_value(result['value'], result['unit'])}."
-    if assumptions:
-        text += " Assuming " + "; ".join(assumptions) + "."
-    return text
+def _with_assumptions(text: str, assumptions: list[str]) -> str:
+    return text + (" Assuming " + "; ".join(assumptions) + "." if assumptions else "")
+
+
+def template_reply(measure: str, scope: str, result: dict, assumptions: list[str]) -> str:
+    if "rows" in result:
+        which = "Top" if result["direction"] == "highest" else "Bottom"
+        things = "pickup zones" if result["rank_unit"] == "zones" else "boroughs (by pickups)"
+        listed = ", ".join(f"{r['rank']}. {r['name']} ({format_value(r['value'], result['unit'])})" for r in result["rows"])
+        return _with_assumptions(f"{which} {len(result['rows'])} {things} by {MEASURE_WORDS[measure]} for {scope}: {listed}.", assumptions)
+    return _with_assumptions(f"{MEASURE_WORDS[measure].capitalize()} for {scope}: {format_value(result['value'], result['unit'])}.", assumptions)
 
 
 class DeepSeekWriter:

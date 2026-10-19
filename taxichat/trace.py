@@ -40,6 +40,7 @@ class AnswerTrace:
     now: str
     intent: Detail | None = None
     details: dict[str, Detail] = field(default_factory=dict)
+    place_candidates: list[str] = field(default_factory=list)  # the options code offered Jev, best first
     period: Period | None = None
     assumptions: list[str] = field(default_factory=list)
     declined: str | None = None  # reason code; None when answered

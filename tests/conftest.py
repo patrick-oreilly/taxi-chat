@@ -30,6 +30,17 @@ ROLLUP_ROWS = [
     ("green", "green", "2020-03-10 08:00", 74, 10, 2, 120.0, 8.0, 150.0, 30.0, 9000.0),
     ("fhvhv", "uber", "2020-03-05 18:00", 132, 200, 40, 5000.0, 400.0, 6500.0, 900.0, 300000.0),
     ("fhvhv", "lyft", "2020-03-05 18:00", 132, 80, 20, 1800.0, 160.0, 2400.0, 340.0, 110000.0),
+    # Friday 3 March 2023 night (9pm to 4am Saturday), plus traps around it.
+    ("yellow", "yellow", "2023-03-03 22:00", 161, 300, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Midtown Center
+    ("yellow", "yellow", "2023-03-03 23:00", 230, 250, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Times Sq
+    ("yellow", "yellow", "2023-03-04 01:00", 132, 200, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # JFK, still Friday night
+    ("yellow", "yellow", "2023-03-03 21:00", 79, 120, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # East Village
+    ("yellow", "yellow", "2023-03-03 22:00", 255, 90, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Williamsburg North
+    ("yellow", "yellow", "2023-03-03 22:00", 256, 60, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Williamsburg South
+    ("yellow", "yellow", "2023-03-03 22:00", 264, 999, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Unknown: never ranked
+    ("yellow", "yellow", "2023-03-03 14:00", 138, 500, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # LaGuardia, afternoon
+    ("yellow", "yellow", "2023-03-04 22:00", 161, 1000, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Saturday night
+    ("yellow", "yellow", "2023-03-04 05:00", 132, 40, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Saturday 5am, not Friday night
 ]
 
 
@@ -96,8 +107,8 @@ class Adjusted:
         self.inner = inner
         self.overrides = overrides
 
-    def classify(self, question: str):
-        classification = self.inner.classify(question)
+    def classify(self, question: str, places):
+        classification = self.inner.classify(question, places)
         for name, value in self.overrides.items():
             setattr(classification, name, value)
         return classification
