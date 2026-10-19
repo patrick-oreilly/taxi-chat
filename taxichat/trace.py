@@ -44,6 +44,8 @@ class AnswerTrace:
     assumptions: list[str] = field(default_factory=list)
     declined: str | None = None  # reason code; None when answered
     decline_message: str | None = None
+    decline_source: str | None = None  # "fixed", "llm", "llm_retry" or "template"
+    nearest_period: Period | None = None  # for periods outside the data: the closest one it covers
     query: str | None = None
     source: str | None = None  # "rollup" or "raw"
     rows_scanned: int | None = None
