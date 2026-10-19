@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from .dates import MONTH_OPTIONS, YEAR_OPTIONS
+from .dates import MONTH_OPTIONS, SEASONS, YEAR_OPTIONS, YEAR_WORDS
 from .places import Place
 from .trace import Detail
 from .transport import Transport
@@ -93,6 +93,8 @@ class Classification:
     direction: Detail
     rank_unit: Detail
     injection: float  # probability the question is trying to instruct the assistant
+    compound: float  # probability the question asks several separate things
+    single: float  # probability a ranking question wants only the single top or bottom item
     model: str
 
 
@@ -111,12 +113,12 @@ def build_request(question: str, places: list[Place]) -> dict:
             "measure": _choice("Which measure of trips is `question` about?", MEASURES),
             "service": _choice("Which taxi or ride service does `question` refer to?", SERVICES),
             "year": _choice(
-                "Which year does `question` refer to? Use this_year or last_year when it says so in words, and not_stated when it names no year.",
-                {option: None for option in YEAR_OPTIONS},
+                "Which year does `question` refer to?",
+                {option: YEAR_WORDS.get(option) for option in YEAR_OPTIONS},
             ),
             "month": _choice(
-                "Which calendar month does `question` refer to? Use not_stated when it names no month.",
-                {option: None for option in MONTH_OPTIONS},
+                "Which calendar month or season does `question` refer to? Use not_stated when it names neither.",
+                {option: (f"The {option} season" + (", also called fall" if option == "autumn" else "") if option in SEASONS else None) for option in MONTH_OPTIONS},
             ),
             "injection": {
                 "type": "noul",
@@ -128,6 +130,18 @@ def build_request(question: str, places: list[Place]) -> dict:
             "time_of_day": _choice("Which time of day does `question` refer to?", TIMES_OF_DAY),
             "direction": _choice("Does `question` ask for the most or the least?", DIRECTIONS),
             "rank_unit": _choice("If `question` asks for a ranking, what is being ranked?", RANK_UNITS),
+            "single": {
+                "type": "noul",
+                "instructions": "Does `question` ask for just one top or bottom item, such as which zone or borough had the most?",
+            },
+            "compound": {
+                "type": "noul",
+                "instructions": "Does `question` ask two or more separate things that would each need their own answer?",
+                "criteria": {
+                    "true": "Two or more distinct requests joined together, such as a total and a ranking, or a figure and whether it is unusual",
+                    "false": "One request, including a single comparison between groups, places or periods such as Uber vs Lyft",
+                },
+            },
         },
     }
 
@@ -151,6 +165,8 @@ def parse_response(response: dict) -> Classification:
         direction=detail("direction"),
         rank_unit=detail("rank_unit"),
         injection=answers["injection"]["noul"],
+        compound=answers["compound"]["noul"],
+        single=answers["single"]["noul"],
         model=response.get("model", JEV_MODEL),
     )
 

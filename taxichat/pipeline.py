@@ -18,16 +18,16 @@ import time
 from datetime import datetime
 from typing import Iterator
 
-from .checker import check_numbers
+from .checker import check_numbers, numbers_in
 from .classify import Classification
-from .dates import DATA_END, DATA_LABEL, DATA_START, covered, resolve_period
+from .dates import DATA_END, DATA_LABEL, DATA_START, covered, nearest_covered, resolve_period
 from .places import all_places, candidates
 from .queries import Database, Filters
 from .trace import AnswerTrace, Check, Detail
 from .writer import MEASURE_WORDS, SERVICE_WORDS, TIME_NUMBERS, facts_for, scope_words, template_reply
 
 # Starting points; the eval tunes these on the tuning split.
-THRESHOLDS = {"intent": 0.6, "detail": 0.5, "injection": 0.5}
+THRESHOLDS = {"intent": 0.6, "detail": 0.5, "injection": 0.5, "compound": 0.5, "single": 0.5}
 
 SUPPORTED_INTENTS = {"total_or_average", "ranking"}
 
@@ -44,12 +44,13 @@ NUMBER_WORDS = {w: i for i, w in enumerate("one two three four five six seven ei
 
 DECLINE_MESSAGES = {
     "injection": "That reads like instructions rather than a question about the trip data, so I won't act on it.",
+    "compound": "That asks more than one thing. Ask them one at a time and I'll answer each.",
     "out_of_scope": "That isn't something the NYC trip records can answer.",
     "uncertain_intent": "I'm not confident what you're asking. Try rephrasing it as a question about trips, fares, tips, distance or duration.",
     "not_supported_yet": "I can answer totals, averages and rankings so far; trends, comparisons and distributions are coming.",
     "dropoff_not_supported_yet": "Questions about where trips end need the raw trip data, which I can't search yet; I can answer about where trips start.",
     "uncertain_detail": "I'm not confident about part of your question ({detail}). Try stating it more directly.",
-    "outside_data": f"I don't have data for {{period}}; the data covers {DATA_LABEL}.",
+    "outside_data": f"I don't have data for {{period}}; the data covers {DATA_LABEL}. The nearest period I can answer is {{nearest}}.",
 }
 
 
@@ -73,6 +74,7 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
     def decline(reason: str, **fmt) -> Iterator[dict]:
         trace.declined = reason
         trace.decline_message = DECLINE_MESSAGES[reason].format(**fmt)
+        trace.decline_source = "fixed"
         yield {"stage": "declined", "reason": reason, "message": trace.decline_message}
         yield {"stage": "done", "trace": trace.to_dict()}
 
@@ -87,10 +89,14 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
         "measure": c.measure, "service": c.service, "year": c.year, "month": c.month, "place": c.place,
         "place_role": c.place_role, "day": c.day, "time_of_day": c.time_of_day, "direction": c.direction, "rank_unit": c.rank_unit,
     }
-    yield {"stage": "classified", "intent": c.intent.__dict__, "details": {k: v.__dict__ for k, v in trace.details.items()}, "injection": c.injection}
+    yield {"stage": "classified", "intent": c.intent.__dict__, "details": {k: v.__dict__ for k, v in trace.details.items()}, "injection": c.injection, "compound": c.compound}
 
+    # Order matters: each check assumes the ones before it passed.
     if c.injection >= THRESHOLDS["injection"]:
         yield from decline("injection")
+        return
+    if c.compound >= THRESHOLDS["compound"]:
+        yield from decline("compound")
         return
     if c.intent.value == "out_of_scope":
         yield from decline("out_of_scope")
@@ -131,6 +137,8 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
     n = None
     if intent == "ranking":
         n = rank_size(question)
+        if n is None and c.single >= THRESHOLDS["single"]:
+            n = 1  # "which zone had the most" asks for one, not a default list
         if n is None:
             n = DEFAULT_RANK_N
             trace.assumptions.append(f"the top {n}, since no number was given")
@@ -139,7 +147,7 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
     yield {"stage": "resolved", "period": period.label, "service": service, "place": place.label if place else None, "day": day, "time_of_day": time_of_day, "assumptions": trace.assumptions}
 
     if not covered(period):
-        yield from decline("outside_data", period=period.label)
+        yield from decline_outside_data(question, now, period, c.month.value, trace, writer)
         return
 
     measure = c.measure.value
@@ -196,6 +204,45 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
 
     trace.models["writer"] = getattr(writer, "model", "unknown")
     yield {"stage": "written", "reply": trace.reply, "source": trace.reply_source}
+    yield {"stage": "done", "trace": trace.to_dict()}
+
+
+def decline_outside_data(question: str, now: datetime, period, month: str, trace: AnswerTrace, writer) -> Iterator[dict]:
+    """Decline a period the data doesn't cover, suggesting the nearest one it does.
+
+    The decision is made in code; the writer only phrases it, and its reply
+    may mention no number or date beyond the requested period, the coverage
+    and the suggestion, and must include the suggestion and the coverage.
+    """
+    nearest = nearest_covered(month, period)
+    trace.declined = "outside_data"
+    trace.nearest_period = nearest
+    fixed = DECLINE_MESSAGES["outside_data"].format(period=period.label, nearest=nearest.label)
+    trace.decline_message, trace.decline_source = fixed, "fixed"
+
+    if writer is not None:
+        facts = {"REQUESTED_PERIOD": period.label, "DATA_COVERS": DATA_LABEL, "NEAREST_AVAILABLE": nearest.label}
+        allowed = [value for text in facts.values() for _, value, _ in numbers_in(text)] + [now.year]
+        must_mention = [written for written, _, _ in numbers_in(nearest.label)] + [str(DATA_END.year - 1)]
+        feedback = None
+        for source in ("llm", "llm_retry"):
+            started = time.perf_counter()
+            reply = writer.write_decline(question=question, facts=facts, today=now.date().isoformat(), feedback=feedback)
+            trace.timings_ms[f"decline_{source}"] = _ms(started)
+            check = check_numbers(reply, allowed)
+            if check.passed and (missing := [m for m in must_mention if m not in reply]):
+                check = Check("numbers", False, "must mention the coverage and the suggested period: missing " + ", ".join(missing))
+            trace.checks.append(Check(f"decline:{source}", check.passed, check.detail))
+            yield {"stage": "checked", "attempt": source, "reply": reply, "passed": check.passed, "detail": check.detail}
+            if check.passed:
+                trace.decline_message, trace.decline_source = reply, source
+                break
+            feedback = check.detail
+        else:
+            trace.decline_source = "template"
+        trace.models["writer"] = getattr(writer, "model", "unknown")
+
+    yield {"stage": "declined", "reason": "outside_data", "message": trace.decline_message, "nearest": nearest.label}
     yield {"stage": "done", "trace": trace.to_dict()}
 
 

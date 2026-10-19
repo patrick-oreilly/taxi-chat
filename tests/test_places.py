@@ -7,13 +7,12 @@ surrounded by trips that must not count: an afternoon, a Saturday night, a
 
 from __future__ import annotations
 
-from dataclasses import replace
-
 import pytest
 
 from taxichat.pipeline import run
+from taxichat.trace import Detail
 
-from .conftest import NOW
+from .conftest import NOW, Adjusted
 
 
 def ask(question, classifier, db):
@@ -86,12 +85,8 @@ def test_dropoff_questions_decline_until_raw_data_is_searchable(classifier, db):
 
 
 def test_low_confidence_place_declines(classifier, db):
-    class Unsure:
-        def classify(self, question, places):
-            c = classifier.classify(question, places)
-            return replace(c, place=replace(c.place, confidence=0.2))
-
-    trace = ask("How many trips from JFK on Friday nights in 2023?", Unsure(), db)
+    unsure = Adjusted(classifier, place=Detail("zone:132", 0.2))
+    trace = ask("How many trips from JFK on Friday nights in 2023?", unsure, db)
 
     assert trace["declined"] == "uncertain_detail"
     assert trace["query"] is None
@@ -105,3 +100,17 @@ def test_rank_size_is_read_in_code(question, n):
     from taxichat.pipeline import rank_size
 
     assert rank_size(question) == n
+
+
+def test_real_writer_ranking_reply_passes_the_number_check(classifier, deepseek_writer, db):
+    trace = run("Top 5 pickup zones on Friday nights in 2023", NOW, classifier=classifier, writer=deepseek_writer, db=db)
+
+    assert trace["reply_source"] in ("llm", "llm_retry"), trace["checks"]
+    assert "Midtown Center" in trace["reply"]
+
+
+def test_singular_question_ranks_one_without_assuming_a_list(classifier, db):
+    trace = ask("Which borough had the most yellow cab pickups in 2023?", classifier, db)
+
+    assert [r["name"] for r in trace["result"]["rows"]] == ["Manhattan"]
+    assert not any("top 5" in a for a in trace["assumptions"])
