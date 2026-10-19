@@ -119,3 +119,20 @@ def test_real_writer_states_the_default_it_assumed(classifier, deepseek_writer, 
     trace = run("how many trips were there in march 2020", NOW, classifier=classifier, writer=deepseek_writer, db=db)
 
     assert "all" in trace["reply"].lower()
+
+
+def test_wavering_between_equivalent_options_is_not_uncertainty():
+    from taxichat.classify import parse_response
+
+    def choice(name, chosen, probabilities, confidence):
+        return {"type": "choice", "choice": chosen, "probabilities": probabilities, "confidence": confidence}
+
+    answers = {name: choice(name, "x", {"x": 1.0, "y": 0.0}, 1.0) for name in (
+        "intent", "measure", "year", "month", "place", "place_role", "day", "time_of_day", "direction", "rank_unit",
+        "grain", "year_to", "compare_by", "service_b", "place_b", "distribution_of")}
+    answers["service"] = choice("service", "not_stated", {"not_stated": 0.5, "all": 0.45, "yellow": 0.05, "green": 0, "rideshare": 0, "uber": 0, "lyft": 0}, 0.42)
+    answers.update({n: {"type": "noul", "noul": 0.0} for n in ("injection", "compound", "single", "unanswerable")})
+
+    service = parse_response({"answers": answers}).service
+    assert service.value == "not_stated"
+    assert service.confidence > 0.9  # 0.95 pooled across the two options that both mean "all services"

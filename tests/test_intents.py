@@ -134,3 +134,9 @@ def test_partial_steps_at_the_edges_are_left_out_of_the_change(classifier, db):
     assert trace["derived"]["pct_change"] == pytest.approx(20)  # 100 -> 120, not 100 -> 20
     assert trace["derived"]["partial_left_out"] == 1
     assert "Partial weeks" in trace["reply"]
+
+
+def test_a_step_as_long_as_the_period_stays_a_single_total(classifier, db):
+    trace = ask("How many yellow cab trips were there last year?", classifier, db)
+
+    assert trace["intent"]["value"] == "total_or_average"

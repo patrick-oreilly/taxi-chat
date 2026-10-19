@@ -18,7 +18,7 @@ from pathlib import Path
 
 import duckdb
 
-from .places import EXCLUDED_ZONES, ZONES_CSV
+from .places import BOROUGHS, EXCLUDED_ZONES, ZONES_CSV
 from .trace import Period
 
 MEASURE_UNITS = {
@@ -180,6 +180,8 @@ class Database:
         zone_col = s["zone"][f.role]
         where, params = _where(f, source)
         where.append(f"{zone_col} NOT IN ({', '.join(map(str, EXCLUDED_ZONES))})")
+        # A borough ranking is over the five boroughs, never Newark Airport's "EWR".
+        only_boroughs = f"WHERE z.borough IN ({', '.join(repr(b) for b in BOROUGHS)}) " if unit_of_rank == "boroughs" else ""
         min_trips = 1 if measure == "trip_count" else MIN_TRIPS_FOR_AVERAGE_RANKING
         key, label = ("z.zone", "z.name") if unit_of_rank == "zones" else ("z.borough", "z.borough")
         order = "DESC" if direction == "highest" else "ASC"
@@ -187,7 +189,7 @@ class Database:
             f"WITH matched AS (SELECT * FROM {s['table']} WHERE {' AND '.join(where)}) "
             f"SELECT {key} AS id, any_value({label}) AS name, any_value(z.borough) AS borough, {s['measures'][measure]} AS value, {s['trips']} AS trips, "
             f"(SELECT count(*) FROM matched) AS scanned "
-            f"FROM matched JOIN zones z ON z.zone = matched.{zone_col} "
+            f"FROM matched JOIN zones z ON z.zone = matched.{zone_col} {only_boroughs}"
             f"GROUP BY {key} HAVING {s['trips']} >= ? ORDER BY value {order}, id LIMIT ?"
         )
         params += [min_trips, n]

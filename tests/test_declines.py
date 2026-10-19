@@ -137,11 +137,22 @@ def test_season_resolves_to_three_months_and_says_so(classifier, db):
 
 
 def test_no_time_given_defaults_to_the_whole_period_and_says_so(classifier, db):
-    writer = ScriptedWriter("Across January 2019 to December 2025 there were 10 green taxi trips.")
+    writer = ScriptedWriter("Across January 2019 to December 2025 there were 115 green taxi trips.")
     trace = ask("How many green taxi trips are there?", classifier, db, writer)
 
     assert trace["declined"] is None
     assert trace["period"]["label"] == "January 2019 to December 2025"
-    assert trace["result"]["value"] == 10
+    assert trace["result"]["value"] == 115  # 10 in March 2020 and 105 in June 2023
     assert any("whole period" in a for a in trace["assumptions"])
     assert any("whole period" in a for a in writer.calls[0]["assumptions"])
+
+
+@pytest.mark.parametrize(
+    "question",
+    ["Which driver made the most money in 2023?", "How many passengers gave their driver five stars in 2022?", "Show me the single longest trip ever recorded."],
+)
+def test_questions_about_what_the_records_dont_hold_are_declined(question, classifier, db):
+    trace = ask(question, classifier, db)
+
+    assert trace["declined"] == "out_of_scope"
+    assert trace["query"] is None

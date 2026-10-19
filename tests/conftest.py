@@ -41,6 +41,10 @@ ROLLUP_ROWS = [
     ("yellow", "yellow", "2023-03-03 14:00", 138, 500, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # LaGuardia, afternoon
     ("yellow", "yellow", "2023-03-04 22:00", 161, 1000, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Saturday night
     ("yellow", "yellow", "2023-03-04 05:00", 132, 40, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Saturday 5am, not Friday night
+    # Green 2023: Newark Airport (zone 1, TLC "borough" EWR) is not a borough and must never rank as one.
+    ("green", "green", "2023-06-01 12:00", 1, 5, 0, 0.0, 0.0, 0.0, 0.0, 0.0),
+    ("green", "green", "2023-06-01 12:00", 74, 40, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # East Harlem North, Manhattan
+    ("green", "green", "2023-06-01 12:00", 3, 60, 0, 0.0, 0.0, 0.0, 0.0, 0.0),  # Allerton/Pelham Gardens, Bronx
     # January 2024 weeks: 8th and 15th are whole weeks; the week of the 29th is cut off by the month's end.
     ("yellow", "yellow", "2024-01-10 12:00", 161, 100, 0, 0.0, 0.0, 0.0, 0.0, 0.0),
     ("yellow", "yellow", "2024-01-17 12:00", 161, 120, 0, 0.0, 0.0, 0.0, 0.0, 0.0),

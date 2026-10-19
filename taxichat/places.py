@@ -20,6 +20,8 @@ from rapidfuzz import fuzz
 
 ZONES_CSV = Path(__file__).parent / "zones.csv"
 EXCLUDED_ZONES = (264, 265)  # TLC's "Unknown" and "Outside of NYC"
+# TLC gives Newark Airport its own "borough", EWR; borough rankings are over these five.
+BOROUGHS = ("Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island")
 CANDIDATES = 5
 
 # Informal names that fuzzy matching can't be trusted to find.
@@ -99,6 +101,13 @@ def _ngrams(text: str) -> list[str]:
 def _names(place: Place) -> list[str]:
     # "Times Sq/Theatre District" can be referred to by either half.
     return [part.strip().lower() for part in re.split(r"/", place.label) if part.strip()]
+
+
+def nicknames_in(question: str) -> dict[str, str]:
+    """Nicknames code recognised, so Jev can be told what they mean."""
+    lowered = " " + " ".join(re.findall(r"[a-z0-9']+", question.lower())) + " "
+    places = all_places()
+    return {nick: places[key].description for nick, key in NICKNAMES.items() if f" {nick} " in lowered}
 
 
 def candidates(question: str) -> list[Place]:

@@ -28,7 +28,7 @@ from .trace import AnswerTrace, Check, Detail, Period
 from .writer import MEASURE_WORDS, SERVICE_WORDS, TIME_NUMBERS, facts_for, scope_words, template_reply
 
 # Starting points; the eval tunes these on the tuning split.
-THRESHOLDS = {"intent": 0.6, "detail": 0.5, "injection": 0.5, "compound": 0.5, "single": 0.5, "claim": 0.5}
+THRESHOLDS = {"intent": 0.6, "detail": 0.5, "injection": 0.5, "compound": 0.5, "single": 0.5, "claim": 0.5, "unanswerable": 0.5}
 
 SUPPORTED_INTENTS = {"total_or_average", "ranking", "trend", "compare", "distribution"}
 
@@ -80,6 +80,16 @@ def threshold_in(question: str) -> float | None:
     """The 2 in "under 2 miles", read in code; None when there isn't one."""
     match = THRESHOLD_PATTERN.search(question.lower())
     return float(match.group(2)) if match else None
+
+
+def steps_in(period: Period, grain: str) -> int:
+    """How many steps of `grain` the period spans (a partial step counts)."""
+    if grain == "day":
+        return (period.end - period.start).days
+    if grain == "week":
+        return -(-(period.end - period.start).days // 7)
+    months = (period.end.year - period.start.year) * 12 + period.end.month - period.start.month
+    return months if grain == "month" else -(-months // 12)
 
 
 def _year(option: str, today) -> int | None:
@@ -146,17 +156,14 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
     if c.compound >= THRESHOLDS["compound"]:
         yield from decline("compound")
         return
-    if c.intent.value == "out_of_scope":
+    if c.intent.value == "out_of_scope" or c.unanswerable >= THRESHOLDS["unanswerable"]:
         yield from decline("out_of_scope")
         return
     # Jev wavers between a single total and a trend for "weekly trips in 2023", but
-    # its step answer doesn't: a question that names a step wants a series.
-    if c.intent.value in ("total_or_average", "trend") and c.grain.value != "not_stated" and c.grain.confidence >= THRESHOLDS["detail"]:
-        if c.intent.value != "trend" or c.intent.confidence < THRESHOLDS["intent"]:
-            trace.notes.append(f"treated as a trend because it asks for {c.grain.value}-by-{c.grain.value} figures (step confidence {c.grain.confidence:.2f})")
-        c.intent = Detail("trend", max(c.intent.confidence, c.grain.confidence))
-        trace.intent = c.intent
-    if c.intent.confidence < THRESHOLDS["intent"]:
+    # its step answer doesn't. A named step settles it once the period is known:
+    # more than one step is a series, one step ("trips last year") is a total.
+    step_named = c.intent.value in ("total_or_average", "trend") and c.grain.value != "not_stated" and c.grain.confidence >= THRESHOLDS["detail"]
+    if c.intent.confidence < THRESHOLDS["intent"] and not step_named:
         yield from decline("uncertain_intent")
         return
     if c.intent.value not in SUPPORTED_INTENTS:
@@ -194,7 +201,7 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
     # only matters when the end year would change the answer: wavering between
     # "2020" and "not stated" for "monthly trips in 2020" is harmless.
     year_to = _year(c.year_to.value, today)
-    widens = intent == "trend" and year_to is not None and c.month.value == "not_stated" and year_to != period.start.year and period.end.year - period.start.year == 1
+    widens = (intent == "trend" or step_named) and year_to is not None and c.month.value == "not_stated" and year_to != period.start.year and period.end.year - period.start.year == 1
     if widens and c.year_to.confidence < THRESHOLDS["detail"]:
         yield from decline("uncertain_detail", detail="end year")
         return
@@ -202,6 +209,23 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
         first, last = sorted((period.start.year, year_to))
         period = Period(date(first, 1, 1), date(last + 1, 1, 1), f"{first} to {last}")
     trace.period = period
+
+    step_too_coarse = False
+    if step_named:
+        confident_trend = intent == "trend" and c.intent.confidence >= THRESHOLDS["intent"]
+        if steps_in(period, c.grain.value) > 1:
+            decided = "trend"
+        elif confident_trend:
+            decided, step_too_coarse = "trend", True  # "how did trips change over 2022?" still wants a series
+        else:
+            decided = "total_or_average"
+        if decided != intent or c.intent.confidence < THRESHOLDS["intent"]:
+            trace.notes.append(
+                f"treated as a {decided.replace('_', ' ')}: a {c.grain.value}-by-{c.grain.value} step gives "
+                f"{steps_in(period, c.grain.value)} figure(s) for {period.label} (step confidence {c.grain.confidence:.2f})"
+            )
+        intent = decided
+        trace.intent = Detail(decided, max(c.intent.confidence, c.grain.confidence))
 
     n = None
     if intent == "ranking":
@@ -217,11 +241,12 @@ def answer(question: str, now: datetime, *, classifier, writer, db: Database) ->
     grain = None
     if intent == "trend":
         # The step is presentation, not correctness: an unsure one gets the stated default.
-        grain = c.grain.value if c.grain.confidence >= THRESHOLDS["detail"] else "not_stated"
+        grain = c.grain.value if c.grain.confidence >= THRESHOLDS["detail"] and not step_too_coarse else "not_stated"
         if grain == "not_stated":
             days = (period.end - period.start).days
             grain = "day" if days <= 62 else "month" if days <= 731 else "year"
-            trace.assumptions.append(f"by {grain}, since no step was given")
+            why = f"{c.grain.value}-by-{c.grain.value} gives one figure for {period.label}" if step_too_coarse else "no step was given"
+            trace.assumptions.append(f"by {grain}, since {why}")
 
     base = Filters(period, service, place.zone_ids if place else None, day, time_of_day, role)
     groups = None

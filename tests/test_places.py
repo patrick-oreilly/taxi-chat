@@ -117,3 +117,9 @@ def test_singular_question_ranks_one_without_assuming_a_list(classifier, db):
 
     assert [r["name"] for r in trace["result"]["rows"]] == ["Manhattan"]
     assert not any("top 5" in a for a in trace["assumptions"])
+
+
+def test_borough_rankings_never_include_newark_airport(classifier, db):
+    trace = ask("Which borough had the fewest green taxi pickups in 2023?", classifier, db)
+
+    assert [r["name"] for r in trace["result"]["rows"]] == ["Manhattan"]  # not "EWR", whose 5 trips are fewer
